@@ -10,7 +10,7 @@ redirect_from:
 
 Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. My research interest lies in deep learning theory, aimimg at gaining better theoretical understanding of the popular deep learning algorithms. I am also interested in pure mathematics, and how the area "interacts" with the machine learning area, for instance, how to apply the pure math knowledge to facilitate understanding of deep learning. Feel free to chat if you have similar research interest with me!
 
-I am also maintaining a [Bilibili](https://space.bilibili.com/346660989?spm_id_from=333.1007.0.0) account for introducing interesting concepts and problems in Computer Science or Mathematics. Besides, I also have a [Chinese blog](matheart.github.io/matheart-note), feel free to check them out!
+I am also maintaining a [Bilibili](https://space.bilibili.com/346660989?spm_id_from=333.1007.0.0) account for introducing interesting concepts and problems in Computer Science or Mathematics.
 
 Education
 ======
@@ -20,7 +20,7 @@ Education
 Project experience
 ======
 * Fall 2022 ~ Now: Research Intern
-  * Supervised under Professor[Tong Zhang](https://tongzhang-ml.org/)
+  * Supervised under Professor [Tong Zhang](https://tongzhang-ml.org/)
   * Working on theoretical understanding of ensemble on OOD setting
 
 * Summer 2023 ~ Now: Cooperating Undergraduate Student
