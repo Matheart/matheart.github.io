@@ -26,10 +26,20 @@ Project experience
 * Summer 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor Yiping Lu
   * Working on a non-parametric statistics problem
+
+Courses
+=====
+* Cumulative GPA: 4.095/4.3, Major GPA: 4.152/4.3
+* Selected courses: MATH2431 Honors Probability (A+), COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH3043 Honors Real Analysis (A+), COMP2211 Exploring Artificial Intelligence (A+), COMP2012H Honors OOP and Data Structure (A+)
+
+Awards
+=====
+* Hong Kong Government Scholarship 22'
+* Chern Class Scholarship 22'
   
 Skills
 ======
-* manim (a toolbox for making mathematical animations)
+* manim (toolbox for making mathematical animations)
 * LaTeX
 
 <!-- Publications
