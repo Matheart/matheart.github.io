@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. My research interest lies in deep learning theory, aimimg at gaining better theoretical understanding of the popular deep learning algorithms. Please feel free to contact me if you have similar research interests!
+Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. My research interest lies in deep learning theory, aimimg at gaining better theoretical understanding of the popular deep learning algorithms. I am also interested in pure mathematics, and how the area "interacts" with the machine learning area, for instance, how to apply the pure math knowledge to facilitate understanding of deep learning. Feel free to chat if you have similar research interest with me!
 
 I am also maintaining a [Bilibili](https://space.bilibili.com/346660989?spm_id_from=333.1007.0.0) account for introducing interesting concepts and problems in Computer Science or Mathematics. Besides, I also have a [Chinese blog](matheart.github.io/matheart-note), feel free to check them out!
 
