@@ -7,4 +7,4 @@ redirect_from:
   - /miscellaneous
 ---
 
-Hello world!
+I enjoy listening to Chinese Vocaloid songs, and some cantopop songs. Sometimes I also watch some anime, my favourite anime is Your Lie in April, and my favourite visual novel is White Album II.
