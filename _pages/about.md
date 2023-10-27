@@ -15,7 +15,7 @@ I am also maintaining a [Bilibili](https://space.bilibili.com/346660989?spm_id_f
 Education
 ======
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025 (Expected)
-* Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring
+* Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring (Expected)
 
 Project experience
 ======
