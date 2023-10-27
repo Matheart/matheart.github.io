@@ -9,10 +9,10 @@ redirect_from:
 
 I enjoy listening to Chinese Vocaloid songs, and some cantopop songs. Sometimes I also watch some anime, my favourite anime is Your Lie in April, and my favourite visual novel is White Album 2, and Needy Girl Overdose.
 
-![](luotianyi.png)
+![Luo Tianyi](luotianyi.png)
 
-![](aprilfoul.jpg)
+![Your Lie in April](aprilfoul.jpg)
 
-![](wa2.jpg)
+![White Album 2](wa2.jpg)
 
-![](overdose.jpg)
+![Needy Girl Overdose](overdose.jpg)
