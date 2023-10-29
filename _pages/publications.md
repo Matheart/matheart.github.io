@@ -13,3 +13,4 @@ Note
 ======
 - **Understanding the Theory Behind Transformers: An Overview of current research** (to be released)
 <br /> COMP5212 Course Project
+<br /> A brief summary of some current research on understanding Transformer
