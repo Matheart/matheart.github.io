@@ -21,7 +21,7 @@ Project experience
 ======
 * Fall 2022 ~ Now: Research Intern
   * Supervised under Professor [Tong Zhang](https://tongzhang-ml.org/)
-  * Working on theoretical understanding of ensemble on OOD setting, submitted an ICLR paper as fourth author, now working on project that characterizes the training dynamics
+  * Working on theoretical understanding of ensemble on OOD setting, submitted paper under review to ICLR as fourth author, now working on project that characterizes the training dynamics
 
 * Summer 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu](https://2prime.github.io/)
