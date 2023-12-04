@@ -8,7 +8,11 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. My research interest lies in deep learning theory, aimimg at gaining better theoretical understanding of the popular deep learning algorithms. I am also interested in pure mathematics, and how the area "interacts" with the machine learning area, for instance, how to apply the pure math knowledge to facilitate understanding of deep learning. Feel free to chat if you have similar research interest with me!
+Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. 
+
+My research interest lies in adopting statistical and computational approaches to effectively characterize the properties of deep learning algorithms and get a better understanding of their practical success. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical observations of widely recognized phenomena such as Neural Collapse and the Edge of Stability.
+
+Feel free to connect if you have similar research interest with me!
 
 I am also maintaining a [Bilibili](https://space.bilibili.com/346660989?spm_id_from=333.1007.0.0) account for introducing interesting concepts and problems in Computer Science or Mathematics.
 
@@ -21,7 +25,7 @@ Project experience
 ======
 * Fall 2022 ~ Now: Research Intern
   * Supervised under Professor [Tong Zhang](https://tongzhang-ml.org/)
-  * Working on theoretical understanding of ensemble on OOD setting, submitted paper under review to ICLR as fourth author, now working on project that characterizes the training dynamics
+  * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author, now working on project that characterizes the training dynamics
 
 * Summer 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu](https://2prime.github.io/)
