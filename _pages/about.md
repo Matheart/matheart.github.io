@@ -10,7 +10,7 @@ redirect_from:
 
 Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. 
 
-My research interest lies in adopting statistical and computational approaches to effectively characterize the properties of deep learning algorithms and get a better understanding of their practical success. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical observations of widely recognized phenomena such as Neural Collapse and the Edge of Stability.
+My research interest involves adopting statistical and computational methodologies to establish theoretical foundations for deep learning algorithms, with the aim of gaining a more comprehensive understanding of their practical achievements. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical investigations into widely recognized phenomena such as Neural Collapse and the Edge of Stability.
 
 Feel free to connect if you have similar research interest with me!
 
