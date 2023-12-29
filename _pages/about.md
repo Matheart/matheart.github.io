@@ -23,21 +23,17 @@ Education
 
 Research experience
 ======
+<img align="right" src="../images/hkust.png"/>
+
 * Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang @ HKUST](https://tongzhang-ml.org/)
   * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author
-
-<td style="padding-right:0px">
-  <img id="school_logo" src="../images/hkust.png" height="70px">
-</td>
+  
+<img align="right" src="../images/nyu.png"/>
 
 * July 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu @ NYU](https://2prime.github.io/)
   * Working on approximation theory 
-
-<td style="padding-right:0px">
-  <img id="school_logo" src="../images/nyu.png" height="70px">
-</td>
 
 Courses
 =====
