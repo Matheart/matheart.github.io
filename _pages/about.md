@@ -23,13 +23,9 @@ Education
 
 Research experience
 ======
-<img align="right" src="../images/hkust.png"/>
-
 * Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang @ HKUST](https://tongzhang-ml.org/)
   * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author
-  
-<img align="right" src="../images/nyu.png"/>
 
 * July 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu @ NYU](https://2prime.github.io/)
@@ -39,7 +35,7 @@ Courses
 =====
 * Cumulative GPA: 4.099/4.3 (Top 1%), Major GPA: 4.140/4.3
 * Selected PG courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
-* Selected UG courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH3312 Numerical Analysis (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), COMP2012H Honors OOP and Data Structure (A+)
+* Selected UG courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 (Functional Analysis), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
 
 Awards
 =====
