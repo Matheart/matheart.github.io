@@ -23,18 +23,19 @@ Education
 
 Project experience
 ======
-* Fall 2022 ~ Now: Research Intern
+* Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang](https://tongzhang-ml.org/)
-  * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author, now working on project that characterizes the training dynamics
+  * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author
 
-* Summer 2023 ~ Now: Cooperating Undergraduate Student
+* July 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu](https://2prime.github.io/)
-  * Working on a non-parametric statistics problem, aiming at ICML submission
+  * Working on approximation theory 
 
 Courses
 =====
-* Cumulative GPA: 4.095/4.3, Major GPA: 4.152/4.3
-* Selected courses: MATH2431 Honors Probability (A+), COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH3043 Honors Real Analysis (A+), COMP2211 Exploring Artificial Intelligence (A+), COMP2012H Honors OOP and Data Structure (A+)
+* Cumulative GPA: 4.099/4.3 (Top 1%), Major GPA: 4.140/4.3
+* Selected PG courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
+* Selected UG courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH3312 Numerical Analysis (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), COMP2012H Honors OOP and Data Structure (A+)
 
 Awards
 =====
