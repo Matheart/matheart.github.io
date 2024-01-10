@@ -10,7 +10,7 @@ redirect_from:
 
 Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. I am very fortunate to work with [Yiping Lu](https://2prime.github.io/) at New York University, [Wei Hu](https://weihu.me/) at University of Michigan. Previously, I was supervised by [Tong Zhang](https://tongzhang-ml.org/) at HKUST.
 
-My research interest involves adopting statistical and computational methodologies to establish theoretical foundations for deep learning algorithms, with the aim of gaining a more comprehensive understanding of their practical achievements. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical investigations into widely recognized phenomena such as Neural Collapse and the Edge of Stability.
+My research interest involves adopting statistical and computational methodologies to establish theoretical foundations for deep learning algorithms, with the aim of gaining a more comprehensive understanding of their practical achievements. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical investigations into widely recognized phenomena such as Double descent, Grokking, and Neural Collapse.
 
 Feel free to connect if you have similar research interest with me!
 
