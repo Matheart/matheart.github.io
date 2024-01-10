@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. 
+Hi! I am a third-year student majoring in Computer Science & Mathematics in HKUST. I am very fortunate to work with [Yiping Lu](https://2prime.github.io/) at New York University, [Wei Hu](https://weihu.me/) at University of Michigan. Previously, I was supervised by [Tong Zhang](https://tongzhang-ml.org/) at HKUST.
 
 My research interest involves adopting statistical and computational methodologies to establish theoretical foundations for deep learning algorithms, with the aim of gaining a more comprehensive understanding of their practical achievements. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical investigations into widely recognized phenomena such as Neural Collapse and the Edge of Stability.
 
@@ -23,13 +23,13 @@ Education
 
 Research experience
 ======
+* July 2023 ~ Now: Cooperating Undergraduate Student
+  * Supervised under Professor [Yiping Lu @ NYU](https://2prime.github.io/)
+  * Working on Bayesian Approach to understand in-context learning
+
 * Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang @ HKUST](https://tongzhang-ml.org/)
   * Working on theoretical understanding of ensemble on OOD setting, submitted paper to ICLR (now under review) as fourth author
-
-* July 2023 ~ Now: Cooperating Undergraduate Student
-  * Supervised under Professor [Yiping Lu @ NYU](https://2prime.github.io/)
-  * Working on approximation theory 
 
 Courses
 =====
