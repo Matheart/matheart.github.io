@@ -24,7 +24,7 @@ Education
 Research experience
 ======
 * July 2023 ~ Now: Cooperating Undergraduate Student
-  * Supervised under Professor [Yiping Lu @ NYU](https://2prime.github.io/)
+  * Supervised under Professor [Yiping Lu @ NYU Courant](https://2prime.github.io/)
   * Working on Bayesian Approach to understand in-context learning
 
 * Oct 2022 ~ Nov 2023: Research Intern
