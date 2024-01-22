@@ -29,7 +29,7 @@ Research experience
 
 * Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang @ HKUST](https://tongzhang-ml.org/)
-  * Worked on theoretical understanding of ensemble on Out-of-distribution scenario, submitted paper to ICLR (now under review) as fourth author
+  * Worked on theoretical understanding of ensemble on Out-of-distribution scenario, had a paper accepted to ICLR2024 
 
 Courses
 =====
