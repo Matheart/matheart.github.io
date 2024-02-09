@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a third-year student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology. I am very fortunate to work with [Yiping Lu](https://2prime.github.io/) at New York University, [Wei Hu](https://weihu.me/) at University of Michigan. Previously, I was supervised by [Tong Zhang](https://tongzhang-ml.org/) at The Hong Kong University of Science and Technology.
+Hi! I am a third-year student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology. I am very fortunate to work with [Yiping Lu](https://2prime.github.io/) at NYU Courant, [Wei Hu](https://weihu.me/) at University of Michigan. Previously, I was supervised by [Tong Zhang](https://tongzhang-ml.org/) at The Hong Kong University of Science and Technology.
 
 My research interest lies in providing theoretical foundations for modern deep learning algorithms, aiming at bridging theory and practice, and gaining more understandings of their practical achievements. Additionally, I am also interested in gaining insights into deep learning algorithms through empirical investigations into intriguing phenomena such as Double descent, Grokking, and Neural Collapse.
 
@@ -36,6 +36,10 @@ Courses
 * Cumulative GPA (Top 1%): 4.099/4.3, Major GPA: 4.140/4.3
 * Selected PG courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
 * Selected UG courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
+
+Professsional Services
+=====
+* Reviewer for ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning
 
 Awards
 =====
