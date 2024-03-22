@@ -7,6 +7,6 @@ redirect_from:
   - /miscellaneous
 ---
 
-I am an INFP, enjoy listening to Chinese Vocaloid songs and watch animes! 
+I enjoy listening to Chinese Vocaloid songs and watching animes / visual novels! 
 
 ![Luo Tianyi](../images/luotianyi.png)
