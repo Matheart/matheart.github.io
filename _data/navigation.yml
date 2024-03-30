@@ -5,3 +5,6 @@ main:
         
   - title: "Misc"
     url: /misc/
+  
+  - title: "Friend Link"
+    url: /friend_link/
