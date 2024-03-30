@@ -1,3 +1,12 @@
+---
+layout: archive
+title: "Friend Link"
+permalink: /friend_link/
+author_profile: true
+redirect_from:
+  - /friend_link
+---
+
 - UG @ HKUST: [Zory Zhang](https://zoryzhang.notion.site/Zory-Zhang-s-Webpage-f1e7acc889b94403b0fa710049f91ad7) (Interested in Reasoning) 
 - UG @ HKUST: [Yuhao Zhang](https://yzhanglp.com/) (Interested in Computer Vision)
 - UG @ CUG: [AUGPath](shzaiz.github.io) (Enthusiastic about Computer Science Education)
