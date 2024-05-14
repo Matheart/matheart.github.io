@@ -48,13 +48,15 @@ I am maintaining a [Bilibili account](https://space.bilibili.com/346660989) for 
 * Other courses taking at EPFL: Graduate Level NLP, Graduate Level Optimization, Theory of Computation
 
 ## Awards
-* HKUST Epsilon Award Honorable Mention 23' (Awarded to top math students, less than 10 undergraduates per year)
+* HKUST Epsilon Fund Award 24'
+* HKUST Study Abroad Funding Support 24'
+* HKUST Epsilon Fund Award Honorable Mention 23' (Awarded to top math students, less than 10 undergraduates per year)
 * Hong Kong Government Scholarship 22' (Awarded to students with top academic performance, HKD$40,000 per year)
-* Chern Class Entry & Talent Scholarship 22' (Awarded to students in the prestigious S.S. Chern Class)
+* Chern Class Entry & Talent Scholarship 22', 23' (Awarded to students in the prestigious S.S. Chern Class)
 
 ## Academic and Other acitivities
 Some activities that greatly broaden my horizon and I always appreciate these precious opportunities!
-* Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024
+* Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 (Expected)
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
 * Conference on Parismony and Learning (CPAL), Hong Kong, Jan 2024
 * Discover Citadel & Citadel Securities, Hong Kong, Apr 2024
