@@ -31,7 +31,7 @@ I am maintaining a [Bilibili account](https://space.bilibili.com/346660989) for 
 
 * July 2023 ~ Now: Cooperating Undergraduate Student
   * Supervised under Professor [Yiping Lu @ Northwestern](https://2prime.github.io/)
-  * Working on Kernel, to be submitted to Neurips 2024
+  * Working on Kernel, first-authored paper submitted to Neurips 2024
 
 * Oct 2022 ~ Nov 2023: Research Intern
   * Supervised under Professor [Tong Zhang @ HKUST](https://tongzhang-ml.org/)
