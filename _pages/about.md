@@ -39,7 +39,7 @@ I am maintaining a [Bilibili account](https://space.bilibili.com/346660989) for 
   * [Paper accepted to ICLR2024](https://arxiv.org/abs/2309.17230)
 
 ## Professional Services
-* Reviewer for ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning
+* Reviewer for ICML2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Courses
 * Cumulative GPA (Top 1%): 4.099/4.3, Major GPA: 4.140/4.3
