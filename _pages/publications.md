@@ -5,9 +5,9 @@ permalink: /publications/
 author_profile: true
 ---
 
-- [**Physics-Informed Learning Interpolates Well in Fixed Dimension: Inductive Bias and Benign Overfitting**]
+<!-- - [**Physics-Informed Learning Interpolates Well in Fixed Dimension: Inductive Bias and Benign Overfitting**]
  <br /> **Honam Wong**, Wendao Wu, Fanghui Liu, Yiping Lu
- <br /> Submitted.
+ <br /> Submitted. -->
 
 - [**Spurious Feature Diversification Improves Out-of-distribution Generalization**](https://arxiv.org/pdf/2309.17230.pdf)
  <br /> Yong Lin*, Lu Tan\*, Yifan Hao\*, **Honam Wong**, Hanze Dong, Weizhong Zhang, Yujiu Yang, Tong Zhang
