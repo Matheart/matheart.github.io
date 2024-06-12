@@ -7,6 +7,6 @@ redirect_from:
   - /miscellaneous
 ---
 
-I enjoy listening to Chinese Vocaloid songs such as 我的悲伤是水做的, 东京不太热, and I sometimes watch animes / visual novels.
+I enjoy listening to Chinese Vocaloid songs and I sometimes watch animes / visual novels.
 
 ![Luo Tianyi](../images/luotianyi.png)
