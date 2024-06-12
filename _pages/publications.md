@@ -5,7 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
-- **Benigning overfitting in Fixed Dimension via Physics-Informed Learning with Smooth Iductive Bias**
+- **Benign overfitting in Fixed Dimension via Physics-Informed Learning with Smooth Iductive Bias**
  <br /> **Honam Wong**, Wendao Wu, Fanghui Liu, Yiping Lu
  <br /> Submitted.
 
