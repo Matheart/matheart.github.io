@@ -5,7 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
-- [**Physics-Informed Learning Interpolates Well in Fixed Dimension: Inductive Bias and Benign Overfitting**](arxiv.org/abs/2406.09194)
+- [**Physics-Informed Learning Interpolates Well in Fixed Dimension: Inductive Bias and Benign Overfitting**](https://arxiv.org/abs/2406.09194)
  <br /> **Honam Wong**, Wendao Wu, Fanghui Liu, Yiping Lu
  <br /> Submitted.
 
