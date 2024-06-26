@@ -45,7 +45,7 @@ Besides, I am maintaining a [Bilibili account](https://space.bilibili.com/346660
 * Reviewer for NeurIPS 2024, ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
-* Cumulative GPA (Top 1%): 4.099/4.3, Major GPA: 4.140/4.3, Rank: 1/13
+* Cumulative GPA (Top 1%): 4.099/4.3, Major GPA: 4.140/4.3, **Rank: 1/13**
 * Selected Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
 * Other courses taking at EPFL: Graduate Level NLP, Graduate Level Optimization, Theory of Computation
