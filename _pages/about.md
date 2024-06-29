@@ -8,18 +8,13 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a third-year undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST), now having academic exchange at EPFL.  My research interest lies in **providing theoretical foundations for modern deep learning algorithms to gain more understandings of their practical achievements**. Recently, I am working on understanding in-context learning mechanism. I am interested in applying for PhD position in 2025 Fall. Feel free to connect if you have similar research interest with me!
+Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. I am interested in applying for PhD position in 2025 Fall. Feel free to connect if you have similar research interest with me!
 
 
-I am very fortunate to work with [Wei Hu](https://weihu.me/) @ Michigan and [Yiping Lu](https://2prime.github.io/) @ Northwestern. And I am very grateful to [Tong Zhang](https://tongzhang-ml.org/) @ HKUST for giving me opportunity to begin my research journey in my sophomore year.
+I am very fortunate to work with [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern. And I am very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to begin my research journey in my sophomore year.
 
+<!-- ## Recent News -->
 
-Besides, I am maintaining a [Bilibili account](https://space.bilibili.com/346660989) for introducing interesting concepts in Computer Science or Mathematics using [Manim](https://www.manim.community/) and I also have a [Zhihu account](https://www.zhihu.com/people/theorywanderer) for sharing and discussing my opinions and ideas with peers.
-
-## Recent News
-* *May, 2024.* Will join LeT-All Mentorship Workshop held by Learning Theory Alliance in June!
-* *Apr, 2024.* Will be attending ICLR at Vienna in May!
-* *Feb, 2024.* Starting spring exchange at EPFL!!
 
 ## Education
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025 (Expected)
@@ -32,8 +27,7 @@ Besides, I am maintaining a [Bilibili account](https://space.bilibili.com/346660
 
 * July 2023 ~ Now: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
-  * Worked on Kernel, have a first-authored paper submitted to Neurips 2024
-  * Now exploring random interesting topics
+  * Worked on benign overfitting for scientific learning, have a first-authored paper under review
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
   * Supervised under Professor Tong Zhang @ HKUST

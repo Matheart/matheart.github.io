@@ -7,6 +7,4 @@ redirect_from:
   - /miscellaneous
 ---
 
-I enjoy listening to Chinese Vocaloid songs and I sometimes watch animes / visual novels.
-
-![Luo Tianyi](../images/luotianyi.png)
+I enjoy watching anime, reading visual novels and listening to vocaloid songs! 
