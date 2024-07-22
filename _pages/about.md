@@ -39,7 +39,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Reviewer for NeurIPS 2024, ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
-* Cumulative GPA (Top 1%): 4.099/4.3, **Rank: 1**
+* Cumulative GPA: 4.099/4.3, **Rank: 1**
 * Selected Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
 * Other courses taking at EPFL: Graduate Level Optimization (6/6), Graduate Level NLP (5.5/6), Theory of Computation (5.5/6)
