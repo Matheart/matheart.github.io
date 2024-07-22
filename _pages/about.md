@@ -8,10 +8,10 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. I am interested in applying for PhD position in 2025 Fall. Feel free to connect if you have similar research interest with me!
+Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand their mechanisms. I am interested in applying for PhD position in Computer Science / Statistics / Operations Research in 2025 Fall. I am very interested in chatting with like-minded people so feel free to connect if you have similar research interest with me!
 
 
-I am very fortunate to work with [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern. And I am very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to begin my research journey in my sophomore year.
+I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to start my research in my sophomore year.
 
 <!-- ## Recent News -->
 
@@ -39,7 +39,7 @@ I am very fortunate to work with [Wei Hu](https://weihu.me/) at Michigan and [Yi
 * Reviewer for NeurIPS 2024, ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
-* Cumulative GPA (Top 1%): 4.099/4.3, Major GPA: 4.140/4.3, **Rank: 1**
+* Cumulative GPA (Top 1%): 4.099/4.3, **Rank: 1**
 * Selected Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
 * Other courses taking at EPFL: Graduate Level Optimization (6/6), Graduate Level NLP (5.5/6), Theory of Computation (5.5/6)
