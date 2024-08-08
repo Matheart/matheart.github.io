@@ -8,7 +8,10 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand their mechanisms. I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall. I am very interested in chatting with like-minded people so feel free to connect if you have similar research interest with me!
+Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I am also interested in applying empirical approach to understand mechanisms of LLM (i.e. Physics of LLM by Zeyuan Allen-Zhu), and theory of scaling law. 
+
+
+I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall. I am very interested in chatting with like-minded people so feel free to connect if you have similar research interest with me!
 
 
 I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to start my research in my sophomore year.
@@ -21,7 +24,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
 
 ## Research experience
-* Apr 2024 ~ Now: Summer Research
+* July 2024 ~ Now: Summer Research
   * Supervised under Professor Wei Hu @ Michigan
   * Working on understanding in-context learning mechanism
 
