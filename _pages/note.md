@@ -5,9 +5,8 @@ permalink: /note/
 author_profile: true
 ---
 
-<!-- **Note on theory of representation learning** -->
-- **[Ongoing note]** [**Theory of representation learning**](https://www.overleaf.com/read/zryqvydkkmth#2513bf)
-<br /> Representation learning is an interesting topic, and I am interested in reading relevant papers and write some note.
+- **[Ongoing note]** [**Mechanistic Interpretability**](https://www.overleaf.com/read/svcdvthkbqqd#906f50)
+<br /> In my opinion, mechanistic interpretability would be one of the promising routes to demystify the mechanisms of neural network and LLM, this note aims to summarize what I have learnt
 
 - **[OptML project at EPFL]** [**Investigations into Sharpness-aware Minimization**](../files/CS439_final_report.pdf)
 <br /> CS439 Optimization in Machine Learning Project (Graduate-level)
