@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a rising senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I am also interested in applying empirical approach to understand mechanisms of LLM (i.e. Physics of LLM by Zeyuan Allen-Zhu), and theory of scaling law. 
+Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I am also interested in applying empirical approach to understand mechanisms of LLM (i.e. Physics of LLM by Zeyuan Allen-Zhu), and theory of scaling law. 
 
 
 I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall. I am very interested in chatting with like-minded people so feel free to connect if you have similar research interest with me!
