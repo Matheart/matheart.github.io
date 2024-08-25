@@ -5,10 +5,10 @@ permalink: /note/
 author_profile: true
 ---
 
-- **[Ongoing note]** [**Theory of scaling law**](https://www.overleaf.com/read/zryqvydkkmth#2513bf)
+- **[Ongoing]** [**Theory of scaling law**](https://www.overleaf.com/read/zryqvydkkmth#2513bf)
 <br /> As the model size and number of data scale up, understand the scaling law in a simplified theoretical setup will become very important
 
-- **[Ongoing note]** [**Mechanistic Interpretability**](https://www.overleaf.com/read/svcdvthkbqqd#906f50)
+- **[Ongoing]** [**Mechanistic Interpretability**](https://www.overleaf.com/read/svcdvthkbqqd#906f50)
 <br /> In my opinion, mechanistic interpretability would be one of the promising routes to demystify the mechanisms of neural network and LLM, this note aims to summarize what I have learnt
 
 - **[OptML project at EPFL]** [**Investigations into Sharpness-aware Minimization**](../files/CS439_final_report.pdf)

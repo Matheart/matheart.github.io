@@ -24,11 +24,11 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
 
 ## Research experience
-* July 2024 ~ Now: Summer Research
+* July 2024 ~ Ongoing: Research Internship
   * Supervised under Professor Wei Hu @ Michigan
   * Working on understanding in-context learning mechanism using clean and controlled setting
 
-* July 2023 ~ Now: Remote Collaboration
+* July 2023 ~ Ongoing: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
   * Worked on benign overfitting for inverse problem, have a first-authored paper under review
   * Organizing the Deep Learning Theory Reading Group inside the research group
