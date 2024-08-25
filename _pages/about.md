@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I am also interested in applying empirical approach to understand mechanisms of LLM (i.e. Physics of LLM by Zeyuan Allen-Zhu), and theory of scaling law. 
+Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I’ve been working in a clean and controlled setting to empirically investigate how large language models (LLMs) work, supervised by Prof. Wei Hu. I’m also interested in the theory of scaling law, guided by Prof. Yiping Lu. I’ve written some notes on what I’ve learned, so feel free to check them out!
 
 
 I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall. I am very interested in chatting with like-minded people so feel free to connect if you have similar research interest with me!
@@ -26,11 +26,13 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 ## Research experience
 * July 2024 ~ Now: Summer Research
   * Supervised under Professor Wei Hu @ Michigan
-  * Working on understanding in-context learning mechanism
+  * Working on understanding in-context learning mechanism using clean anc controlled setting
+  * Developing theory to quantify the phenomenon
 
 * July 2023 ~ Now: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
-  * Worked on benign overfitting for scientific learning, have a first-authored paper under review
+  * Worked on benign overfitting for inverse problem, have a first-authored paper under review
+  * Organizing the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
   * Supervised under Professor Tong Zhang @ HKUST
@@ -39,7 +41,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
   * (Here begins my research journey! Very thankful to Yong Lin, Yifan Hao and Lu Tan for guiding me)
 
 ## Reviewing experience
-* ICLR 2025, NeurIPS 2024
+* Conference: ICLR 2025, NeurIPS 2024
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
