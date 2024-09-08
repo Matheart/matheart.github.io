@@ -40,21 +40,20 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
   * (Here begins my research journey! Very thankful to Yong Lin, Yifan Hao and Lu Tan for guiding me)
 
 ## Reviewing experience
-* Conference: ICLR 2025, NeurIPS 2024
+* Conference / Journal: ICLR 2025, NeurIPS 2024, TMLR
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
 * Cumulative GPA: 4.099/4.3, **Rank: 1**
-* Selected Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A)
-* Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+)
-* Other courses taking at EPFL: Graduate Level Optimization (6/6), Graduate Level NLP (5.5/6), Theory of Computation (5.5/6)
+* Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A), Graduate Level Optimization (6/6, at EPFL), Graduate Level NLP (5.5/6, at EPFL)
+* Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), Theory of Computation (5.5/6, at EPFL)
 
 ## Scholarship and Awards
 * Tin Ka Ping Scholarship (Exchange) 24' (HKD$20,000)
-* HKUST Epsilon Fund Award 24' (Awarded to top math students, less than 10 undergraduates per year)
+* HKUST Epsilon Fund Award 24' (HKD$5,000)
 * HKUST Study Abroad Funding Support 24' (HKD$10,000)
-* Hong Kong Government Scholarship 22' (Awarded to students with top academic performance, HKD$40,000 per year)
-* Chern Class Entry & Talent Scholarship 22', 23' (Awarded to students in the prestigious S.S. Chern Class)
+* Hong Kong Government Scholarship 22' (HKD$40,000 per year)
+* Chern Class Entry & Talent Scholarship 22', 23' 
 
 ## Activities
 These are the activities that greatly broaden my horizon (I am always grateful for having the chance to grow and learn!):
@@ -62,7 +61,7 @@ These are the activities that greatly broaden my horizon (I am always grateful f
 * LeT-All Mentorship Workshop, Learning Theory Alliance, Online, June 2024
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
 * Conference on Parismony and Learning (CPAL), Hong Kong, Jan 2024
-* Discover Citadel & Citadel Securities, Hong Kong, Apr 2024
+* Discover Citadel & Citadel Securities, Hong Kong, Apr 2023
 
 <!-- Publications
 ======
