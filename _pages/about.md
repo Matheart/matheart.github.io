@@ -50,10 +50,10 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 
 ## Scholarship and Awards
 * Tin Ka Ping Scholarship (Exchange) 24' (HKD$20,000)
-* HKUST Epsilon Fund Award 24' (HKD$5,000)
+* HKUST Epsilon Fund Award 24' (HKD$5,000, for top students in the math department at HKUST, <5 undergraduates each year)
 * HKUST Study Abroad Funding Support 24' (HKD$10,000)
-* Hong Kong Government Scholarship 22' (HKD$40,000 per year)
-* Chern Class Entry & Talent Scholarship 22', 23' 
+* Hong Kong Government Scholarship 22' (HKD$40,000 per year, for students with GPA>3.95)
+* Chern Class Entry & Talent Scholarship 22', 23', 24' （for top students in the math department at HKUST)
 
 ## Activities
 These are the activities that greatly broaden my horizon (I am always grateful for having the chance to grow and learn!):
