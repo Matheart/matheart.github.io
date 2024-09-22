@@ -7,4 +7,4 @@ redirect_from:
   - /miscellaneous
 ---
 
-I enjoy watching anime, visual novels (especially those from Key社) and listening to vocaloid songs! 
+I enjoy travelling, watching anime, visual novels and listening to vocaloid songs! 
