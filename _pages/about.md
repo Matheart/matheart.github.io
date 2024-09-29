@@ -57,7 +57,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 
 ## Activities
 These are the activities that greatly broaden my horizon (I am always grateful for having the chance to grow and learn!):
-* Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 (Expected)
+* Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 
 * LeT-All Mentorship Workshop, Learning Theory Alliance, Online, June 2024
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
 * Conference on Parismony and Learning (CPAL), Hong Kong, Jan 2024
