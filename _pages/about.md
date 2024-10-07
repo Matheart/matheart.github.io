@@ -31,7 +31,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * July 2023 ~ Ongoing: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
   * Worked on benign overfitting for inverse problem, have a first-authored paper under review
-  * Organizing the Deep Learning Theory Reading Group inside the research group
+  * Organized the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
   * Supervised under Professor Tong Zhang @ HKUST
@@ -40,7 +40,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
   * (Here begins my research journey! Very thankful to Yong Lin, Yifan Hao and Lu Tan for guiding me)
 
 ## Reviewing experience
-* Conference / Journal: ICLR 2025, NeurIPS 2024, TMLR
+* Conference / Journal: ICLR 2025, AISTATS 2025, NeurIPS 2024, TMLR
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Academics
@@ -55,7 +55,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Hong Kong Government Scholarship 22' (HKD$40,000 per year, for students with GPA>3.95)
 * Chern Class Entry & Talent Scholarship 22', 23', 24' （for top students in the math department at HKUST)
 
-## Activities
+## Academic Activities
 These are the activities that greatly broaden my horizon (I am always grateful for having the chance to grow and learn!):
 * Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 
 * LeT-All Mentorship Workshop, Learning Theory Alliance, Online, June 2024
