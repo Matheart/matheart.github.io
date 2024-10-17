@@ -8,13 +8,13 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theoretical foundations for modern deep learning algorithms to better understand why they work. Recently, I’ve been working in a clean and controlled setting to empirically investigate how large language models (LLMs) work. I’m also interested in the theory of scaling law. I’ve written some notes on what I’ve learned, so feel free to check them out!
+Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theory to understand and explain behaviors of modern deep learning algorithms. Recently, I’ve been working on investigating empirically how LLM works. I’ve written some notes on what I’ve learned, so feel free to check them out!
 
 
 I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall, and I like chatting with like-minded people so feel free to connect if you share similar research interest with me!
 
 
-I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to start my research in my sophomore year.
+I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to start my research in my sophomore year.
 
 <!-- ## Recent News -->
 
@@ -30,13 +30,14 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 
 * July 2023 ~ Ongoing: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
-  * Worked on benign overfitting for inverse problem, have a first-authored paper under review
+  * Worked on benign overfitting for PINN, and had a first-authored paper under review
+  * This work has an interesting finding that with smooth enough inductive bias, overparametrized kernel interpolator can obtain optimal convergence rate.
   * Organized the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
   * Supervised under Professor Tong Zhang @ HKUST
-  * Worked on theoretical understanding of ensemble on Out-of-distribution scenario
-  * Had a [Paper accepted to ICLR2024](https://arxiv.org/abs/2309.17230) as the Fourth author
+  * [Paper accepted to ICLR2024](https://arxiv.org/abs/2309.17230) as coauthor
+  * This work has an interesting finding that ensemble of models with spurious features can improve its performance, which is contrary to common belief on OOD that models should maintain invariant features and disgard spurious features like IRM. 
   * (Here begins my research journey! Very thankful to Yong Lin, Yifan Hao and Lu Tan for guiding me)
 
 ## Academics
@@ -49,11 +50,12 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Scholarship and Awards
+* Summer Research Sponsorship (HKD$20000 from CS, HKD$5000 from Math)
 * Tin Ka Ping Scholarship (Exchange) 24' (HKD$20,000)
 * HKUST Epsilon Fund Award 24' (HKD$5,000, for top students in the math department at HKUST, <5 undergraduates each year)
 * HKUST Study Abroad Funding Support 24' (HKD$10,000)
 * Hong Kong Government Scholarship 22' (HKD$40,000 per year, for students with GPA>3.95)
-* Chern Class Entry & Talent Scholarship 22', 23', 24' （for top students in the math department at HKUST)
+* Chern Class Entry & Talent Scholarship 22', 23', 24' (for top students in the math department at HKUST)
 
 ## Academic Activities
 These are the activities that greatly broaden my horizon (I am always grateful for having the chance to grow and learn!):
