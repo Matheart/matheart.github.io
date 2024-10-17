@@ -16,8 +16,8 @@ In my opinion, mechanistic interpretability tools would be one of the promising 
 I plan to understand deep learning phenomena using both theoretical and empirical toolsets above during my PhD studies, welcome discussions and contributions on the note above! Here is also an [interesting repository](https://github.com/MinghuiChen43/awesome-deep-phenomena).
 
 ## Course Project
-- **[Modern Natural Language Processing Project at EPFL]** [**Finetune chatbot for education use via Direct Preference Optimization**](../files/CS552_NLPG_Project.pdf)
-<br /> CS552 Modern Natural Language Processing (Graduate-level)
+- **[Modern NLP Project at EPFL]** [**Finetune chatbot for education use via Direct Preference Optimization**](../files/CS552_NLPG_Project.pdf)
+<br /> CS552 Modern NLP (Graduate-level)
 It is an interesting experience since it was my first time to implement something related to LLM. Also intriguingly, we discovered both chosen and reject reward decrease at the same time in section 5.2, which echos discussions on drawbacks of DPO.
 
 - **[OptML project at EPFL]** [**Investigations into Sharpness-aware Minimization**](../files/CS439_final_report.pdf)
