@@ -8,13 +8,15 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **deep learning theory**, providing theory to understand and explain behaviors of modern deep learning algorithms. Recently, I’ve been working on investigating empirically how LLM works. I’ve written some notes on what I’ve learned, so feel free to check them out!
+Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **building mathematical theory to understand and explain behaviors of modern deep learning algorithms and LLM**. Empirically I am also interested in **understanding LLM's behavior in a simplified setup via mechanistic interpretability methods**. I believe these two approaches are crucial to open the black box of deep learning architecture.
 
 
 I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall, and I like chatting with like-minded people so feel free to connect if you share similar research interest with me!
 
 
-I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) for giving me opportunity to start my research in my sophomore year.
+I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions academically and personally. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) who led me to the awesome learning theory world in my sophomore year. I am also very glad to receive support from many seniors and peers who help me navigate challenges and shape my research taste (see [friend link](https:matheart.github.io/friend_link))!
+
+
 
 <!-- ## Recent News -->
 
@@ -31,7 +33,6 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * July 2023 ~ Ongoing: Remote Collaboration
   * Supervised under Professor Yiping Lu @ Northwestern
   * Worked on benign overfitting for PINN, and had a first-authored paper under review
-  * This work has an interesting finding that with smooth enough inductive bias, overparametrized kernel interpolator can obtain optimal convergence rate.
   * Organized the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
@@ -46,15 +47,15 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), CS251 Theory of Computation (5.5/6, at EPFL)
 
 ## Review experience
-* Conference / Journal: ICLR 2025, AISTATS 2025, NeurIPS 2024, TMLR
+* Conference / Journal: NeurIPS 2024
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Scholarship and Awards
-* Summer Research Sponsorship (HKD$20000 from CS, HKD$5000 from Math)
-* Tin Ka Ping Scholarship (Exchange) 24' (HKD$20,000)
-* HKUST Epsilon Fund Award 24' (HKD$5,000, for top students in the math department at HKUST, <5 undergraduates each year)
-* HKUST Study Abroad Funding Support 24' (HKD$10,000)
-* Hong Kong Government Scholarship 22' (HKD$40,000 per year, for students with GPA>3.95)
+* Summer Research Sponsorship (HKD20000 from CS, HKD5000 from Math)
+* Tin Ka Ping Scholarship (Exchange) 24' (HKD20,000)
+* HKUST Epsilon Fund Award 24' (HKD5,000, for top students in the math department at HKUST, <5 undergraduates each year)
+* HKUST Study Abroad Funding Support 24' (HKD10,000)
+* Hong Kong Government Scholarship 22' (HKD40,000 per year, for students with GPA>3.95)
 * Chern Class Entry & Talent Scholarship 22', 23', 24' (for top students in the math department at HKUST)
 
 ## Academic Activities

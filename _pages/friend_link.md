@@ -13,3 +13,9 @@ redirect_from:
 - [Yicheng Wang](https://ywangmy.github.io/index.html)（Graph & TCS @ HKUST)
 - [AUGPath](https://shzaiz.github.io) (Enthusiastic about Computer Science Education @ CUG)
 - [Xinyu Zhou](https://www.xinyuzhou.me/home) (ML Theory for practice @ Wisconsin)
+
+
+Seniors:
+- [Wei Xiong](https://weixiongust.github.io/WeiXiongUST/index.html) 
+- [Jiaye Teng](https://www.tengjiaye.com/) 
+
