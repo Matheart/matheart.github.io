@@ -7,4 +7,4 @@ redirect_from:
   - /miscellaneous
 ---
 
-I enjoy watching anime, reading visual novels, travelling and exploring new things
+Besides research, I highly enjoy travelling and exploring new things. I also enjoy watching anime, listening to vocaloid songs and Cantopop, and reading visual novels! We can chat if there are shared interests!
