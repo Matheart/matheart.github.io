@@ -47,7 +47,7 @@ I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan an
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), CS251 Theory of Computation (5.5/6, at EPFL)
 
 ## Review experience
-* Conference / Journal: NeurIPS 2024
+* Conference / Journal: ICML 2025, NeurIPS 2024
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Scholarship and Awards
