@@ -14,7 +14,7 @@ Hi! I am a senior undergraduate student majoring in Computer Science & Mathemati
 I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall, and I like chatting with like-minded people so feel free to connect if you share similar research interest with me!
 
 
-I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions academically and personally. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) who led me to the awesome learning theory world in my sophomore year. I am also very glad to receive support from many seniors and peers who help me navigate challenges and shape my research taste (see [friend link](https:matheart.github.io/friend_link))!
+I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions academically and personally. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) who led me to the awesome learning theory world in my sophomore year. I am also very glad to receive support from many seniors and peers who help me navigate challenges and shape my research taste (see [friend link](https://matheart.github.io/friend_link/))!
 
 
 
