@@ -8,13 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). My research interest lies in **building mathematical theory to understand and explain behaviors of modern deep learning algorithms and LLM**. Empirically I am also interested in **understanding LLM's behavior in a simplified setup via mechanistic interpretability methods**. I believe these two approaches are crucial to open the black box of deep learning architecture.
-
-
-I am interested in applying for PhD position in Computer Science / Statistics / Operations Research starting in 2025 Fall, and I like chatting with like-minded people so feel free to connect if you share similar research interest with me!
-
-
-I am very fortunate to be mentored by [Wei Hu](https://weihu.me/) at Michigan and [Yiping Lu](https://2prime.github.io/) at Northwestern who always provide support and suggestions academically and personally. I am also very grateful to [Tong Zhang](https://tongzhang-ml.org/) (previously at HKUST) who led me to the awesome learning theory world in my sophomore year. I am also very glad to receive support from many seniors and peers who help me navigate challenges and shape my research taste (see [friend link](https://matheart.github.io/friend_link/))!
+Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). 
+My research mainly focuses on understanding [the modern paradigms in generalization](https://simons.berkeley.edu/programs/modern-paradigms-generalization), using both theoretical and interpretability approaches. 
+I am applying for PhD Positions in Computer Science and Statistics, feel free to reach out if you share the same interests. 
 
 
 
