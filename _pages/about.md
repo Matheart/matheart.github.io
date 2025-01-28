@@ -9,8 +9,8 @@ redirect_from:
 ---
 
 Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST). 
-My research mainly focuses on understanding [the modern paradigms in generalization](https://simons.berkeley.edu/programs/modern-paradigms-generalization), using both theoretical and interpretability approaches. 
-I am applying for PhD Positions in Computer Science and Statistics, feel free to reach out if you share the same interests. 
+My research mainly focuses on understanding [the modern paradigms in generalization](https://simons.berkeley.edu/programs/modern-paradigms-generalization), using both theoretical and interpretability approaches.
+I am applying for MS / PhD Positions in Computer Science and Statistics, feel free to reach out if you share the same interests. 
 
 
 
@@ -18,7 +18,7 @@ I am applying for PhD Positions in Computer Science and Statistics, feel free to
 
 
 ## Education
-* BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025 (Expected)
+* BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
 * Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
 
 ## Research experience
