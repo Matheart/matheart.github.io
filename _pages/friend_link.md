@@ -15,6 +15,7 @@ redirect_from:
 - [Xinyu Zhou](https://www.xinyuzhou.me/home) (ML Theory for practice @ Wisconsin)
 - [Zidan Luo](https://github.com/Erisehc) (Statistical learning @ USTC)
 - [Zexi Fan](https://francis-fan-create.github.io/) (Scientific Machine Learning @ PKU)
+- [Harry Li](https://flandia.dev/) (PL & TCS Theory B @ HKUST)
 
 
 Seniors:
