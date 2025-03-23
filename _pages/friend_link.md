@@ -15,6 +15,7 @@ They are all close friends of mine and I highly enjoy chatting with them!
 - [Xinyu Zhou](https://www.xinyuzhou.me/home) (ML Theory for practice @ Wisconsin)
 - [Zidan Luo](https://github.com/Erisehc) (Statistical learning @ USTC)
 - [Zexi Fan](https://francis-fan-create.github.io/) (Scientific Machine Learning @ PKU)
+- [Harry Li](https://flandia.dev/) (PL & TCS Theory B @ HKUST)
 
 
 Seniors that helped me a lot during my junior year:
