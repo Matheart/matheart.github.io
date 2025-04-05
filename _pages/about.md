@@ -10,9 +10,9 @@ redirect_from:
 
 Hi! I am a senior undergraduate student majoring in Computer Science and Mathematics at The Hong Kong University of Science and Technology (HKUST). I am about to join a PhD program in the United States.
 
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer. I am also interested in theories that help us understand the fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the fundamental principles of language models, as well as developing mechanistic interpretability tools to probe their internal structures and mechanisms.
+My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer. I am also interested in theories that help us understand the fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the fundamental principles of language models, as well as developing mechanistic interpretability tools to probe their internal structures and mechanisms. My research interest and taste are shaped by chatting with peers and senior researchers. Therefore, do reach out and chat if you share similar interests! I have also compiled some preliminary notes on these topics. 
 
-I have also compiled some preliminary notes on these topics. Feel free to reach out if you share similar interests!
+
 
 
 

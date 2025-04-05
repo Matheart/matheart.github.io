@@ -7,13 +7,17 @@ author_profile: true
 
 ## Note
 - **[Ongoing]** [**Theory of scaling law**](https://www.overleaf.com/read/zryqvydkkmth#2513bf)
-<br /> Understanding model's performance when the model and data size scale up (i.e. Scaling law) is a critical topic in both academia and industry. Therefore, I believe that understanding the scaling law in a simplified theoretical setup will become very important. 
+<br /> In the modern LLM era, scaling up model size and data is a central topic in industry, while it remains less understood. It should be interesting to explore how a theoretical setup can improve our understanding of scaling.
 
-- **[Ongoing]** [**Mechanistic Interpretability**](https://www.overleaf.com/read/svcdvthkbqqd#906f50)
+- **[Ongoing]** [**Science of Deep Learning**](https://www.overleaf.com/read/svcdvthkbqqd#906f50)
 <br /> 
-In my opinion, mechanistic interpretability tools would be one of the promising routes to demystify the mechanisms of neural network and LLM.
+While many people have been focused on using theories to open the blackbox of deep learning, it faces great difficulty due to its complex and nonlinearity structure. Instead, an empirical driven approach could be taken to probe and understand the mechanisms of deep learning & LLM, which is the science of deep learning, to understand and explain intriguing deep learning phenomena.
 
-I plan to understand deep learning phenomena using both theoretical and empirical toolsets above during my PhD studies, welcome discussions and contributions on the note above! Here is also an [interesting repository](https://github.com/MinghuiChen43/awesome-deep-phenomena).
+- **[Ongoing]** [**LLM Reasoning**](https://www.overleaf.com/read/vtwnnhyfdtph#e050b1)
+<br />
+Recently, the development of LLM has stepped into the test-time scaling regime. While it may be hard for academia to scale up computation, it would be interesting to scientifically investsigate how techniques such as chain-of-thought can enhance reasoning in the language model, which can be also probed and investigated using mechanistic approaches.
+
+
 
 ## Course Project
 - **[Modern NLP Project at EPFL]** [**Finetune chatbot for education use via Direct Preference Optimization**](../files/CS552_NLPG_Project.pdf)
