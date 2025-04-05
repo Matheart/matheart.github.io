@@ -8,8 +8,11 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science & Mathematics in The Hong Kong University of Science and Technology (HKUST) and is about to join MS/PhD Program in the United States. 
-My research interest lies in **theoretical and scientific foundations of deep learning and LLMs**. I am very passionate about exploring and interpreting the hidden structure inside activations! Feel free to reach out if you share the same interests. 
+Hi! I am a senior undergraduate student majoring in Computer Science and Mathematics at The Hong Kong University of Science and Technology (HKUST). I am about to join a PhD program in the United States.
+
+My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer. I am also interested in theories that help us understand the fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the fundamental principles of language models, as well as developing mechanistic interpretability tools to probe their internal structures and mechanisms.
+
+I have also compiled some preliminary notes on these topics. Feel free to reach out if you share similar interests!
 
 
 
@@ -22,18 +25,18 @@ My research interest lies in **theoretical and scientific foundations of deep le
 
 ## Research experience
 * July 2024 ~ Jan 2025: Research Internship
-  * Supervised under Professor Wei Hu @ Michigan
+  * Interned under Wei Hu, at University of Michigan
   * Worked on understanding linar representation hypothesis, and mechanism of compositional generalization under in-context learning setup
 
-* July 2023 ~ Sep 2024: Remote Collaboration
-  * Supervised under Professor Yiping Lu @ Northwestern
+* July 2023 ~ Sep 2024: Remote 
+  * Interned under Yiping Lu, at Northwestern University
   * Worked on benign overfitting for PINN, and had a first-authored paper under review
   * Organized the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
-  * Supervised under Professor Tong Zhang @ HKUST, PhD Student Yong Lin
+  * Interned under Tong Zhang's group, advised by PhD Student Yong Lin
+  * Worked on out-of-distribution generalization
   * [Paper accepted to ICLR2024](https://arxiv.org/abs/2309.17230) as coauthor
-  * This work has an interesting finding that ensemble of models with spurious features can improve its performance, which is contrary to common belief on OOD that models should maintain invariant features and disgard spurious features like IRM. 
 
 ## Academics
 * Cumulative GPA: 4.099/4.3, **Rank: 1**
