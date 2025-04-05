@@ -14,6 +14,7 @@ Wonderful friends and peers in the same research area, I really learn a lot by t
 - [Kaizhao Liu](https://openreview.net/profile?id=~Kaizhao_Liu1) (PKU CS)
 - [Hengyu Fu](https://dblp.org/pid/352/5349.html) (PKU Math)
 - [Yi Wei](https://yee-millennium.github.io/) (Wisconsin Math)
+- [Berkan Ottlik](https://berkan.xyz/) (Columbia CS)
 
 
 Other friends that I enjoy chatting with:
