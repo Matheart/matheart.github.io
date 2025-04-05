@@ -17,6 +17,8 @@ While many people have been focused on using theories to open the blackbox of de
 <br />
 Recently, the development of LLM has stepped into the test-time scaling regime. While it may be hard for academia to scale up computation, it would be interesting to scientifically investsigate how techniques such as chain-of-thought can enhance reasoning in the language model, which can be also probed and investigated using mechanistic approaches.
 
+## SOP
+I am glad to share my [SOP](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5) during PhD application. Honestly I learnt a lot from the PhD application process, and growing from a student into a junior researcher, by preparing application materials, looking for information of different research groups, and chatting with different senior researchers.
 
 
 ## Course Project
