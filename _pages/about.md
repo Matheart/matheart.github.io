@@ -30,13 +30,14 @@ My research interests lie in the **theory and empirical science of deep learning
 
 * July 2023 ~ Sep 2024: Remote 
   * Interned under Yiping Lu, at Northwestern University
-  * Worked on benign overfitting for PINN, and had a first-authored paper under review
+  * Worked on benign overfitting for PINN
+  * Had a first-authored paper under review
   * Organized the Deep Learning Theory Reading Group inside the research group
 
 * Oct 2022 ~ Nov 2023: Undergraduate Research Opportunities Program (UROP) @ HKUST
   * Interned under Tong Zhang's group, advised by PhD Student Yong Lin
   * Worked on out-of-distribution generalization
-  * [Paper accepted to ICLR2024](https://arxiv.org/abs/2309.17230) as coauthor
+  * Published a coauthored paper at ICLR2024, and attended the Conference at Vienna
 
 ## Academics
 * Cumulative GPA: 4.099/4.3, **Rank: 1**
