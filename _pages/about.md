@@ -8,12 +8,13 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a senior undergraduate student majoring in Computer Science and Mathematics at The Hong Kong University of Science and Technology (HKUST). I am about to join a PhD program in the United States.
-
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer. I am also interested in theories that help us understand the fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the fundamental principles of language models, as well as developing mechanistic interpretability tools to probe their internal structures and mechanisms. 
+Hi! I am an incoming PhD student in the United States (school not decided yet). I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
 
 
-My research interest and taste are shaped by chatting with peers and senior researchers (see Friend Link). Therefore, do reach out and chat if you share similar interests! I have also compiled some preliminary notes on these topics (see Note). 
+My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer, or theories that deliver fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), as well as developing mechanistic interpretability tools to probe their inner working structures. Here's a recent [workshop](https://sites.google.com/view/moss2025/schedule) that echoes my interest!
+
+
+My research interest and taste are shaped by chatting with peers and senior researchers (see [Friend Link](https://matheart.github.io/friend_link/)). Therefore, do reach out and chat if you share similar interests! I have also compiled some preliminary notes on these topics (see [Note](https://matheart.github.io/friend_link/)). 
 
 
 
@@ -26,7 +27,7 @@ My research interest and taste are shaped by chatting with peers and senior rese
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
 * Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
 
-## Research experience
+## Undergraduate Research Experience
 * July 2024 ~ Jan 2025: Research Internship
   * Interned under Wei Hu, at University of Michigan
   * Worked on understanding linar representation hypothesis, and mechanism of compositional generalization under in-context learning setup
@@ -47,7 +48,7 @@ My research interest and taste are shaped by chatting with peers and senior rese
 * Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A), CS439 Optimization in Machine Learning (6/6, at EPFL), CS552 Modern NLP (5.5/6, at EPFL)
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), CS251 Theory of Computation (5.5/6, at EPFL)
 
-## Review experience
+## Review Experience
 * Conference / Journal: ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
