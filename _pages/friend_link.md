@@ -7,13 +7,21 @@ redirect_from:
   - /friend_link
 ---
 
-They are all close friends of mine and I highly enjoy chatting with them!
-- [Zory Zhang](https://zoryzhang.notion.site/Zory-Zhang-s-Webpage-f1e7acc889b94403b0fa710049f91ad7) (Human-like learning and reasoning at UIUC, incoming Psychology PhD at Brown) 
-- [Yuhao Zhang](https://yzhanglp.com/) (3D Computer Vision at HKUST, incoming CS PhD at Max Planck Institute & Imperial)
-- [Shuning Shang](https://nooraovo.github.io) (Deep Learning Theory at ZJU, incoming CS PhD at Princeton)
+Wonderful friends and peers in the same research area, I really learn a lot by talking with them:
+- [Shuning Shang](https://nooraovo.github.io) (ZJU CS)
+- [Xiaoyu Chen](https://xiaoyuchen.me/) (PKU CS)
+- [Huanran Chen](https://huanranchen.github.io/) (THU CS)
+- [Kaizhao Liu](https://openreview.net/profile?id=~Kaizhao_Liu1) (PKU CS)
+- [Hengyu Fu](https://dblp.org/pid/352/5349.html) (PKU Math)
+- [Yi Wei](https://yee-millennium.github.io/) (Wisconsin Math)
+
+
+Other friends that I enjoy chatting with:
+- [Zory Zhang](https://zoryzhang.notion.site/Zory-Zhang-s-Webpage-f1e7acc889b94403b0fa710049f91ad7) (Human-like learning and reasoning at UIUC) 
+- [Yuhao Zhang](https://yzhanglp.com/) (3D Computer Vision at HKUST)
 - [AUGPath](https://shzaiz.github.io) (Enthusiastic about Computer Science Education at CUG)
 - [Xinyu Zhou](https://www.xinyuzhou.me/home) (ML Theory for practice, 1st year CS PhD at Wisconsin)
-- [Zidan Luo](https://github.com/Erisehc) (Statistical learning @ USTC, incoming Stats PhD at Harvard)
+- [Zidan Luo](https://github.com/Erisehc) (Statistical learning @ USTC)
 - [Zexi Fan](https://francis-fan-create.github.io/) (Scientific Machine Learning @ PKU)
 - [Harry Li](https://flandia.dev/) (PL & TCS Theory B @ HKUST)
 
