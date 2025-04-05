@@ -11,7 +11,7 @@ Wonderful friends and peers in the same research area, I really learn a lot by t
 - [Shuning Shang](https://nooraovo.github.io) (ZJU CS)
 - [Xiaoyu Chen](https://xiaoyuchen.me/) (PKU CS)
 - [Huanran Chen](https://huanranchen.github.io/) (THU CS)
-- [Kaizhao Liu](https://openreview.net/profile?id=~Kaizhao_Liu1) (PKU CS)
+- [Kaizhao Liu](https://openreview.net/profile?id=~Kaizhao_Liu1) (PKU Math)
 - [Hengyu Fu](https://dblp.org/pid/352/5349.html) (PKU Math)
 - [Yi Wei](https://yee-millennium.github.io/) (Wisconsin Math)
 - [Berkan Ottlik](https://berkan.xyz/) (Columbia CS)
