@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am an incoming PhD student in the United States (school not decided yet). I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
+Hi! I am an incoming Computer Science PhD student in University of Pennsylvania, to be advised by Surbhi Goel in Computer Science, and Enric Boix from Wharton Stats. I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
 
 
 My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer, or theories that uncover fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), as well as developing mechanistic interpretability tools to probe their inner working structures. Here's a recent [workshop](https://sites.google.com/view/moss2025) that echoes my interest!
