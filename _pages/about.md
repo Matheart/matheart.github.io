@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am an incoming Computer Science PhD student in University of Pennsylvania, to be advised by Surbhi Goel in Computer Science, and Enric Boix from Wharton Stats. I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
+Hi! I am an incoming Computer Science PhD student at University of Pennsylvania, advised by Surbhi Goel in Computer Science, and Enric Boix from Wharton Statistics and Data Science. I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
 
 
 My research interests lie in the **theory and empirical science of deep learning and LLMs**. I am particularly interested in theories that can guide practical applications, such as scaling laws and mup transfer, or theories that uncover fundamental principles of deep learning. In terms of empirical science, I am interested in using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), as well as developing mechanistic interpretability tools to probe their inner working structures. Here's a recent [workshop](https://sites.google.com/view/moss2025) that echoes my interest!
@@ -24,13 +24,14 @@ My research interest and taste are shaped by chatting with peers and senior rese
 
 
 ## Education
+* PhD in Computer & Information Science, University of Pennsylvania (Incoming)
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
 * Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
 
 ## Undergraduate Research Experience
 * July 2024 ~ Jan 2025: Research Internship
   * Interned under Wei Hu, at University of Michigan
-  * Worked on understanding linar representation hypothesis, and mechanism of compositional generalization under in-context learning setup
+  * Worked on understanding linear representation hypothesis, and mechanism of compositional generalization under in-context learning setup
 
 * July 2023 ~ Sep 2024: Remote 
   * Interned under Yiping Lu, at Northwestern University
