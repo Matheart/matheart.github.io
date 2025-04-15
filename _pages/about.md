@@ -45,7 +45,7 @@ My research interest and taste are shaped by chatting with peers and senior rese
   * Published a coauthored paper at ICLR2024, and attended the Conference at Vienna
 
 ## Academics
-* Cumulative GPA: 4.099/4.3, **Rank: 1**
+* Cumulative GPA: 4.099/4.3, **Rank: 1** (Before Grad School Application)
 * Graduate-level courses: COMP5212 Machine Learning (A), MATH5411 Advanced Probability Theory (A), CS439 Optimization in Machine Learning (6/6, at EPFL), CS552 Modern NLP (5.5/6, at EPFL)
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), CS251 Theory of Computation (5.5/6, at EPFL)
 
