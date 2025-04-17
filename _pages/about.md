@@ -20,7 +20,8 @@ My research interest and taste are shaped by chatting with peers and senior rese
 
 
 
-<!-- ## Recent News -->
+## Recent News
+* Apr 17: I will begin my doctoral studies at UPenn starting from 2025 Fall! 
 
 
 ## Education

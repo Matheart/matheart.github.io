@@ -81,13 +81,13 @@ analytics:
 # Site Author
 author:
   name             : "Honam WONG"
-  avatar           : "profile.png"
+  avatar           : "profile_blue.png"
   bio              : "Senior Undergraduate @ HKUST, interested in deep learning theory"
   location         : "Hong Kong"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?hl=en&user=ZTZhvf8AAAAJ"
-  email            : "hnwongaf@connect.ust.hk"
+  email            : "hnwong@seas.upenn.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -102,7 +102,7 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "https://www.linkedin.com/in/honam-wong-717305193/"
   orcid            : # "http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
