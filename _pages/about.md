@@ -17,13 +17,6 @@ My research interests lie in the **theory and empirical science of deep learning
 My research interest and taste are shaped by chatting with peers and senior researchers (see [Friend Link](https://matheart.github.io/friend_link/)). Therefore, do reach out and chat if you share similar interests! I have also compiled some preliminary notes on these topics (see [Note](https://matheart.github.io/friend_link/)). 
 
 
-
-
-
-## Recent News
-* Apr 17: I will begin my doctoral studies at UPenn starting from 2025 Fall! 
-
-
 ## Education
 * PhD in Computer & Information Science, University of Pennsylvania (Incoming)
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
@@ -51,7 +44,7 @@ My research interest and taste are shaped by chatting with peers and senior rese
 * Selected Undergraduate courses: COMP3711 Design and Analysis of Algorithms (A+), MATH4335 Optimization (A), MATH4063 Functional Analysis (A), MATH3312 Numerical Analysis (A+), COMP2012H Honors OOP and Data Structure (A+), MATH3043 Honors Real Analysis (A+), MATH2431 Honors Probability (A+), CS251 Theory of Computation (5.5/6, at EPFL)
 
 ## Review Experience
-* Conference / Journal: ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
+* Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Awards 
