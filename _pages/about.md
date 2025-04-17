@@ -20,7 +20,7 @@ My research interest and taste are shaped by chatting with peers and senior rese
 ## Education
 * PhD in Computer & Information Science, University of Pennsylvania (Incoming)
 * BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
-* Exchange (Computer Science), École Polytechnique Fédérale de Lausanne, 2024 Spring 
+* Exchange (Computer Science), EPFL, 2024 Spring 
 
 ## Undergraduate Research Experience
 * July 2024 ~ Jan 2025: Research Internship
