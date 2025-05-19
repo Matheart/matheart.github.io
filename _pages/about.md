@@ -10,10 +10,10 @@ redirect_from:
 
 Hi! I am an incoming Computer Science PhD student at University of Pennsylvania, advised by Surbhi Goel, and Enric Boix from Wharton Statistics and Data Science. I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
 
-
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. 
+My research interest lies in generalization theory, optimization theory, and mechanistic interpretability.
+<!-- My research interests lie in the **theory and empirical science of deep learning and LLMs**. 
 - **Theory**: I am interested in elegant theories that uncover fundamental principles of deep learning, as well as theories that can guide practical applications, such as mup transfer.
-- **Empirical Science**: I am enthusiastic about using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), including reasoning, alignment and interpretability.
+- **Empirical Science**: I am enthusiastic about using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), including reasoning, alignment and interpretability. -->
 
 
 ## Recent News
@@ -28,10 +28,10 @@ My research interests lie in the **theory and empirical science of deep learning
 
 ## Review Experience
 * Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
-* Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
+<!-- * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT) -->
 
 ## Selected Awards 
-* Hong Kong Government Scholarship 22' (For students with GPA>3.95)
+<!-- * Hong Kong Government Scholarship 22' (For students with GPA>3.95) -->
 * HKUST Epsilon Fund Award 24' (For top math students at HKUST, <5 undergraduates each year)
 * Chern Class Entry & Talent Scholarship 22', 23', 24' (For top math students at HKUST)
 
