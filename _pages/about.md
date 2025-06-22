@@ -8,9 +8,10 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am an incoming PhD student at University of Pennsylvania, advised by Surbhi Goel (CIS) and Enric Boix-Adsera (Wharton Statistics & Data Science). I received my Bachelor's degree in computer science and mathematics from Hong Kong University of Science and Technology (HKUST) in 2025. I was fortunate to work with Tong Zhang, Yiping Lu and Wei Hu in my undergraduate studies.
+Hi! I am an incoming PhD student at University of Pennsylvania, advised by Surbhi Goel (CIS) and Enric Boix-Adsera (Wharton Statistics & Data Science). I received my Bachelor's degree in computer science and mathematics from Hong Kong University of Science and Technology (HKUST) in 2025. 
 
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. 
+
+My research interests lie in **theory and empirical science of deep learning and LLMs**. 
 - **Theory**: I am interested in theories that uncover fundamental principles of learning (and scaling).
 - **Empirical Science**: I am enthusiastic about using sandbox setups to explore mechanisms of language models  (and possibly the interplay with theory), including interpretability, reasoning and alignment.
 
