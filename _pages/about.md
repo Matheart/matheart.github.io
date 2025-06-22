@@ -8,32 +8,26 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am an incoming Computer Science PhD student at University of Pennsylvania, advised by Surbhi Goel, and Enric Boix from Wharton Statistics and Data Science. I am about to graduate from The Hong Kong University of Science and Technology (HKUST), with BSc in Computer Science & Mathematics.
+Hi! I am an incoming PhD student at University of Pennsylvania, advised by Surbhi Goel (CIS) and Enric Boix-Adsera (Wharton Statistics & Data Science). I received my Bachelor's degree in computer science and mathematics from Hong Kong University of Science and Technology (HKUST) in 2025. I was fortunate to work with Tong Zhang, Yiping Lu and Wei Hu in my undergraduate studies.
 
-My research interest lies in generalization theory, optimization theory, and mechanistic interpretability.
-<!-- My research interests lie in the **theory and empirical science of deep learning and LLMs**. 
-- **Theory**: I am interested in elegant theories that uncover fundamental principles of deep learning, as well as theories that can guide practical applications, such as mup transfer.
-- **Empirical Science**: I am enthusiastic about using sandbox setups to explore the mechanisms of language models (and possibly the interplay with theory), including reasoning, alignment and interpretability. -->
-
-
-## Recent News
-* May 2025, Reading papers about anytime acceleration of gradient descent, and multi-index model papers. Do connect if you share similar interests! 
-
+My research interests lie in the **theory and empirical science of deep learning and LLMs**. 
+- **Theory**: I am interested in theories that uncover fundamental principles of learning (and scaling).
+- **Empirical Science**: I am enthusiastic about using sandbox setups to explore mechanisms of language models  (and possibly the interplay with theory), including interpretability, reasoning and alignment.
 
 ## Education
 * PhD in Computer & Information Science, University of Pennsylvania (Incoming)
-* BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025
+* BSc in Computer Science & Mathematics, Hong Kong University of Science and Technology, 2025 (GPA 4.099/4.3, Rank 1st, before grad-school app.)
 * Exchange (Computer Science), EPFL, 2024 Spring 
-* Visiting, University of Michigan, 2024 Summer
 
 ## Review Experience
 * Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
-<!-- * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT) -->
+* Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Selected Awards 
 <!-- * Hong Kong Government Scholarship 22' (For students with GPA>3.95) -->
+* Chern Chern Class Achievement Scholarship (Outstanding) (Highest Award for math graduates)
 * HKUST Epsilon Fund Award 24' (For top math students at HKUST, <5 undergraduates each year)
-* Chern Class Entry & Talent Scholarship 22', 23', 24' (For top math students at HKUST)
+
 
 ## Academic Activities
 * Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 

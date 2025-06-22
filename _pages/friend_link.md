@@ -7,7 +7,7 @@ redirect_from:
   - /friend_link
 ---
 
-Wonderful friends and peers in the same research area, I really learn a lot by talking with them:
+Wonderful friends and peers in the same research area, I really learn a lot by chatting with them:
 - [Shuning Shang](https://nooraovo.github.io) 
 - [Xiaoyu Chen](https://xiaoyuchen.me/) 
 - [Huanran Chen](https://huanranchen.github.io/) 

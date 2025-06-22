@@ -5,8 +5,6 @@ permalink: /note/
 author_profile: true
 ---
 
-## Research Note
-- **[Ongoing]** [**Anytime Acceleration of Gradient Descent**](https://www.overleaf.com/read/rrddynydgftj#cc0955)
 
 
 <!-- - **[Ongoing]** [**Theory of scaling law**](https://www.overleaf.com/read/zryqvydkkmth#2513bf)
@@ -24,7 +22,7 @@ Recently, the development of LLM has stepped into the test-time scaling regime. 
 I am glad to share my [SOP](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5) for the PhD application. Honestly I learnt a lot from the PhD application process, and growing from a student into a junior researcher, by preparing application materials, looking for information of different research groups, and chatting with different senior researchers.
 
 
-## Course Project
+## Undergraduate Course Project
 - **[Modern NLP Project at EPFL]** [**Finetune chatbot for education use via Direct Preference Optimization**](../files/CS552_NLPG_Project.pdf)
 <br /> CS552 Modern NLP (Graduate-level)
 It is an interesting experience since it was my first time to implement something related to LLM. Also intriguingly, we discovered both chosen and reject reward decrease at the same time in section 5.2, which echos discussions on drawbacks of DPO.

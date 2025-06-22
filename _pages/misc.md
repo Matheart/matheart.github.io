@@ -7,4 +7,4 @@ redirect_from:
   - /miscellaneous
 ---
 
-Besides research, I am interested in travelling around the world and exploring new things. I also enjoy watching anime, listening to vocaloid songs and reading visual novels! Besides, I make [popular science videos](https://space.bilibili.com/346660989) and would like to continue during my PhD studies. We can chat if there are shared interests!
+Besides research, I am interested in exploring new things and travelling around the world. I also enjoy watching anime, listening to vocaloid songs and reading visual novels! Besides, I am running [popular science channel](https://space.bilibili.com/346660989) which has over 34K subscribers and over 1 million views. We can chat if there are shared interests!
