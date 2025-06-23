@@ -26,7 +26,7 @@ My research interests lie in **theory and empirical science of deep learning and
 
 ## Selected Awards 
 <!-- * Hong Kong Government Scholarship 22' (For students with GPA>3.95) -->
-* Chern Chern Class Achievement Scholarship (Outstanding) (Highest Award for math graduates)
+* Chern Class Achievement Scholarship (Outstanding) (Highest Award for math graduates)
 * HKUST Epsilon Fund Award 24' (For top math students at HKUST, <5 undergraduates each year)
 
 
