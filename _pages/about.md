@@ -11,9 +11,9 @@ redirect_from:
 Hi! I am an incoming PhD student at University of Pennsylvania, advised by Surbhi Goel (CIS) and Enric Boix-Adsera (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer science & Mathematics from Hong Kong University of Science and Technology (HKUST) in 2025. 
 
 
-My research interests lie in **theory and empirical science of deep learning and LLMs**. 
+My research interests lie in **theory of deep learning and LLMs**. 
 - **Theory**: I am interested in generalization and optimization theories, to be more specific, the theories that uncover fundamental principles of learning (and scaling).
-- **Empirical Science**: I am enthusiastic about designing sandbox setups to gain mechanistic understanding of model behaviors  (and possibly the interplay with theory), including interpretability, reasoning and alignment.
+<!-- - **Empirical Science**: I am enthusiastic about designing sandbox setups to gain mechanistic understanding of model behaviors  (and possibly the interplay with theory), including interpretability, reasoning and alignment. -->
 
 ## Education
 * PhD in Computer & Information Science, University of Pennsylvania (Incoming)
@@ -25,7 +25,6 @@ My research interests lie in **theory and empirical science of deep learning and
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Selected Awards 
-<!-- * Hong Kong Government Scholarship 22' (For students with GPA>3.95) -->
 * Chern Class Achievement Scholarship (Outstanding) (Highest Award for math graduates)
 * HKUST Epsilon Fund Award 24' (For top math students at HKUST, <5 undergraduates each year)
 
