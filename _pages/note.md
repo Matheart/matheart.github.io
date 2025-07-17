@@ -5,10 +5,9 @@ permalink: /note/
 author_profile: true
 ---
 
-# Research Notes
-- [**Information Exponents and Neural Networks **](../files/2025_multi_index_reading_group.pdf) 
+- [**Information Exponents and Neural Networks**](../files/2025_multi_index_reading_group.pdf) 
 
-This note is made for the reading group of [Multi-index model's survey](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Bp6tvy0AAAAJ&sortby=pubdate&citation_for_view=Bp6tvy0AAAAJ:koF6b02d8EEC) Section 5.1, including [DLS22](https://arxiv.org/abs/2206.15144) and [BES+22](https://arxiv.org/abs/2205.01445v1).
+This note is made for the reading group of [multi-index model](https://arxiv.org/abs/2504.05426)[Section 5.1], including [DLS22](https://arxiv.org/abs/2206.15144) and [BES+22](https://arxiv.org/abs/2205.01445v1).
 
 
 ## PhD Application

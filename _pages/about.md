@@ -12,8 +12,10 @@ Hi! I am an incoming PhD student at University of Pennsylvania, advised by Surbh
 
 
 My research interests lie in **theory and empirical science of deep learning and LLMs**. 
-- **Theory**: I am interested in theories that uncover fundamental principles of learning and scaling.
-- **Empirical Science**: I am enthusiastic about designing sandbox settings to understand language model  (and possibly the interplay with theory). I am broadly interested in interpretability, reasoning and alignment of LLMs.
+- **Theory**: I am interested in fundamental theories that reveal principles of learning and scaling.
+- **Empirical Science**: I am enthusiastic about designing sandbox settings to understand language model  (and interplay with theory). I am broadly interested in interpretability, understanding reasoning and alignment properties of LLMs.
+
+
 Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
 
 ## Education
