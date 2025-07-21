@@ -30,6 +30,7 @@ Overall I am passionate about opening the black box of neural network and LLM th
 ## Selected Awards 
 * Chern Class Achievement Scholarship (Outstanding) (Highest Award for math graduates)
 * HKUST Epsilon Fund Award 24' (For top math students at HKUST, <5 undergraduates each year)
+* Hong Kong Government Scholarship 22' (Highest Academic Award in undergraduate, renewed annually)
 
 
 ## Academic Activities
