@@ -21,7 +21,7 @@ Overall I am passionate about opening the black box of neural network and LLM th
 ## Education
 * PhD in Computer & Information Science, the University of Pennsylvania (Incoming)
 * BSc in Computer Science & Mathematics, the Hong Kong University of Science and Technology, 2025 (GPA 4.099/4.3, Rank 1st, before grad-school app.)
-* Exchange (Computer Science), EPFL, 2024 Spring 
+* Spring Exchange, EPFL, 2024  
 
 ## Review Experience
 * Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
