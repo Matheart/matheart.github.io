@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Note"
+title: "Research Note"
 permalink: /note/
 author_profile: true
 ---
@@ -10,8 +10,8 @@ author_profile: true
 This note is made for the reading group of [multi-index model](https://arxiv.org/abs/2504.05426)[Section 5.1], including [DLS22](https://arxiv.org/abs/2206.15144) and [BES+22](https://arxiv.org/abs/2205.01445v1).
 
 
-## PhD Application
-I am glad to share my [SOP](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5) for the PhD application. Honestly I learnt a lot from the PhD application process, and growing from a student into a junior researcher, by preparing application materials, looking for information of different research groups, and chatting with different senior researchers. [This](https://www.zhihu.com/question/421349039/answer/4784236380) is where I recorded my PhD application experience (in Chinese).
+<!-- ## PhD Application
+[This](https://www.zhihu.com/question/421349039/answer/4784236380) is where I recorded my PhD application experience (in Chinese).
 
 
 ## Undergraduate Course Projects
@@ -25,4 +25,4 @@ We discovered that many theory literature on SAM assumes diminishing radius, the
 
 - **[ML project at HKUST]** [**Theory for Understanding Transformers: An Overview of current research**](../files/comp5212.pdf)
 <br /> COMP5212 Machine Learning Project (Graduate-level)
-<br /> A brief survey on recent Transformer theory
+<br /> A brief survey on recent Transformer theory -->

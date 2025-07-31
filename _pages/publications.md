@@ -5,9 +5,9 @@ permalink: /publications/
 author_profile: true
 ---
 
-* [**Benign overfitting in Fixed Dimension via Physics-Informed Learning with Smooth Inductive Bias**](https://arxiv.org/abs/2406.09194)  
+* [**Harnessing Physical Priors in Machine Learning: Inductive Bias and Benign Overfitting**](https://arxiv.org/abs/2406.09194)  
   **Honam Wong**, Wendao Wu, Fanghui Liu, Yiping Lu  
-  Preprint.
+  Arxiv.
 
 * [**Spurious Feature Diversification Improves Out-of-distribution Generalization**](https://arxiv.org/abs/2309.17230)  
   Yong Lin\*, Lu Tan\*, Yifan Hao\*, **Honam Wong**, Hanze Dong, Weizhong Zhang, Yujiu Yang, Tong Zhang  
