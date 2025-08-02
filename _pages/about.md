@@ -38,3 +38,12 @@ Overall I am passionate about opening the black box of neural network and LLM th
 * LeT-All Mentorship Workshop, Learning Theory Alliance, Online, June 2024
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
 * Conference on Parismony and Learning (CPAL), Hong Kong, Jan 2024
+
+
+
+
+My Erdos Number = 4
+
+> Honam Wong -> Surbhi Goel -> Danel Reichman -> Noga Alon -> Paul Erdős
+> 
+> Honam Wong -> Enric Boix-Adsera -> Emmanuel Abbe -> Noga Alon -> Paul Erdős
