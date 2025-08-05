@@ -9,7 +9,7 @@ author_profile: true
 
 This note is made for the reading group of [multi-index model](https://arxiv.org/abs/2504.05426)[Section 5.1], including [DLS22](https://arxiv.org/abs/2206.15144) and [BES+22](https://arxiv.org/abs/2205.01445v1).
 
-- [**Physics of LLM**](../phys_of_llm.md)
+- [**Physics of LLM**](phys_of_llm)
 
 <!-- ## PhD Application
 [This](https://www.zhihu.com/question/421349039/answer/4784236380) is where I recorded my PhD application experience (in Chinese).
