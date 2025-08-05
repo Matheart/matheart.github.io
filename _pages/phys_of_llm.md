@@ -23,7 +23,7 @@ Controlled by $N$ (Max. Number of permutations), $k$ (Maximum Reasoning Depth).
 `<bos> x1 y1 x2 y2 ... xn yn <query_k1> q1 a1 <query_k2> q2 a2 ... <eos>`
 
 
-### Brevo: Meantal Reasoning Breadth (Generative)
+### Brevo: Mental Reasoning Breadth (Generative)
 Tree-like traversal, $m$ edges, query $q$ return all vertices recusively reachable from $q$, **sorted in topological order**.
 
 `<bos> x1 y1 x2 y2 ... xm ym <query> q <ans> a1 a2 ... ap <eos>`
@@ -48,6 +48,8 @@ Comparison to reasoning: Knowledge manipulation requires retrieval of factual kn
 ### Lano: Hierarchical language structure (Generative, Distributional)
 
 This challenges model to infer implicit recursive structures across sequences and resolve global ambiguities within them.
+
+
 `<bos> 3 3 2 2 1 ... 3 3 1 2 <bos> 1 2 3 3 1 ... 1 2 2 1 <bos> ..`
 
 This is generated using context-free grammar (CFG). Resolving this requires dynamic programming to globally map the entire sequence to a valid recursive application of CFG rules, which must also be learned during training.
