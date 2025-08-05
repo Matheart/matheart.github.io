@@ -1,3 +1,7 @@
+---
+permalink: /note/
+---
+
 # Physics of LLM
 
 
