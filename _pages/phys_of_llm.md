@@ -1,5 +1,5 @@
 ---
-permalink: /note/
+permalink: /note/phys_of_llm
 ---
 
 # Physics of LLM
