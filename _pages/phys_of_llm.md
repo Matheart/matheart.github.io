@@ -7,7 +7,7 @@ permalink: /note/phys_of_llm
 
 ## Architecture design 
 
-For real life pretraining, benchmark performance varies a lot across random seeds, which makes it statistically inefficient to compare architectures. We need to design useful synthetic tasks.
+For real life pretraining, benchmark performance varies a lot across random seeds, which makes it statistically inefficient to compare architectures. In addition, training in academic scale (1.3B) makes it infeasible to conduct controlled study, this motivates us to design useful synthetic tasks.
 
 ### Four Design principles for synthetic tasks
 - Task must not be shallow: Associative recall or copying is easily solvable by small and shallow models, which cannot meaningfully test architectural strength.
@@ -53,3 +53,7 @@ This challenges model to infer implicit recursive structures across sequences an
 `<bos> 3 3 2 2 1 ... 3 3 1 2 <bos> 1 2 3 3 1 ... 1 2 2 1 <bos> ..`
 
 This is generated using context-free grammar (CFG). Resolving this requires dynamic programming to globally map the entire sequence to a valid recursive application of CFG rules, which must also be learned during training.
+
+## Canon Layer: Enhancing Horizontal Information Flow
+
+The author proposes Canon Layer which is analogous to the residual connection. It aggregates nearby hidden states into the current position.
