@@ -7,9 +7,9 @@ permalink: /note/phys_of_llm
 
 ## Architecture design 
 
-For real life pretraining, benchmark performance varies a lot across random seeds, which makes it statistically inefficient to compare architectures. We need to design useful  synthetic tasks.
+For real life pretraining, benchmark performance varies a lot across random seeds, which makes it statistically inefficient to compare architectures. We need to design useful synthetic tasks.
 
-### Four design principles
+### Four Design principles for synthetic tasks
 - Task must not be shallow: Associative recall or copying is easily solvable by small and shallow models, which cannot meaningfully test architectural strength.
 - Emphasis on mental thinking: Without applying CoT, testing architecture's "system 1" reasoning.
 - Avoid emphasis on length generalization. Unstable across random seeds.
@@ -34,7 +34,7 @@ Sorted in topological order requires the model to preprocess order of DAG mental
 ### Capo: Knowledge Capacity (Distributional)
 
 
-Synthetic datasets of fake biographies, each include several attributes (e.g., birthdate, university etc.), and is presented in diverse paraphrased formats to reduce surface-level memorization. In undertrained regime where each biblography is exposed only 100 times (no apparent architectural differences for more exposure). Capacity is measured using the next-token prediction distribution, accounting
+Synthetic datasets of fake biographies, each include several attributes (e.g., birthdate, university etc.), and is presented in diverse paraphrased formats to reduce surface-level memorization. In undertrained regime where each biblography is exposed only 100 times (no apparent architectural differences for more exposure), also this is better to compare the speed of skill acquisition. Capacity is measured using the next-token prediction distribution, accounting
 for both exact correctness and partial accuracy. Results are visualized via “bit vs. model size” plots.
 
 
