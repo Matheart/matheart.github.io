@@ -18,6 +18,8 @@ Goal: Decompose $M$ into $AW$, where $A: n \times r$, and $W: r \times n$ are bo
 This problem is **NP-hard**, although there exists heuristic methods to solve it (Iteratively alternating updates for $W^{(i)}$ and $A^{(i)}$).
 
 We can reformulate the problem into systems of polynomial inequalities:
+
+
 $$
 \begin{align*}
 M &= AW \\
@@ -45,7 +47,8 @@ If $M = AW$ with separable $A$, and $W$ has full row rank, then the row of $W$ a
 ### Topic Models
 The **abstract topic model** consists of topic matrix $A: m \times r$, distribution $\mu$ on the simplex in $\mathbb{R}^r$. Then $n$ documents are generated, for each $W_i$ are sampled from $\mu$, then $L$ words are generated i.i.d. from distribution $AW_i$. 
 
-We denote the observed term-by-document matrix as $\tilde M$, then $\mathbb{E}[\tilde M | W] = M = AW$, this problem is much harder since we only observe the empirical version $\tilde M$.
+
+We denote the observed term-by-document matrix as $\tilde{M}$, then $\mathbb{E}[\tilde{M} | W] = M = AW$, this problem is much harder since we only observe the empirical version $\tilde{M}$.
 
 There are multiples types of topic models, e.g.: pure topic model ($\mu$ is distribution on vertices of simplex, and each column of $W$ has exactly one non-zero), Latent Dirichlet Allocation ($\mu$ is Dirichlet distribution). Each documents can have more than one topic, however, $W_i$ are sparse. 
 
