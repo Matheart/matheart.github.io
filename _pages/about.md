@@ -42,8 +42,8 @@ Overall I am passionate about opening the black box of neural network and LLM th
 
 
 
-My Erdos Number = 4
+<!-- My Erdos Number = 4
 
 > Honam Wong -> Surbhi Goel -> Danel Reichman -> Noga Alon -> Paul Erdős
 > 
-> Honam Wong -> Enric Boix-Adsera -> Emmanuel Abbe -> Noga Alon -> Paul Erdős
+> Honam Wong -> Enric Boix-Adsera -> Emmanuel Abbe -> Noga Alon -> Paul Erdős -->

@@ -11,7 +11,11 @@ This note is made for the reading group of [multi-index model](https://arxiv.org
 
 - [**Physics of LLM**](https://matheart.github.io/note/phys_of_llm)
 
+Based on Zeyuan Allen-Zhu's Physics of LLM work.
 
+- [**Algorithmic Aspects of Machine Learning**](https://matheart.github.io/note/alg_ml)
+
+Based on Ankur Moitra's Algorithmic Aspects of Machine Learning.
 
 <!-- ## PhD Application
 [This](https://www.zhihu.com/question/421349039/answer/4784236380) is where I recorded my PhD application experience (in Chinese).
