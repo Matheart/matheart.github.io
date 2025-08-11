@@ -52,7 +52,7 @@ We denote the observed term-by-document matrix as $\tilde{M}$, then $\mathbb{E}[
 
 There are multiples types of topic models, e.g.: pure topic model ($\mu$ is distribution on vertices of simplex, and each column of $W$ has exactly one non-zero), Latent Dirichlet Allocation ($\mu$ is Dirichlet distribution). Each documents can have more than one topic, however, $W_i$ are sparse. 
 
-The estimation algorithm is pretty simple, and there exists polynomial-time algorithm, given separability condition, and some extra conditions (In "Learning Topic Models - Beyond SVD", STOC 2012).
+The estimation algorithm is pretty simple, and there exists polynomial-time algorithm, given separability condition, and some extra conditions (Learning Topic Models - Beyond SVD, STOC 2012).
 
 ## Tensor Methods
 
