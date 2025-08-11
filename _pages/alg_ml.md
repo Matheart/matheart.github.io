@@ -6,6 +6,8 @@ permalink: /note/alg_ml
 
 ## Nonnegative Matrix Factorization
 
+
+
 ## Tensor Methods
 
 ## Sparse Recovery
