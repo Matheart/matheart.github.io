@@ -54,7 +54,11 @@ There are multiples types of topic models, e.g.: pure topic model ($\mu$ is dist
 
 The estimation algorithm is pretty simple, and there exists polynomial-time algorithm, given separability condition, and some extra conditions (Learning Topic Models - Beyond SVD, STOC 2012).
 
-## Tensor Methods
+## Tensor Decomposition
+
+### Tensor Basics
+
+
 
 ## Sparse Recovery
 
