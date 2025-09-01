@@ -19,7 +19,7 @@ My research interests lie in **theory and empirical science of deep learning and
 Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
 
 ## Education
-* PhD in Computer & Information Science, The University of Pennsylvania (Incoming)
+* PhD in Computer & Information Science, The University of Pennsylvania (Current)
 * BSc in Computer Science & Mathematics, The Hong Kong University of Science and Technology, 2025 (GPA 4.099/4.3, Rank 1st, before grad-school app.)
 * Spring Exchange, EPFL, 2024  
 
