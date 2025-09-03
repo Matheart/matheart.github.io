@@ -23,3 +23,7 @@ Other areas that have relationships with gambling:
 
 Many people here I haven't heard about, need to research later.
 
+Useful / Latest Online learning [lecture note](https://arxiv.org/pdf/1912.13213)
+
+Classical works on bets: [A New Interpretation of Information Rate](https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf), [Optimal gambling systems for favorable games](http://www-stat.wharton.upenn.edu/~steele/Resources/FTSResources/KellyBreiman/Breiman61.pdf).
+
