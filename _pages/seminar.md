@@ -36,7 +36,7 @@ https://arxiv.org/abs/2501.16578
 
 If we consider (normalized) positive random walk on the real line, i.e. $W \geq 0$, and $\mathbb{E}[W^2] < + \infty$. We consider the random walk $Y = \frac{1}{n} W_i$ where $W_i \sim W$ and $\mathbb{E}[Y] = \mathbb{E}[W]$.
 
-To have $Y \gg \mathbb{E}[Y]$ need to exist one large step $W_i$, to have $Y \ll \mathbb{E}[Y]$ then we need to have all steps $W_i$ small. Therefore the prob. distribution would look heavy-tail when in $\mathbb{E}[Y]_+$ i.e. $\sim (nt)^{-2}$, and $\mathbb{E}[Y]_-$ behaves like light tail i.e. have exponential rate $e^{-nt^2}$.
+To have $Y \gg \mathbb{E}[Y]$ need to exist one large step $W_i$, to have $Y \ll \mathbb{E}[Y]$ then we need to have all steps $W_i$ small. Therefore the prob. distribution would look heavy-tail when in $\mathbb{E}[Y]_{+}$ i.e. $\sim (nt)^{-2}$, and $\mathbb{E}[Y]_{-}$ behaves like light tail i.e. have exponential rate $e^{-nt^2}$.
 
 We are able to show that the left tail has subGaussian behavior and can be approximately characterized by a Gaussian $Z \sim \mathcal{N}( \mathbb{E}W, \frac{1}{n} \mathbb{E}W^2)$ using Paley–Zygmund inequality ([Kind of second moment method](https://en.wikipedia.org/wiki/Second_moment_method)).
 
