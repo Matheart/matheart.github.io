@@ -5,6 +5,9 @@ main:
   
   - title: "Note"
     url: /note/
+  
+  - title: "Seminar"
+    url: /seminar/
         
   - title: "Misc"
     url: /misc/

@@ -1,6 +1,12 @@
 ---
-permalink: /seminar
+layout: archive
+title: "Seminar"
+permalink: /seminar/
+author_profile: true
+redirect_from:
+  - /seminar
 ---
+
 
 
 # Seminars
@@ -70,7 +76,13 @@ Drawback of previous methods:
 1. L1 regularization: activation shrinkage (When L2 loss is small to some degree, L1 regularization would dominate the loss)
 2. TopK: Sensitive to randomness and inconsistent in feature recovery.
 
-Idea of this paper: Use different sets of biases to "resonate" with different frequencies of features in data. Use theory to classify different superposition regime. 
+Synthetic setup:
+![](../images/2025-09-04-FAI.PNG)
+
+This paper uses theory to classify different superposition regime and finds SAE can learn feature while activation frequency $p = O(s/n)$ where $s$ stands for data sparsity and $n$ is total number of features. 
+
+
+Idea of this paper: Use different sets of biases to "resonate" with different frequencies of features in data. 
 
 Training dynamics theory idea: Overparametrization ensures there exists some neuron at initialization aligns better with the signal. Then we decompose the signal and noise, and shows that after iterations it would turn to learning the signal.
 
