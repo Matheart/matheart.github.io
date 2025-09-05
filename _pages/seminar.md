@@ -87,3 +87,22 @@ Training dynamics theory idea: Overparametrization ensures there exists some neu
 
 
 Follow-up work on transcoder. This paper worths diving into later.
+
+## Theory Seminar (Sep 5th 2025)
+
+>  Speaker: Tomer Ezra, Harvard
+>
+>  Title: Algorithmic Contract Design
+
+Contract Theory. Have Principal and Agent, want: Find contract that max. the principal's utility.
+
+Principal-Agent Contract Model [Ross'73];
+Combinatorial Contract Model [DEFK'21];
+
+Complement-free Hierarchy [LLN'06]
+https://chatgpt.com/share/68bb15d9-23d0-800c-8f22-e13bd14b3c75
+
+
+Single-agent [FOCS' 21], multi-agent [STOC' 23] + [SODA' 25]
+
+Classical paper https://arxiv.org/abs/cs/0202015
