@@ -9,7 +9,6 @@ redirect_from:
 
 
 
-# Seminars
 This is the note taken in [**Wharton Statistics seminar**](https://statistics.wharton.upenn.edu/research/seminars-conferences/), [**FOLDS Seminar**](https://jasonaltschuler.github.io/folds-seminar/) (Optimization & Learning), [**ASSET Seminar**](https://asset.seas.upenn.edu/events/) (Safety), [**Theory seminar**](https://theory.cis.upenn.edu/seminar/) and external seminars. It is mainly for writing down things / resources that I learn from the seminars, and they are not guaranteed to be comprehensive or accurate. 
 
 ## Statistics Seminar (Sep 3rd 2025)
@@ -42,7 +41,7 @@ Classical works on bets: [A New Interpretation of Information Rate](https://www.
 
 If we consider (normalized) positive random walk on the real line, i.e. $W \geq 0$, and $\mathbb{E}[W^2] < + \infty$. We consider the random walk $Y = \frac{1}{n} W_i$ where $W_i \sim W$ and $\mathbb{E}[Y] = \mathbb{E}[W]$.
 
-To have $Y \gg \mathbb{E}[Y]$ need to exist one large step $W_i$, to have $Y \ll \mathbb{E}[Y]$ then we need to have all steps $W_i$ small. Therefore the prob. distribution would look heavy-tail when in $\mathbb{E}[Y]_{+}$ i.e. $\sim (nt)^{-2}$, and $\mathbb{E}[Y]_{-}$ behaves like light tail i.e. have exponential rate $e^{-nt^2}$.
+To have $Y \gg \mathbb{E}[Y]$ need to exist one large step $W_i$, to have $Y \ll \mathbb{E}[Y]$ then we need to have all steps $W_i$ small. Therefore the right tail would look heavy-tail i.e. $\sim (nt)^{-2}$, and left tail behaves like light tail i.e. have exponential rate $e^{-nt^2}$.
 
 We are able to show that the left tail has subGaussian behavior and can be approximately characterized by a Gaussian $Z \sim \mathcal{N}( \mathbb{E}W, \frac{1}{n} \mathbb{E}W^2)$ using Paley–Zygmund inequality ([Kind of second moment method](https://en.wikipedia.org/wiki/Second_moment_method)).
 
@@ -68,7 +67,7 @@ https://arxiv.org/pdf/2012.11654 might related to lowest eienvalue of NTK also?
 >
 > Paper: https://arxiv.org/abs/2506.14002
 
-Superposition: # Representated features >> embedding dimension.
+Superposition: # Representated features $\gg$ embedding dimension.
 
 Polysemantic neurons - activating for many concepts.
 
