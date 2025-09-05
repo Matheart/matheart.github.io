@@ -61,7 +61,7 @@ https://arxiv.org/pdf/2012.11654 might related to lowest eienvalue of NTK also?
 
 ## FAI Seminar (Sep 4th 2025)
 
->  Speaker: Siyu Chen (Yale)
+>  Speaker: Siyu Chen, Yale
 >
 >  Title: Polysemanticity in language models
 >
