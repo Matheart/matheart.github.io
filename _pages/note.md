@@ -20,4 +20,4 @@ Disclaimer: The notes are primarily intended for my personal learning and may no
 
 * [**PhD Statement of Purpose**](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5)
 
-* [Some Random Notes](https://matheart.github.io/note/random_note)
+* [Some Random Notes](https://matheart.github.io/random_note)
