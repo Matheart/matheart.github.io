@@ -28,6 +28,9 @@ Both QK-normalization and z-loss techniques have been successfully incorporated 
 
 Signal Propagation papers I should read: https://arxiv.org/pdf/2403.02579
 
-Meta's Adam instability paper https://arxiv.org/pdf/2304.09871
+Meta's Adam instability paper (2023) https://arxiv.org/pdf/2304.09871
 
 Other posts: https://zhuanlan.zhihu.com/p/700042526, https://zhuanlan.zhihu.com/p/10927658580
+
+
+Loss Spikes related to EoS?
