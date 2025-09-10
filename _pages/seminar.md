@@ -106,3 +106,23 @@ https://chatgpt.com/share/68bb15d9-23d0-800c-8f22-e13bd14b3c75
 Single-agent [FOCS' 21], multi-agent [STOC' 23] + [SODA' 25]
 
 Classical paper https://arxiv.org/abs/cs/0202015
+
+
+## ASSETS Seminar (Sep 10th 2025)
+
+>  Speaker: Furong Huang, Maryland
+>
+>  Title: Rethinking Test-Time Thinking: From Token-Level Rewards to Robust Generative Agents
+
+
+Test-time alignment.
+
+GenARM: Use autoregressive reward model (more efficient than trajectory-level RM). Have weak-to-strong guidance. Can align with multiple human objects without retraining. Similar to Model predictive control in terms of intuition.
+
+Thinklite-VL: Run MCTS and calibrate the problem difficulty as # of iterations. Use curriculum learning.
+
+MORSE-500: Programmatically controllable benchmark to stress test multimodel reasoning. Reasoning simulator that provides infinite training data for next-gen AI.
+
+Does Thinking More always Help?  (Figure 2): Interesting to see the accuracy drops after overthinking. Gaussian modelling of policy and reward functions. Related: **The illusion of thinking, the illusion of illusion of thinking**.
+
+Adaptive, runtime defense against dynamical adversarial strategies. AegisLLM.

@@ -26,7 +26,7 @@ Both QK-normalization and z-loss techniques have been successfully incorporated 
 ## Other papers
 
 
-Signal Propagation papers I should read: https://arxiv.org/pdf/2403.02579
+Signal Propagation papers I should read: https://arxiv.org/pdf/2403.02579, https://arxiv.org/pdf/1611.01232
 
 Meta's Adam instability paper (2023) https://arxiv.org/pdf/2304.09871
 
