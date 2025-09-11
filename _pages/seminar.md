@@ -126,3 +126,20 @@ MORSE-500: Programmatically controllable benchmark to stress test multimodel rea
 Does Thinking More always Help?  (Figure 2): Interesting to see the accuracy drops after overthinking. Gaussian modelling of policy and reward functions. Related: **The illusion of thinking, the illusion of illusion of thinking**.
 
 Adaptive, runtime defense against dynamical adversarial strategies. AegisLLM.
+
+
+## FOLDS Seminar (Sep 11th 2025)
+
+>  Speaker: Rina Barber, UChicago
+>
+>  Title: Algorithmic stability for regression and classification
+
+Distribution-free setting (weaker assumption). Hard to prove concentration but can prove a milder condition - stability (perturbaton to / resample a small fraction of training set).
+
+Verify algorithmic stability in practice. Hardness result: "Black box tests for algorithmic stability",  "Is algorithmic stability testable".
+
+Convert algorithms to stable algorithm.
+
+Algo Stability for classification: Two-stage learning process.
+
+Conformal prediction textbook: https://arxiv.org/pdf/2411.11824
