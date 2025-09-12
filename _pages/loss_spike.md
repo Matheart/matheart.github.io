@@ -5,7 +5,9 @@ permalink: /note/loss_spike
 author_profile: true
 ---
 
-In AI2's [OLMo 2 paper](https://arxiv.org/pdf/2501.00656) (in 2025 Jan.), the authors analyze pretraining stability issues and identify the phenomenon of loss spikes. They observe that significant spikes in gradient norm frequently precede spikes in training loss. A particularly intriguing finding is that larger model sizes correlate with increased frequency of these spikes. (An interesting research direction would be replicating this phenomenon in a simplified experimental setup, similar to the approach in https://arxiv.org/pdf/2309.14322).
+Starting from 2023 April, PaLM paper (Chapter 5.1) already identifies the loss spike phenomenon during pretraining. Their strategy is to re-start training from the checkpoint.
+
+In AI2's [OLMo 2 paper](https://arxiv.org/pdf/2501.00656) (in 2025 Jan.), the authors analyze pretraining stability issues. They observe that significant spikes in gradient norm frequently precede spikes in training loss. A particularly intriguing finding is that larger model sizes correlate with increased frequency of these spikes. (An interesting research direction would be replicating this phenomenon in a simplified experimental setup, similar to the approach in https://arxiv.org/pdf/2309.14322).
 
 They investigate the reasons behind those spikes although still lacking theoretical explanations:
 - Repeated n-grams (Why that causes gradient norm has spikes? Maybe we can replicate that with a small experiment)
@@ -34,3 +36,5 @@ Other posts: https://zhuanlan.zhihu.com/p/700042526, https://zhuanlan.zhihu.com/
 
 
 Loss Spikes related to EoS?
+
+Related: https://www.bilibili.com/video/BV1V7ZnYNEzM/ (WSD Learning Rate)

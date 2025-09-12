@@ -143,3 +143,21 @@ Convert algorithms to stable algorithm.
 Algo Stability for classification: Two-stage learning process.
 
 Conformal prediction textbook: https://arxiv.org/pdf/2411.11824
+
+## Theory Seminar (Sep 12th 2025)
+>  Speaker: Yuhao Li, Columbia
+>
+>  Title: Query Complexity of Tarski Fixed Points
+
+Want: Find arbitrary fixed point, find algo with complexity poly(d, log N) instead of O(dN).
+This fixed point is useful in PL, database, game theory and economics.
+
+The Parity Game problem sounds interesting.
+
+"Deciding parity games in quasipolynomial time. STOC 2017 Best Paper."
+
+https://arxiv.org/abs/2005.09836 Upper Bound $O(log^d n)$ by using binary search to find fixed point
+
+Exist $O(log^2 N)$ algo for $d = 3$.
+
+UP is the class of decision problems solvable by a nondeterministic polynomial-time Turing machine such that for every input, there is at most one accepting computation path. Factorizaton is in $\text{UP} \ \cap \text{Co-UP} $.
