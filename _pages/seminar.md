@@ -149,7 +149,7 @@ Conformal prediction textbook: https://arxiv.org/pdf/2411.11824
 >
 >  Title: Query Complexity of Tarski Fixed Points
 
-Want: Find arbitrary fixed point, find algo with complexity poly(d, log N) instead of O(dN).
+Want: Find arbitrary fixed point in the lattice structure, find algo with complexity poly(d, log N) instead of O(dN).
 This fixed point is useful in PL, database, game theory and economics.
 
 The Parity Game problem sounds interesting.
