@@ -31,8 +31,8 @@ http://ndl.ethernet.edu.et/bitstream/123456789/23707/1/Harold%20J.%20Kushner.pdf
 
 Interesting paper: https://arxiv.org/pdf/1606.05340.
 
-Signal propagation: If we consider $q_l = \frac{1}{N_l} \| h^{(l)} (x) \|_2^2$ (norm of the activation), and study the plot $q_l$ against $q_{l-1}$, it looks like the concave curve. It is interesting to see the norm converges at some fixed point $q_*$ after $L=4$ iterations (4 layers, all the things we consider here are at initialization, Figure 1 of the paper).
+Signal propagation: If we consider $q_{l} = \frac{1}{N_{l}} \| h^{(l)} (x) \|_2^2$ (norm of the activation), and study the plot $q_l$ against $q_{l-1}$, it looks like the concave curve. It is interesting to see the norm converges at some fixed point $q_*$ after $L=4$ iterations (4 layers, all the things we consider here are at initialization, Figure 1 of the paper).
 
-We also study the change of correlation i.e. $c_l = \frac{1}{q_* N_l} h^l(x)^\top h^l(x')$. We plot the curve $c_l$ against $c_{l-1}$, if the curve looks like a concave curve, then it is stable and have vanishing gradient, which leads to bad NNGP performance. If it is convex, it would have exploding gradient and the correlations going to zero. This corresponds to the  Figure 2. **Maybe we can observe how $c_l$ changes during training, since this paper only studies at initialization**.
+We also study the change of correlation i.e. $c_{l} = \frac{1}{q_* N_{l}} h^l(x)^\top h^l(x')$. We plot the curve $c_l$ against $c_{l-1}$, if the curve looks like a concave curve, then it is stable and have vanishing gradient, which leads to bad NNGP performance. If it is convex, it would have exploding gradient and the correlations going to zero. This corresponds to the  Figure 2. **Maybe we can observe how $c_l$ changes during training, since this paper only studies at initialization**.
 
 https://dkarkada.xyz/posts/critical-signalprop-nn/
