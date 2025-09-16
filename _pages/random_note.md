@@ -25,9 +25,11 @@ https://arxiv.org/pdf/1502.05666
 
 > Sep 15
 
-Stochastic Approximation
+Stochastic Approximation http://ndl.ethernet.edu.et/bitstream/123456789/23707/1/Harold%20J.%20Kushner.pdf
 
-http://ndl.ethernet.edu.et/bitstream/123456789/23707/1/Harold%20J.%20Kushner.pdf
+Conjugate Kernel https://proceedings.neurips.cc/paper_files/paper/2017/file/489d0396e6826eb0c1e611d82ca8b215-Paper.pdf
+
+https://arxiv.org/pdf/1602.05897 Table 1 for kernels in different activations.
 
 Interesting paper: https://arxiv.org/pdf/1606.05340.
 
