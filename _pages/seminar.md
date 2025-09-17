@@ -161,3 +161,18 @@ https://arxiv.org/abs/2005.09836 Upper Bound $O(log^d n)$ by using binary search
 Exist $O(log^2 N)$ algo for $d = 3$.
 
 UP is the class of decision problems solvable by a nondeterministic polynomial-time Turing machine such that for every input, there is at most one accepting computation path. Factorizaton is in $\text{UP} \ \cap \text{Co-UP} $.
+
+## ASSETS Seminar (Sep 17th 2025)
+>  Speaker: Guy Van den Broeck, UCLA
+>
+>  Title:  Symbolic Reasoning in the age of LLM
+
+Ctrl-G: Adaptive logical control for LLM. NeurIPS 2024.
+https://arxiv.org/pdf/2406.13892
+
+Use tractable circuit model (like HMM) distilled from the transformer LLM (Digital twin that can do symbolic reasoning). Constraints are represented as DFAs and refine LLM outputs during inference time.
+
+
+Using circuits which can be scaled up and expressive compared with GPT and diffusion model, yet interpretable and can do probabilistic reasoning.
+
+Pyjuice: Scaling Tractable Probabilistic Circuits: A Systems Perspective https://arxiv.org/abs/2406.00766.
