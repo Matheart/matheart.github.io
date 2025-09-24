@@ -198,3 +198,13 @@ $$
 This generalizes the linear representation hypothesis.
 
 This is one examples of rule subspace (besides concept subspace), might be other subspaces for other skills, like CoT.
+
+##  GRASP Seminar (Sep 24th 2025)
+>  Speaker:  Deepti Ghadiyaram, Boston University
+>
+>  Title:  Interpretable and Leveraging Diffusion Representations
+
+Goal: Study the semantic information component in generative models.
+Use k-sparse autoencoder. => Get diffusion features
+Consider U-Net, train k-SAE in different layers. More layers up the features extracted are more coarse.
+Takeaway: Different layers capture different levels of information.
