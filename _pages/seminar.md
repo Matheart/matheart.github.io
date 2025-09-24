@@ -176,3 +176,25 @@ Use tractable circuit model (like HMM) distilled from the transformer LLM (Digit
 Using circuits which can be scaled up and expressive compared with GPT and diffusion model, yet interpretable and can do probabilistic reasoning.
 
 Pyjuice: Scaling Tractable Probabilistic Circuits: A Systems Perspective https://arxiv.org/abs/2406.00766.
+
+## ASSETS Seminar (Sep 24th 2025)
+>  Speaker:  Yiqiao Zhong, UWM
+>
+>  Title:  How does LLM generalize in OOD Task, insights from model's internal representations
+
+Generalization, Geometry, Emergence.
+
+Copying Task Setting.
+OOD Data:  Token distribution changes from power law to uniform, change length of repeated segment changed from [10, ..., 19] to [25].
+
+Two-layer TF (Attn only) generalizes OOD, one-layer TF fails to generalize. (Rule-learning and weak learning phase).
+
+What compositional structure enables copying: **alignment of First-layer OV circuit and second-layer QK circuit**. Compute diagonal score measures normalized average diagonal entries of the product. Also have subspace matching: generalized cosine similarity between two principled subspaces. The transition aligns with the emergence phenomenon.
+
+Generalize from two layers to multiple layers. Bridge subspace:
+$$
+\mathcal{V} = \text{span}(W_{OV,j}) = \text{span}(W_{{QK},k})
+$$
+This generalizes the linear representation hypothesis.
+
+This is one examples of rule subspace (besides concept subspace), might be other subspaces for other skills, like CoT.
