@@ -193,7 +193,7 @@ What compositional structure enables copying: **alignment of First-layer OV circ
 
 Generalize from two layers to multiple layers. Bridge subspace:
 $$
-\mathcal{V} = \text{span}(W_{OV,j}) = \text{span}(W_{{QK},k})
+\mathcal{V} = \text{span}(W_{OV,j}) = \text{span}(W_{QK,k})
 $$
 This generalizes the linear representation hypothesis.
 
@@ -208,3 +208,6 @@ Goal: Study the semantic information component in generative models.
 Use k-sparse autoencoder. => Get diffusion features
 Consider U-Net, train k-SAE in different layers. More layers up the features extracted are more coarse.
 Takeaway: Different layers capture different levels of information.
+Can also do non-linear probing.
+
+Diffusion features benefit reasoning tasks.
