@@ -211,3 +211,31 @@ Takeaway: Different layers capture different levels of information.
 Can also do non-linear probing.
 
 Diffusion features benefit reasoning tasks.
+
+##  Wharton Stats Seminar (Oct 1st 2025)
+>  Speaker:  Michael Jordan
+>
+> Title: A Collectivist, Economic, and Statistical Perspective on AI
+
+Interaction with LLM can be trated as interacting with a huge collective of experts. LLM fails to do uncertainty quantification. 
+
+Information assymetry and uncertainty in interaction in groups. 
+
+Problems in Stats/CS/Econ Interface:
+- Relationships among optima, equillibria, and dynamics in high dim.
+- Information assymetries, contract and stat inference
+- UQ for black-box adversarial setting
+- Bias mitigation and decision-making
+- Recommendation systems with incentives
+- Implications for regulation and governance of adaptive mechanism design
+
+Market: equillibria, reduced uncertainty.
+
+Three-layer data markets. Users <-> Platform <-> Data Buyer.
+Data is good/service/mechanism.
+
+"Inverse problem" of game theory.
+Inverse problem of Nash equillibrium and option.
+
+Statistical Contract Theory
+Principal-agent model
