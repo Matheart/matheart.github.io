@@ -12,8 +12,12 @@ Hi! I am a first-year PhD student at the University of Pennsylvania, advised by 
 
 
 My research interests lie in **theory and empirical science of deep learning and LLMs**. 
-- **Theory**: I am interested in fundamental theories that reveal principles of learning and scaling.
-- **Empirical Science**: I am enthusiastic about designing sandbox settings to understand language model  (and interplay with theory). I am broadly interested in interpretability, understanding reasoning and alignment properties of LLMs.
+I am interested in designing minimal sandbox settings that are theoretically tractable while still illuminating fundamental principles of learning. 
+
+
+I am also drawn to interpretability as an empirical lens for opening the black box of LLMs. More broadly, my interests in LLM lie in understanding the architecture, reasoning capabilities, and alignment properties via clean synthetic setup (In spirit of Physics of LLMs).
+
+
 
 
 Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
