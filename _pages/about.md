@@ -18,8 +18,6 @@ I am interested in designing minimal sandbox settings that are theoretically tra
 I am also drawn to interpretability as an empirical lens for opening the black box of LLMs. More broadly, my interests in LLM lie in understanding the architecture, reasoning capabilities, and alignment properties via clean synthetic setup (In spirit of Physics of LLMs).
 
 
-
-
 Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
 
 ## Education
