@@ -239,3 +239,45 @@ Inverse problem of Nash equillibrium and option.
 
 Statistical Contract Theory
 Principal-agent model
+
+## FLANN Seminar (Oct 6th 2025)
+>  Speaker:  Kaiyue Wen
+> Title: Transformer are not interpretable via myopic methods
+
+Attention Map -> Syntactic trees (Rogers et al. 20)
+Can be misleading, some of the heads interpretable some are not. Turning off both respectively has similar effects.
+
+Q: Can we reliable interpret algorithms by looking at individual components.
+Individual: Attention Patterns, Single Weight Components.
+A: May not, using Dyck Language to provide a toy example.
+
+Dyck: The language of balanced parentheses.
+Use stack-like algorithm to solve.
+
+Prior work: TF learn dyck with highly stack-like attention patterns, predict on the last unclosed bracket.
+Their results: TF learns **diverse** attention patterns on Dyck.
+
+Training data has Bounded depth (TF cannot learn unbounded depth).
+Theory on squared loss, or CE with smoothed labelling, cannnot directly analyze CE.
+
+Attention Matrix:
+
+Minimal first layer: Output only depends on bracket type t, and depth d, independent of everything else like position.
+
+Required balance condition (Both necessary and sufficient).
+Balanced != Interpretable, uniform attention is balanced, can also learn the Dyck grammar, but it does not reflect the task structure.
+
+Balanced is weak constraint, still have diverse attention pattern.
+Balance condition can improve OOD => Intuition: Optimal models should be belanced.
+
+Weight Matrix:
+TF can be approximated by a non-strucutral pruning of logarithmically larger of TF w.h.p.
+Proof sketch: Lottery ticket hypothesis (Approximate MLP by random networks).
+"Curse" of large models: Use large models may hide the interpretable patterns.
+
+Look at activations instead of weights, use linear probing.
+
+Negative Result by Danqi Chen: 4-dim model dyck. More interpretable model is worse in generalization. (Illusion of interpretability)
+https://arxiv.org/abs/2312.03656
+
+Construction: [2303.08117] Do Transformers Parse while Predicting the Masked Word?
