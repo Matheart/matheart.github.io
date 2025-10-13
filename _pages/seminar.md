@@ -281,3 +281,17 @@ Negative Result by Danqi Chen: 4-dim model dyck. More interpretable model is wor
 https://arxiv.org/abs/2312.03656
 
 Construction: [2303.08117] Do Transformers Parse while Predicting the Masked Word?
+
+## FLANN Seminar (Oct 13th 2025)
+https://arxiv.org/pdf/2508.12837
+
+Loss Landscap while training TF on sequences from a synthetic language model.
+Empirical training: stage-wise transitions.
+
+Plateau: Learns a induction head / Acquires syntax at plateau / partial solution.
+
+n-gram language model.
+
+In-context population loss (CE on next token). 
+
+Construct the two-layer TF to implement k-gram estimator. First attn layer creates (k-1)-history, second layer matches the (k-1)-history and aggregates the following token. With this construction, we can show gradient of CE loss function vanishes, which partly explains the loss plateau behavior.
