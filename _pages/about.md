@@ -18,7 +18,7 @@ I am interested in designing minimal sandbox settings that are theoretically tra
 I am also interested in interpretability as an empirical lens for opening the black box of LLMs. More broadly, my interests in LLM lie in understanding the architecture, reasoning capabilities, and alignment properties via clean synthetic setup (In spirit of Physics of LLMs). Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
 
 
-Outside of research, I enjoy listening to music and watching anime. I am also running a [popular science channel](https://space.bilibili.com/346660989) with over 34K subscribers and 1.6 million total views. 
+Outside of research, I enjoy exploring the world. I also enjoy listening to music and watching anime. I am running a [popular science channel](https://space.bilibili.com/346660989) with over 34K subscribers and 1.6 million total views. 
 
 ## Education
 * PhD in Computer & Information Science, The University of Pennsylvania (Ongoing)
