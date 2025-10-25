@@ -11,11 +11,7 @@ redirect_from:
 Hi! I am a first-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from the Hong Kong University of Science and Technology (HKUST) in 2025. 
 
 
-My research interests lie in **theory and empirical science of deep learning and LLMs**. 
-I am interested in designing minimal sandbox settings that are theoretically tractable while still illuminating fundamental principles of learning. 
-
-
-I am also interested in interpretability as an empirical lens for opening the black box of LLMs. More broadly, my interests in LLM lie in understanding the architecture, reasoning capabilities, and alignment properties via clean synthetic setup (In spirit of Physics of LLMs). Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
+My research interests lie in **theory and empirical science of deep learning and LLMs**. I am interested in fundamental principles of learning and scaling. For language models, I am interested in understanding the architecture, reasoning, alignment and efficency properties via clean sandbox setups. Empirically I am interested in interpretability as a tool to understand neural networks. Overall I am passionate about opening the black box of neural network and LLM through all possible ways.
 
 
 Outside of research, I enjoy exploring the world. I also enjoy listening to music and watching anime. I am running a [popular science channel](https://space.bilibili.com/346660989) with over 34K subscribers and 1.6 million total views. 

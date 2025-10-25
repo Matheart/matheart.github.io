@@ -295,3 +295,20 @@ n-gram language model.
 In-context population loss (CE on next token). 
 
 Construct the two-layer TF to implement k-gram estimator. First attn layer creates (k-1)-history, second layer matches the (k-1)-history and aggregates the following token. With this construction, we can show gradient of CE loss function vanishes, which partly explains the loss plateau behavior.
+
+## FLANN Seminar (Oct 20th 2025)
+Topic: Language Identification, Generation, and Hallucination Detection in the limit.
+
+Language Generation (Kleinberg, Mulliainathan 2024): Guess strings inside the language A but not in the "training set".
+Algo never sees negative examples, no feedback. Assume all languages are infinite.
+
+Thm: Language generation in the limit is possible for any countable collection of languages. (identification is impossible)
+
+e.g.:
+After seeing many C programs
+Generation: Output valid C programs
+Identification: Output valid grammar for C (Is hard, by a lower bound construction)
+
+Validity vs breadth tradeoff (hallucination vs mode-collapse).
+
+Critical language.
