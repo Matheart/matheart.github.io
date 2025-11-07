@@ -26,7 +26,7 @@ Outside of research, I enjoy exploring the world. I also enjoy listening to musi
 * Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
 
 ## Selected Coursework
-- PhD: Machine Learning Theory, Generative AI for Research, Randomized Algorithm (Audit)
+- PhD: Machine Learning Theory, Generative AI for Research, Acceleration and Hedging in Optimization
 - Undergraduate: Machine Learning, Optimization for ML, Functional Analysis, Numerical Analysis, Design and Analysis of algorithms
 
 ## Selected Awards 
