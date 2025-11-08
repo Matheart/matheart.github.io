@@ -18,6 +18,8 @@ Overall, I see myself as both a theorist and an experimentalist, driven by the g
 
 Outside of research, I enjoy exploring the world. I also enjoy listening to music and watching anime. I am running a [popular science channel](https://space.bilibili.com/346660989) with over 34K subscribers and 1.6 million total views. 
 
+> [Papers that I enjoy reading](https://matheart.github.io/note/good_papers)
+
 ## Education
 * PhD in Computer & Information Science, The University of Pennsylvania (Ongoing)
 * BSc in Computer Science & Mathematics, The Hong Kong University of Science and Technology, 2025 (GPA 4.099/4.3, Rank 1st, before grad-school app.)
