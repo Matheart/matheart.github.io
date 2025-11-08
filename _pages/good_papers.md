@@ -1,5 +1,5 @@
 ---
-permalink: /note/phys_of_llm
+permalink: /note/good_papers
 ---
 # Recent Papers that I enjoy reading
 ## Theory papers:
