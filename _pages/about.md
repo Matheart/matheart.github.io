@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a first-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from the Hong Kong University of Science and Technology (HKUST) in 2025. My research is supported by AMS Asset Fellowship at Penn.
+Hi! I am a first-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from the Hong Kong University of Science and Technology (HKUST) in 2025. My research is supported by AWS Asset Fellowship at Penn.
 
 
 My research interests lie in the **theory and empirical science of deep learning and LLMs**. On the theoretical side, I study fundamental principles of learning and scaling, with an emphasis on training dynamics and expressiveness. On the empirical side, I investigate the behavior of language models through controlled sandbox settings as well as large-scale experimentation. I am also interested in **mechanistic interpretability** as a means to uncover how neural networks represent and manipulate information.
