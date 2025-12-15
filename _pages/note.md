@@ -7,6 +7,8 @@ author_profile: true
 
 Disclaimer: The notes are primarily intended for my personal learning and may not be all correct.
 
+* [**Statistical Query Framework**](https://matheart.github.io/files/SQ.pdf)
+
 * [**Edge of Stability and Central Flow**](https://www.overleaf.com/read/jzbkfnmnqqxn#fff8f4)
 
 * [**Lessons learnt by doing experiments**](https://github.com/Matheart/experiment_guide)
