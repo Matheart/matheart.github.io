@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Lessons learnt when doing theory"
-permalink: /lessons_theory/
+permalink: /note/lessons_theory/
 author_profile: true
 ---
 
