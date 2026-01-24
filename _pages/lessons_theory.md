@@ -12,8 +12,12 @@ author_profile: true
 
 
 Several classical papers I plan to completely go through in the spring semester:
--  Gradient Descent Provably Optimizes Over-parameterized Neural Networks. Simon S. Du, Xiyu Zhai, Barnabas Poczos, Aarti Singh.
+-  Gradient Descent Provably Optimizes Over-parameterized Neural Networks. Simon S. Du, Xiyu Zhai, Barnabas Poczos, Aarti Singh. 
+
+Idea: The gram matrix during training stays close at the initialization in the kernel regime, derive convergence guarantee based on this. Overparametrization and random initialization is crucial.
+
 - On Lazy Training in Differentiable Programming. Lenaic Chizat, Edouard Oyallon, Francis Bach.
 - Mean-field theory of two-layers neural networks: dimension-free bounds and kernel limit. Song Mei, Theodor Misiakiewicz, Andrea Montanari.
 - Parallelizing Stochastic Gradient Descent for Least Squares
 Regression: mini-batching, averaging, and model misspecification. Prateek Jain, Sham M. Kakade, Rahul Kidambi, Praneeth Netrapalli, Aaron Sidford.
+- Max-Margin Token Selection in Attention Mechanism. Davoud Ataee Tarzanagh, Yingcong Li, Xuechen Zhang, Samet Oymak. 
