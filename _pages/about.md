@@ -27,7 +27,7 @@ Outside of research, I enjoy exploring the world. I also enjoy listening to musi
 
 ## Review Experience
 * Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
-* Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT)
+* Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT), ICLR 2026 Workshop on Scientific Methods for Understanding Deep Learning (Sci4DL)
 
 ## Selected Coursework
 - PhD: Machine Learning Theory, Generative AI for Research, Acceleration and Hedging in Optimization
