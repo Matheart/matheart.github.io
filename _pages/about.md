@@ -18,6 +18,8 @@ Overall, I see myself as both a theorist and an experimentalist, driven by the g
 
 Outside of research, I am (was) running a [popular science channel](https://space.bilibili.com/346660989) with over 34K subscribers and 1.7 million total views. 
 
+> [Lessons learnt while doing theory](https://matheart.github.io/note/lessons_theory/)
+
 ## Education
 * PhD in Computer & Information Science, The University of Pennsylvania (Ongoing)
 * BSc in Computer Science & Mathematics, The Hong Kong University of Science and Technology, 2025 (GPA 4.099/4.3, Rank 1st, before PhD application)

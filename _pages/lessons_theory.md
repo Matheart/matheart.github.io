@@ -7,9 +7,12 @@ author_profile: true
 
 - Read few classical papers thoroughly instead of reading many unfiltered papers superficially. Prioitize deep understanding over speed.
 - Work through the details by hand, and use the simplest examples to understand the theory.
-- When borrowing a paper to a new setting, check whether the original assumptions still hold and how are they used. Think about what new techniques we have.
+- When borrowing a paper to a new setting, check whether the original assumptions still hold and how are they used. Think about what new techniques we have and new assumptions required.
 - Use a scientific approach to understand the behavior, and possibly avoid overly complex technical papers.
 
+I am deeply grateful to my advisors, Surbhi and Enric, as well as to other faculty members at Penn, including Jason and Weijie, for their invaluable guidance and insights in theory research.
+
+---
 
 Several classical papers I plan to completely go through in 2026 Spring:
 ### Gradient Descent Provably Optimizes Over-parameterized Neural Networks. Simon S. Du, Xiyu Zhai, Barnabas Poczos, Aarti Singh. 
