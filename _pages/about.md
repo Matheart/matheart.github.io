@@ -39,5 +39,9 @@ Outside of research, I am (was) running a [popular science channel](https://spac
 
 
 ## Academic Activities
+* Workshop on Theoretical Perspectives on LLMs, UCSD, San Diego, March 2025
 * Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
+
+## Grad School Advice (Personal)
+Maintain a regular routine, prioritize your mental health, and value your time. Thoughtful, clear writing helps to clarify and sharpen your ideas. Most importantly, remember to be kind to yourself and to others.
