@@ -11,7 +11,9 @@ redirect_from:
 Hi! I am a first-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from the Hong Kong University of Science and Technology (HKUST) in 2025. My research is supported by AWS Asset Fellowship at Penn.
 
 
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. On the theoretical side, I study fundamental principles of learning and scaling, with an emphasis on training dynamics and expressiveness. On the empirical side, I investigate the model's behavior through controlled experiments. I am also interested in **mechanistic interpretability** as a way to uncover how neural networks represent and manipulate information.
+My research interests lie in the **theory and empirical science of deep learning and LLMs**. On the theoretical side, I study fundamental principles of learning and scaling, with an emphasis on training dynamics and expressiveness. On the empirical side, I investigate the model's behavior through controlled experiments.
+
+I am also interested in **mechanistic interpretability** and AI for accelerating mathematical research.
 
 Overall, I see myself as both a theorist and an experimentalist, driven by the goal of **opening the black box** of neural networks and LLMs from multiple complementary angles.
 
