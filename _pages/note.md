@@ -9,6 +9,8 @@ Disclaimer: The notes are primarily intended for my personal learning and may no
 
 # Learning Note
 
+* [**Subliminal Learning**](https://docs.google.com/presentation/d/182XzH2ZUx8P1jh1BE5AA97Y-a1eBk5bQ7LflLwdRdyw/edit?usp=sharing)
+
 * [**Statistical Query Framework**](https://matheart.github.io/files/SQ.pdf)
 
 * [**Edge of Stability and Central Flow**](https://www.overleaf.com/read/jzbkfnmnqqxn#fff8f4)
