@@ -39,6 +39,7 @@ Outside of research, I am (was) running a [popular science channel](https://spac
 
 
 ## Academic Activities
+* Princeton ML Theory Summer School, August 2026
 * Workshop on Theoretical Perspectives on LLMs, UCSD, San Diego, March 2025
 * Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 
 * International Conference on Learning Representations (ICLR), Vienna, May 2024
