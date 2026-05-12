@@ -26,8 +26,8 @@ Outside of research, I am (was) running a [popular science channel](https://spac
 * Spring Exchange, EPFL, 2024  
 
 ## Review Experience
-* Conference / Journal: NeurIPS 2025, ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
-* Workshop: ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M),  ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT), ICLR 2026 Workshop on Scientific Methods for Understanding Deep Learning (Sci4DL)
+* Conference / Journal: NeurIPS (2024, 2025, 2026), ICML 2025, L4DC 2025, NeurIPS 2024, TMLR
+* Workshop: ICML 2026 Mech Interp Workshop, ICML 2026 CoLoRAI Workshop, ICLR 2026 Workshop on Scientific Methods for Understanding Deep Learning (Sci4DL), ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT), ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M)
 
 <!-- ## Selected Coursework
 - PhD: Machine Learning Theory, Stochastic Process, Statistical Theory, Hedging and Acceleration in Optimization. -->
