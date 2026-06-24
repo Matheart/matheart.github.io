@@ -6,11 +6,8 @@ main:
   - title: "Note"
     url: /note/
   
-  - title: "Seminar"
-    url: /seminar/
+  - title: "Blog Post"
+    url: /blog_post/
         
   - title: "Misc"
     url: /misc/
-  
-  - title: "Friend Link"
-    url: /friend_link/

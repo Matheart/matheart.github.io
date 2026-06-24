@@ -11,7 +11,7 @@ Disclaimer: The notes are primarily intended for my personal learning and may no
 
 * [**Subliminal Learning**](https://docs.google.com/presentation/d/182XzH2ZUx8P1jh1BE5AA97Y-a1eBk5bQ7LflLwdRdyw/edit?usp=sharing)
 
-* [**Statistical Query Framework**](https://matheart.github.io/files/SQ.pdf)
+<!-- * [**Statistical Query Framework**](https://matheart.github.io/files/SQ.pdf) -->
 
 * [**Edge of Stability and Central Flow**](https://www.overleaf.com/read/jzbkfnmnqqxn#fff8f4)
 
@@ -23,10 +23,10 @@ Disclaimer: The notes are primarily intended for my personal learning and may no
 
 # Experience
 
-* [**Lessons learnt when doing theory**](https://matheart.github.io/note/lessons_theory)
+<!-- * [**Lessons learnt when doing theory**](https://matheart.github.io/note/lessons_theory)
 
 * [**Lessons learnt by doing experiments**](https://github.com/Matheart/experiment_guide)
 
-* [**Tips on writing papers**](https://matheart.github.io/note/how_to_write_good_paper)
+* [**Tips on writing papers**](https://matheart.github.io/note/how_to_write_good_paper) -->
 
 * [**PhD Statement of Purpose**](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5)
