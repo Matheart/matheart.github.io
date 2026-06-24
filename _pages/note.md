@@ -25,8 +25,8 @@ Disclaimer: The notes are primarily intended for my personal learning and may no
 
 <!-- * [**Lessons learnt when doing theory**](https://matheart.github.io/note/lessons_theory)
 
-* [**Lessons learnt by doing experiments**](https://github.com/Matheart/experiment_guide)
+* [**Lessons learnt by doing experiments**](https://github.com/Matheart/experiment_guide) -->
 
-* [**Tips on writing papers**](https://matheart.github.io/note/how_to_write_good_paper) -->
+* [**Tips on writing papers (Under Development)**](https://matheart.github.io/note/how_to_write_good_paper)
 
 * [**PhD Statement of Purpose**](https://www.overleaf.com/read/tqwnttmqpmcc#42bcb5)
