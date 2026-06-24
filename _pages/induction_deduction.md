@@ -3,8 +3,6 @@ permalink: /blog_post/induction_deduction
 title: "Inductive & Deductive Reasoning in Deep Learning Theory"
 ---
 
-# Inductive & Deductive Reasoning
-
 Inductive reasoning and deductive reasoning are two complementary ways of understanding complicated systems. A better grasp of these two modes of reasoning can help us understand the existing deep learning theory literature, and develop our own tools and methodologies for understanding LLMs and deep learning more broadly. The following are some informal reflections from my own research experience, and I'd love to hear other perspectives!
 
 ## Inductive Reasoning

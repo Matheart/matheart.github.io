@@ -7,4 +7,4 @@ redirect_from:
   - /blog/
 ---
 
-* [**Induction & Deduction**](https://matheart.github.io/blog_post/induction_deduction)
+* [**Inductive & Deductive Reasoning in Deep Learning Theory**](https://matheart.github.io/blog_post/induction_deduction)
