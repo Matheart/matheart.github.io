@@ -5,9 +5,20 @@ permalink: /publications/
 author_profile: true
 ---
 
+## During PhD
+* Work about edge of stability (EoS) in preparation.
+
+
+* **MoRE: Scaling mixture of experts with hardware-aware low-rank routing**
+  **Honam Wong**, Surbhi Goel, Enric Boix-Adsera
+ICML'26 workshop on CoLoRAI.
+Arxiv Preprint Soon.
+
+
+## Before PhD
 * [**Harnessing Physical Priors in Machine Learning: Inductive Bias and Benign Overfitting**](https://arxiv.org/abs/2406.09194)  
   **Honam Wong**, Wendao Wu, Fanghui Liu, Yiping Lu  
-  Arxiv.
+  Arxiv Preprint.
 
 * [**Spurious Feature Diversification Improves Out-of-distribution Generalization**](https://arxiv.org/abs/2309.17230)  
   Yong Lin\*, Lu Tan\*, Yifan Hao\*, **Honam Wong**, Hanze Dong, Weizhong Zhang, Yujiu Yang, Tong Zhang  
