@@ -10,9 +10,9 @@ author_profile: true
 
 
 * **MoRE: Scaling mixture of experts with hardware-aware low-rank routing**
-  **Honam Wong**, Surbhi Goel, Enric Boix-Adsera
-ICML'26 workshop on CoLoRAI.
-Arxiv Preprint Soon.
+  **Honam Wong**, Surbhi Goel, Enric Boix-Adsera. 
+  
+  ICML'26 workshop on CoLoRAI. Arxiv Preprint Soon.
 
 
 ## Before PhD

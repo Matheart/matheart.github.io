@@ -8,10 +8,14 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am a second-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from the Hong Kong University of Science and Technology (HKUST) in 2025. My research is supported by AWS Asset Fellowship at Penn.
+Hi! I am a second-year PhD student at the University of Pennsylvania, advised by [Surbhi Goel](https://www.surbhigoel.com/) (Computer Science) and [Enric Boix-Adsera](https://eboix.github.io/) (Wharton Statistics & Data Science). I received my Bachelor's degree in Computer Science & Mathematics from HKUST in 2025. My research is supported by AWS Asset Fellowship at Penn.
 
 
-My research interests lie in the **theory and empirical science of deep learning and LLMs**. On the theoretical side, I study fundamental principles of learning and scaling, with an emphasis on training dynamics and expressiveness. On the empirical side, I design rigorous experiments to investigate the model's behavior. I am also interested in **alignment science** and **mechanistic interpretability**.   Overall, I see myself as both a theorist and an experimentalist, driven by the goal of **opening the black box** of neural networks and LLMs from multiple complementary angles.
+My research interests lie in the **theory and empirical science of deep learning and LLMs**: running experiments that probe how these models work, then building theory to explain what those experiments reveal. Recently, I am focusing on these research questions:
+
+- **Scaling Science.** How to train and scale models in a principled way, and how do we understand their training dynamics, both in theory and in practice?
+- **Alignment.** How do we keep a model aligned as its capabilities improve? I am interested in exploring the phenomena that remain poorly understood in AI safety, such as emergent misalignment.
+
 
 ## Education
 * PhD in Computer & Information Science, The University of Pennsylvania (2025.8 - now)
@@ -28,8 +32,7 @@ My research interests lie in the **theory and empirical science of deep learning
 * Hong Kong Government Scholarship 22'-25‘ (Highest Undergraduate Academic Award)
 
 
-## Academic Activities
+## Other Academic Activities
 * Princeton ML Theory Summer School, August 2026
 * Workshop on Theoretical Perspectives on LLMs, UCSD, San Diego, March 2025
 * Heidelberg Laureate Forum, Heidelberg, Germany, Sep 2024 
-* International Conference on Learning Representations (ICLR), Vienna, May 2024
