@@ -14,7 +14,7 @@ Hi! I am a second-year PhD student at the University of Pennsylvania, advised by
 My research interests lie in the **theory and empirical science of deep learning and LLMs**: running experiments that probe how these models work, then building theory to explain what those experiments reveal. Recently, I am focusing on these research questions:
 
 - **Scaling Science.** How to train and scale models in a principled way, and how do we understand their training dynamics, both in theory and in practice?
-- **Alignment.** How do we keep a model aligned as its capabilities improve? I am interested in exploring the phenomena that remain poorly understood in AI safety, such as emergent misalignment.
+- **Alignment Science.** How could we keep a model aligned as its capabilities improve? I am interested in exploring the misalignment phenomena that remain poorly understood in AI safety, such as emergent misalignment.
 
 
 ## Education
