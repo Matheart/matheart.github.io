@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Honam WONG (Matheart)"
 title_separator          : "-"
 name                     : &name "Honam WONG"
-description              : &description "Senior Undergraduate @ HKUST"
+description              : &description "Second-year PhD Student at UPenn"
 url                      : https://matheart.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "Matheart/matheart.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Honam WONG"
   avatar           : "profile_blue.png"
-  bio              : "First-year PhD @ UPenn, passionate about understanding deep learning & LLM"
+  bio              : "Second-year PhD @ UPenn, passionate about understanding deep learning & LLM"
   location         : "Philadelphia, PA"
   employer         :
   pubmed           : 
