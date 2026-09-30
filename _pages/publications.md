@@ -8,11 +8,9 @@ author_profile: true
 ## During PhD
 * Work about edge of stability (EoS) in preparation.
 
-
-* **MoRE: Scaling mixture of experts with hardware-aware low-rank routing**
-  **Honam Wong**, Surbhi Goel, Enric Boix-Adsera. 
-  
-  ICML'26 workshop on CoLoRAI. Arxiv Preprint Soon.
+* [**MoRE: Scaling mixture of experts with hardware-aware low-rank routing**](https://arxiv.org/abs/2609.36301)  
+  **Honam Wong**, Surbhi Goel, Enric Boix-Adsera.\
+  ICML'26 workshop on CoLoRAI. Under Review.
 
 
 ## Before PhD
