@@ -39,3 +39,32 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+/* Publication abstracts: pill toggle with a grey box, similar to eboix.github.io */
+.pub-abs { margin: -0.9em 0 0.4em; }
+.pub-abs > summary {
+  display: inline-block;
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.75em;
+  padding: 1px 9px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  color: #555;
+  user-select: none;
+}
+.pub-abs > summary::-webkit-details-marker { display: none; }
+.pub-abs > summary::marker { content: ""; }
+.pub-abs > summary:hover { background-color: #eee; color: #222; }
+.pub-abs .caret { display: inline-block; font-size: 0.85em; transition: transform 0.15s; }
+.pub-abs[open] .caret { transform: rotate(90deg); }
+.pub-abs .abstract {
+  margin-top: 0.5em;
+  padding: 0.7em 0.9em;
+  border-left: 3px solid #ccc;
+  background-color: #f5f5f5;
+  color: #555;
+  font-size: 0.85em;
+  line-height: 1.5;
+  text-align: justify;
+}
