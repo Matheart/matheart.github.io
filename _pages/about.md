@@ -23,16 +23,17 @@ My research interests lie in the **theory and empirical science of deep learning
 * Exchange semester, EPFL, Spring 2024
 
 ## Review Experience
-* Conference / Journal: NeurIPS (2024, 2025, 2026), ICML 2025, L4DC 2025, TMLR
+* Conference: NeurIPS (2024, 2025, 2026), ICML 2025, ICML 2027, L4DC 2025
+* Journal: TPAMI, TMLR
 * Workshops: ICML 2026 Mech Interp Workshop, ICML 2026 CoLoRAI Workshop, ICLR 2026 Workshop on Scientific Methods for Understanding Deep Learning (Sci4DL), ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT), ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M)
 
 ## Selected Awards 
 * AWS Asset Fellowship, 2026
-* HKUST Epsilon Fund Award, 2024 (for top math students at HKUST, fewer than 5 undergraduates each year)
-* Hong Kong Government Scholarship, 2022–2025 (the highest undergraduate academic award)
+* HKUST Epsilon Fund Award, 2024
+* Hong Kong Government Scholarship, 2022–2025 
 
 
-## Other Academic Activities
+## Academic Activities
 * Princeton ML Theory Summer School, August 2026
 * Workshop on Theoretical Perspectives on LLMs, UCSD, San Diego, March 2025
 * Heidelberg Laureate Forum, Heidelberg, Germany, September 2024 
