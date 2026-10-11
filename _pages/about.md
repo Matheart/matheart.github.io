@@ -23,7 +23,7 @@ My research interests lie in the **theory and empirical science of deep learning
 * Exchange semester, EPFL, Spring 2024
 
 ## Review Experience
-* Conference: NeurIPS (2024, 2025, 2026), ICML 2025, ICML 2027, L4DC 2025
+* Conference: NeurIPS (2024, 2025, 2026), ICML 2025, ICLR 2027, L4DC 2025
 * Journal: TPAMI, TMLR
 * Workshops: ICML 2026 Mech Interp Workshop, ICML 2026 CoLoRAI Workshop, ICLR 2026 Workshop on Scientific Methods for Understanding Deep Learning (Sci4DL), ICLR 2024 Workshop on Bridging the Gap Between Practice and Theory in Deep Learning (BGPT), ICML 2024 Workshop on Theoretical Foundations of Foundation Models (TF2M)
 
