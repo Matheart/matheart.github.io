@@ -19,7 +19,7 @@ My research interests lie in the **theory and empirical science of deep learning
 
 ## Education
 * PhD in Computer & Information Science, University of Pennsylvania, 2025–present
-* MS in Computer & Information Science, University of Pennsylvania, 2025-2026 (En-route master to my PhD)
+* MS in Computer & Information Science, University of Pennsylvania, Expected Dec 2026 (En-route master to my PhD)
 * BSc in Computer Science & Mathematics, The Hong Kong University of Science and Technology, 2025
 * Exchange semester, EPFL, Spring 2024
 
