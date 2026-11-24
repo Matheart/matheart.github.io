@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="One-knob effects and two-knob maps of the Marin and StepLaw sweeps, checked against prior work and the runs.">
+<meta property="og:title" content="Hyperparameter effects against the literature">
+<meta property="og:description" content="One-knob effects and two-knob maps of the Marin and StepLaw sweeps, checked against prior work and the runs.">
+<title>Hyperparameter Effects Literature Check</title>
+<script>
+  try { var t = localStorage.getItem("fig45-theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: one reading column for prose, a wider column for two-up panels (plot beside its notes). Same tokens as the post. */
+:root {
+  --bg: #ffffff; --fg: #1a1a1a; --muted: #555555; --link: #1f4e8c; --rule: #dddddd; --panel: #f6f7f9; --direct: #e0234e;
+  --ok-bg: #e3f1e7; --ok-fg: #1f6b3a; --part-bg: #fbeccd; --part-fg: #7a5300; --bad-bg: #f9dede; --bad-fg: #9b1c1c; --none-bg: #e1ebf7; --none-fg: #1f4e8c;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-small: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --text: 40rem; --wide: 62rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161616; --fg: #e6e6e6; --muted: #a8a8a8; --link: #8db4e8; --rule: #333333; --panel: #1e1f22; --direct: #ff5a76;
+    --ok-bg: #1d3a28; --ok-fg: #8fd5a6; --part-bg: #3d3018; --part-fg: #f0c46c; --bad-bg: #43201f; --bad-fg: #f4a3a3; --none-bg: #1b2c42; --none-fg: #9cc0ec;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161616; --fg: #e6e6e6; --muted: #a8a8a8; --link: #8db4e8; --rule: #333333; --panel: #1e1f22; --direct: #ff5a76;
+  --ok-bg: #1d3a28; --ok-fg: #8fd5a6; --part-bg: #3d3018; --part-fg: #f0c46c; --bad-bg: #43201f; --bad-fg: #f4a3a3; --none-bg: #1b2c42; --none-fg: #9cc0ec;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1.06rem; line-height: 1.62; margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.2rem 4rem;
+}
+article { max-width: var(--wide); margin-inline: auto; }
+article > p, article > h1, article > h2, article > .byline-grid, article > ol, article > .lead { max-width: var(--text); margin-inline: auto; }
+.topbar { display: flex; justify-content: flex-end; max-width: var(--wide); margin: 0 auto 1.4rem; }
+.topbar button { font-family: var(--font-small); font-size: 0.82rem; padding: 0.25rem 0.7rem; border: 1px solid var(--rule); background: transparent; color: var(--fg); border-radius: 4px; cursor: pointer; }
+.topbar button:focus-visible, a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+h1 { font-size: 1.9rem; font-weight: 600; line-height: 1.25; margin: 0 auto 1.8rem; text-wrap: balance; }
+h1 .subtitle { display: block; font-size: 0.56em; font-weight: 400; color: var(--muted); line-height: 1.4; margin-top: 0.5rem; }
+h2 { font-size: 1.3rem; font-weight: 600; line-height: 1.3; margin: 2.8rem auto 0.8rem; text-wrap: balance; }
+h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; margin: 0; }
+p { margin: 0 auto 1rem; }
+a { color: var(--link); text-underline-offset: 2px; }
+sup a { text-decoration: none; }
+.byline-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 0.3rem; font-family: var(--font-small); font-size: 0.92rem; line-height: 1.45; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding-block: 1rem 1.1rem; margin-bottom: 2rem; }
+.byline-grid .bl-label { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+@media (max-width: 560px) { .byline-grid { grid-template-columns: 1fr; row-gap: 0.8rem; } }
+.tablewrap { overflow-x: auto; margin: 1.2rem auto 0.4rem; }
+table.cmp { border-collapse: collapse; width: 100%; min-width: 44rem; font-family: var(--font-small); font-size: 0.86rem; line-height: 1.4; }
+table.cmp th, table.cmp td { text-align: left; vertical-align: top; padding: 0.45rem 0.55rem; border-bottom: 1px solid var(--rule); }
+table.cmp th { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+table.cmp td:first-child { font-weight: 600; white-space: nowrap; }
+table.cmp td a { text-decoration: none; }
+.tcap { font-family: var(--font-small); font-size: 0.86rem; color: var(--muted); max-width: var(--wide); margin: 0 auto 1.6rem; }
+.tcap b { color: var(--fg); }
+.pill { display: inline-block; font-family: var(--font-small); font-size: 0.76rem; font-weight: 600; padding: 0.12rem 0.5rem; border-radius: 999px; white-space: nowrap; }
+.pill.ok { background: var(--ok-bg); color: var(--ok-fg); }
+.pill.part { background: var(--part-bg); color: var(--part-fg); }
+.pill.bad { background: var(--bad-bg); color: var(--bad-fg); }
+.pill.none { background: var(--none-bg); color: var(--none-fg); }
+.panel { border-top: 1px solid var(--rule); padding-top: 1.1rem; margin: 1.8rem auto 0; scroll-margin-top: 1rem; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; margin-bottom: 0.7rem; }
+.panel-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; }
+.panel-grid > div { min-width: 0; }
+.panel-text p { font-size: 0.98rem; }
+.panel-text p.src { font-family: var(--font-small); font-size: 0.86rem; color: var(--muted); }
+.plot { width: 100%; height: 380px; background: var(--panel); border-radius: 6px; }
+.plot.map { height: 420px; }
+@media (max-width: 860px) { .panel-grid { grid-template-columns: 1fr; } .plot { height: 340px; } .plot.map { height: 380px; } }
+ol.refs { font-family: var(--font-small); font-size: 0.86rem; line-height: 1.5; padding-left: 1.6rem; }
+ol.refs li { margin-bottom: 0.4rem; }
+.direct-key { color: var(--direct); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+</head>
+<body>
+<div class="topbar"><button type="button" id="theme-toggle">Dark mode</button></div>
+<article>
+<h1>Hyperparameter effects against the literature<span class="subtitle">The one-knob effects and two-knob maps of the Marin and StepLaw sweeps, checked against the source papers, independent work and the runs themselves</span></h1>
+<div class="byline-grid" role="group" aria-label="Context and publication date">
+  <div><div class="bl-label">Companion to</div><a href="../">Predictive science of pretraining</a></div>
+  <div><div class="bl-label">Sets of runs</div>Marin optimizer study, StepLaw dense runs</div>
+  <div><div class="bl-label">Published</div>November 24, 2026</div>
+</div>
+
+<p>Our post on the predictive science of pretraining showed two kinds of hyperparameter effect. The first kind is a one-knob effect, read inside a stratum: a set of measured runs in one cell (one model size and token budget, and for Marin one optimizer) that differ in one knob only, so no model is involved. The second kind is a two-knob map from a pairwise spline model fitted to the measured final losses. Each map is a partial-dependence plot: the model's prediction for two inputs, averaged over all other inputs. Here we check each effect against the paper that produced the runs, against independent work, and, for the maps, against the same quantity measured directly from the runs.</p>
+
+<p>The runs come from two public sweeps. Marin is the optimizer study of Wen et al.<sup><a href="#r1">[1]</a></sup>: 1,560 runs of 13 optimizers at 134M to 1.2B parameters, tuned by changing one knob at a time around the best configuration. StepLaw is the learning-rate and batch-size grid of Li et al.<sup><a href="#r2">[2]</a></sup>, of which we use the 1,631 dense runs.</p>
+
+<h2>Which results hold up</h2>
+
+<p>Most one-knob effects are not new. Six of the nine repeat the tuning results of Wen et al., the paper that produced the Marin runs, and agree with independent work. Two may be new. The range of near-best learning rates widens as the model grows, which no study we found measures. A decay over 80% of training or more beats a 22% decay by a median 0.05 nats, which does not fit the report that a cooldown of about 20% is enough.</p>
+
+<p>The two-knob maps hold up less well. Measured directly from the StepLaw runs, three of the four map slopes that we could check change. The best batch grows about as tokens<sup>0.2</sup>, not tokens<sup>0.9</sup>. The best learning rate rises by about a third of a decade per decade of batch, not two thirds. At a fixed batch, the best learning rate does not change with tokens. The maps average over cells whose optima differ, and that average moves the slopes. The post used these slopes to reconcile the opposite learning-rate trends of Bjorck et al. and the StepLaw paper, and the runs do not support that reconciliation.</p>
+
+<div class="tablewrap">
+<table class="cmp">
+  <thead><tr><th>Knob</th><th>What the runs show</th><th>Closest prior result</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#k-lr-steplaw">Learning rate, StepLaw</a></td><td>One bowl per cell. The near-best range widens from 0.3 to 0.55 decades with model size</td><td>Convex with a broad optimum, no width trend <a href="#r2">[2]</a>. Sensitivity grows with scale, other metric <a href="#r3">[3]</a></td><td><span class="pill none">No prior result found</span></td></tr>
+    <tr><td><a href="#k-decay">Decay length</a></td><td>80% or more is best in 29 of 33 cells. A 22% decay is worse by a median 0.05 nats</td><td>Linear decay to zero beats a 22.5% cooldown <a href="#r4">[4]</a>. Gain levels off near 20% <a href="#r5">[5]</a></td><td><span class="pill part">Partly agrees</span></td></tr>
+    <tr><td><a href="#k-beta2">Adam beta2</a></td><td>0.98 or 0.99 is best in 23 of 30 cells. About 0.02 nats</td><td>Large beta2 matters at small batch <a href="#r7">[7]</a> <a href="#r8">[8]</a>. Half-life rule <a href="#r9">[9]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#k-eps">Adam epsilon</a></td><td>1e-25 to 1e-7 moves the loss by about 0.011 nats</td><td>Matters only near the gradient size <a href="#r3">[3]</a> <a href="#r11">[11]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#k-clip">Gradient clipping</a></td><td>Clip at 1, at 2 or none: about 0.007 nats</td><td>Only the tuning tables of <a href="#r1">[1]</a></td><td><span class="pill none">No prior result found</span></td></tr>
+    <tr><td><a href="#k-beta1">Adam beta1</a></td><td>Best value differs by cell. About 0.03 nats</td><td>Robust from 0.8 to 0.98 <a href="#r10">[10]</a>. Best beta1 tied to beta2 <a href="#r12">[12]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#k-wd">Weight decay</a></td><td>Best value from 0.1 to 0.9 by cell. About 0.03 nats</td><td>Best value differs by optimizer <a href="#r1">[1]</a>. Timescale view <a href="#r13">[13]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#k-lr-marin">Learning rate, Marin</a></td><td>Best value depends on the optimizer</td><td>Most sensitive knob, optimizer-specific <a href="#r1">[1]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#k-batch">Batch at fixed tokens</a></td><td>The smallest tested batch, 0.52M tokens, is best in 9 of 11 cells</td><td>Fitted best batch 0.14M to 0.46M tokens here <a href="#r2">[2]</a>. Small batches best per token <a href="#r9">[9]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="tcap"><b>Table 1. Six of the nine one-knob effects agree with prior work. The learning-rate window and the decay length are the candidates for new results.</b> Effects are read inside strata of measured runs, with no model. Nats are differences in final training loss within a stratum.</p>
+
+<div class="tablewrap">
+<table class="cmp">
+  <thead><tr><th>Pair</th><th>Map slope</th><th>Measured in the runs</th><th>Closest prior result</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#m-lr-wd">Marin: learning rate by weight decay</a></td><td>−1</td><td>Not measurable: no cell varies both knobs</td><td>Diagonal ridge <a href="#r14">[14]</a>. Fixed product <a href="#r13">[13]</a></td><td><span class="pill part">Partly agrees</span></td></tr>
+    <tr><td><a href="#m-lr-d-marin">Marin: learning rate by tokens</a></td><td>falls</td><td>Falls in 3 of 4 groups, median −0.2</td><td>−0.32 at a fixed batch <a href="#r16">[16]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#m-warmup">Marin: warmup by tokens</a></td><td>no trend</td><td>Too few warmup values</td><td>Warmup tied to model size <a href="#r8">[8]</a></td><td><span class="pill none">No prior result found</span></td></tr>
+    <tr><td><a href="#m-lr-batch">StepLaw: learning rate by batch</a></td><td>+0.67</td><td>+0.34 inside cells</td><td>0 with tuned weight decay <a href="#r15">[15]</a>. 0.5, square-root rule <a href="#r19">[19]</a></td><td><span class="pill part">Partly agrees</span></td></tr>
+    <tr><td><a href="#m-lr-n">StepLaw: learning rate by model size</a></td><td>−0.6</td><td>−0.64</td><td>−0.713 <a href="#r2">[2]</a></td><td><span class="pill ok">Agrees</span></td></tr>
+    <tr><td><a href="#m-lr-d">StepLaw: learning rate by tokens</a></td><td>slightly negative</td><td>0.00 at a fixed batch, +0.08 at the best batch</td><td>−0.32 at a fixed batch <a href="#r16">[16]</a>. +0.307 at the best batch <a href="#r2">[2]</a></td><td><span class="pill bad">Conflicts</span></td></tr>
+    <tr><td><a href="#m-batch-d">StepLaw: best batch by tokens</a></td><td>+0.9</td><td>+0.18, or +0.28 without edge cells</td><td>+0.571 <a href="#r2">[2]</a>. About +0.4 to +0.5 <a href="#r15">[15]</a> <a href="#r7">[7]</a></td><td><span class="pill part">Partly agrees</span></td></tr>
+    <tr><td><a href="#m-rel">StepLaw: relative learning rate by relative batch</a></td><td>below reference at small batch</td><td>Follows from the learning-rate-by-batch row</td><td>Rise below a noise scale <a href="#r20">[20]</a></td><td><span class="pill none">No prior result found</span></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="tcap"><b>Table 2. The maps get the direction of each trend right, but three of the four slopes we could measure directly are different in the runs.</b> Slopes are changes in the log10 of the first input per unit change in the log10 of the second, read from the map's lowest-loss line or measured from the runs. The status compares the measured value with prior work where we could measure it, and the map otherwise.</p>
+
+<h2>One knob at a time</h2>
+
+<p>Each plot shows one line per stratum: the measured final losses of the runs that differ only in this knob, as the loss above the best run of the line. Blue lines are model sizes up to 430M parameters and orange lines are larger, held-out sizes. The knob was changed one at a time from a configuration tuned at the other values, so a value that needs the others retuned may look worse than it is.</p>
+
+<section class="panel" id="k-lr-steplaw">
+  <div class="panel-head"><h3>Learning rate, StepLaw</h3><span class="pill none">No prior result found</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="steplaw|lr" role="img" aria-label="Final loss against learning rate in 34 StepLaw cells"></div>
+    <div class="panel-text">
+      <p>Inside each of the 34 StepLaw cells, at the cell's best batch, the final loss is a single bowl in the log learning rate. The range of learning rates within 0.01 nats of the best run widens from about 0.3 to 0.55 decades as the model grows. Model size and tokens per parameter rise together in this sweep, so the two causes cannot be separated here. In our transfer test on the runs of Porian et al.<sup><a href="#r8">[8]</a></sup> at a fixed 20 tokens per parameter, the range also widens, from 0.20 to 0.68 decades between 5M and 221M parameters.</p>
+      <p>Li et al.<sup><a href="#r2">[2]</a></sup> describe the landscape as convex with a broad optimum (Section 3.3, Figure 4), but give no width and no trend with size. Wortsman et al.<sup><a href="#r3">[3]</a></sup> report that their learning-rate sensitivity grows with scale (Figure 1). Their measure averages the loss over a fixed range from 3e-4 to 3e-1 and is dominated by divergence at the high end, so it measures something different from the near-best width. We found no measurement of the near-best width against model size.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-decay">
+  <div class="panel-head"><h3>Decay length, Marin</h3><span class="pill part">Partly agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|decay_frac" role="img" aria-label="Final loss against the fraction of training in learning-rate decay"></div>
+    <div class="panel-text">
+      <p>The best decay covers 80% of training or more in 29 of 33 cells. In the 16 cells that also tried a decay over 22% of training, that decay is worse than the best by a median 0.05 nats, from 0.02 to 0.11. The decay strata come from eight optimizers, none of them AdamW.</p>
+      <p>Wen et al.<sup><a href="#r1">[1]</a></sup> tuned the decay length as one of their knobs but report no separate result about it. Bergsma et al.<sup><a href="#r4">[4]</a></sup> find that decaying linearly to zero over the whole run beats cosine decay to 10% of the peak, and beats a schedule with a 22.5% cooldown (Figure 8). Hägele et al.<sup><a href="#r5">[5]</a></sup> report that the gain from a longer cooldown levels off near 20% of training (Section 3.2, Figure 5), and MiniCPM<sup><a href="#r6">[6]</a></sup> uses about 10%. A gap of 0.05 nats at 22% fits Bergsma et al. and does not fit a plateau at 20%, although Hägele et al. used AdamW, which these cells do not include.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-beta2">
+  <div class="panel-head"><h3>Adam beta2, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|beta2" role="img" aria-label="Final loss against Adam beta2"></div>
+    <div class="panel-text">
+      <p>Across 0.9 to 0.995, beta2 moves the final loss by about 0.02 nats in a typical cell. 0.99 is best in 15 of 30 cells and 0.98 in 8.</p>
+      <p>These runs are part of the tuning grid of Wen et al.<sup><a href="#r1">[1]</a></sup>, so the result repeats their own tables. Zhang et al.<sup><a href="#r7">[7]</a></sup> and Porian et al.<sup><a href="#r8">[8]</a></sup> find that a large beta2, 0.99 or more, matters at small batch sizes. Marek et al.<sup><a href="#r9">[9]</a></sup> keep the half-life of the second-moment average fixed in tokens, so the best beta2 depends on the batch size. Zhao et al.<sup><a href="#r10">[10]</a></sup> find effects of up to about 0.02 in validation loss.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-eps">
+  <div class="panel-head"><h3>Adam epsilon, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|eps" role="img" aria-label="Final loss against Adam epsilon"></div>
+    <div class="panel-text">
+      <p>From 1e-25 to 1e-7, epsilon moves the final loss by about 0.011 nats in a typical cell, and no value is best in most cells.</p>
+      <p>These runs are part of the tuning grid of Wen et al.<sup><a href="#r1">[1]</a></sup>. Wortsman et al.<sup><a href="#r3">[3]</a></sup> (Section 3.4) and Everett et al.<sup><a href="#r11">[11]</a></sup> (Section 4.3) show that epsilon matters when the root-mean-square gradient falls to its size, which happens in larger models. At 4.8B parameters, Wortsman et al. report divergence at 1e-6 and a gain at 1e-15. A flat effect at 134M to 1.2B parameters fits this, although we did not measure the gradient size in these runs.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-clip">
+  <div class="panel-head"><h3>Gradient clipping, Marin</h3><span class="pill none">No prior result found</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|grad_clip" role="img" aria-label="Final loss against the gradient clipping threshold"></div>
+    <div class="panel-text">
+      <p>Clipping the gradient norm at 1, at 2 or not at all moves the final loss by about 0.007 nats in a typical cell. Only 8 cells vary it, and clipping at 1 is best in 7 of them.</p>
+      <p>These runs are part of the tuning grid of Wen et al.<sup><a href="#r1">[1]</a></sup>. We found no independent study that measures the final-loss effect of a fixed clipping threshold in language-model pretraining. Papers on adaptive clipping compare against a fixed threshold of 1, but we did not read their final-loss numbers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-beta1">
+  <div class="panel-head"><h3>Adam beta1, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|beta1" role="img" aria-label="Final loss against Adam beta1"></div>
+    <div class="panel-text">
+      <p>Across 0.8 to 0.99, beta1 moves the final loss by about 0.03 nats, and the best value differs from cell to cell: 0.95 in 10 of 33 cells, 0.98 in 9, 0.9 in 7 and 0.8 in 6.</p>
+      <p>Wen et al.<sup><a href="#r1">[1]</a></sup> list beta1 as sensitive to scale only for Mars and Scion (Table 4). Zhao et al.<sup><a href="#r10">[10]</a></sup> find Adam robust from about 0.8 to 0.98 (Section 2.4). Orvieto and Gower<sup><a href="#r12">[12]</a></sup> find that a beta1 equal to beta2 is close to optimal (Section 3.1), so the best beta1 depends on beta2, which may explain the variation between cells.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-wd">
+  <div class="panel-head"><h3>Weight decay, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|wd" role="img" aria-label="Final loss against weight decay"></div>
+    <div class="panel-text">
+      <p>Weight decay moves the final loss by about 0.03 nats, and the best value ranges from 0.1 to 0.9 depending on the cell.</p>
+      <p>Wen et al.<sup><a href="#r1">[1]</a></sup> report a best weight decay near 0.1 for AdamW and near 0.6 for Lion (Figure 1, Section 4.2), so most of the spread is between optimizers. Wang and Aitchison<sup><a href="#r13">[13]</a></sup> argue that the timescale 1/(learning rate × weight decay) should stay roughly fixed, so the best weight decay moves with the learning rate and the data size.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-lr-marin">
+  <div class="panel-head"><h3>Learning rate, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|lr" role="img" aria-label="Final loss against learning rate in Marin cells"></div>
+    <div class="panel-text">
+      <p>Inside a cell, the learning rate moves the final loss by about 0.03 nats across the tested values, and the best value depends on the optimizer. An average over optimizers, as in a partial-dependence plot, mixes these different curves.</p>
+      <p>This repeats Wen et al.<sup><a href="#r1">[1]</a></sup>, for whom the learning rate is the most sensitive knob, with a different best value for each optimizer (Figure 1). Zhao et al.<sup><a href="#r10">[10]</a></sup> find the best learning rate of Lion about ten times smaller than that of Adam.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="k-batch">
+  <div class="panel-head"><h3>Batch size at fixed tokens, Marin</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot" data-strata="marin|batch_tokens" role="img" aria-label="Final loss against batch size at a fixed token budget"></div>
+    <div class="panel-text">
+      <p>At a fixed token budget, batch size has the largest one-knob effect, about 0.12 nats in a typical cell. The smallest tested batch, 0.52M tokens, is best in 9 of 11 cells.</p>
+      <p>The best batch that Li et al.<sup><a href="#r2">[2]</a></sup> fit, 0.58&nbsp;D<sup>0.571</sup> tokens, is 0.14M to 0.46M tokens at the token budgets of these cells, below the smallest batch that Marin tried. The two exceptions are the cells with 21.5B tokens, where the fitted best batch, 0.46M, is close to the smallest tested one. Marek et al.<sup><a href="#r9">[9]</a></sup> also find the smallest batch best in small models, and Porian et al.<sup><a href="#r8">[8]</a></sup> find a floor below which a smaller batch stops helping.</p>
+    </div>
+  </div>
+</section>
+
+<h2>Two knobs at a time</h2>
+
+<p>Each map shows the pairwise spline model's final loss above the map's minimum, averaged over all other inputs. The white line is the map's lowest-loss value of the horizontal input for each value of the vertical one, and white circles are training runs. Red diamonds are <span class="direct-key">measured best values</span>, read from the runs without a model, for the training sizes that the map was fitted on. Where the white line and the diamonds part, the map's slope comes from averaging, not from the runs.</p>
+
+<section class="panel" id="m-lr-wd">
+  <div class="panel-head"><h3>Marin: learning rate by weight decay</h3><span class="pill part">Partly agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="marin|lr|wd" role="img" aria-label="Map of final loss over learning rate and weight decay"></div>
+    <div class="panel-text">
+      <p>The map's lowest-loss line falls with a slope close to −1 on log axes, so the product of learning rate and weight decay is about constant along it. The Marin runs change one knob at a time around a tuned configuration, so no cell varies both knobs. The slope comes from the model pooling cells and optimizers, and optimizers with a smaller best learning rate also use a larger weight decay. The diamonds are the 8 cells with a measured best value of both. Their product spans about a decade across optimizers and a factor of two within SOAP.</p>
+      <p>Fan et al.<sup><a href="#r14">[14]</a></sup> vary both knobs on one grid and find a diagonal ridge of near-optimal settings: a larger weight decay needs a smaller learning rate (Figure 4). They do not fit a slope. Wang and Aitchison<sup><a href="#r13">[13]</a></sup> predict a fixed product at a fixed number of steps, and Bergsma et al.<sup><a href="#r15">[15]</a></sup> find that the best timescale, batch / (learning rate × weight decay × tokens), changes with tokens per parameter.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-lr-d-marin">
+  <div class="panel-head"><h3>Marin: learning rate by tokens</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="marin|lr|D" role="img" aria-label="Map of final loss over learning rate and training tokens"></div>
+    <div class="panel-text">
+      <p>The map's best learning rate falls as tokens grow. Measured directly, within one optimizer and model size, the best learning rate falls with tokens in three of four groups, with a median slope of −0.2 per decade of tokens. The diamonds are the measured best learning rates of the learning-rate strata.</p>
+      <p>Bjorck et al.<sup><a href="#r16">[16]</a></sup> fit a best learning rate proportional to D<sup>−0.32</sup> at a fixed batch of 0.5M tokens, and DeepSeek LLM<sup><a href="#r17">[17]</a></sup> fits a best learning rate that falls with compute. Filatov et al.<sup><a href="#r18">[18]</a></sup> find the best learning rate falling with tokens at a small fixed batch.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-warmup">
+  <div class="panel-head"><h3>Marin: warmup fraction by tokens</h3><span class="pill none">No prior result found</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="marin|warmup_frac|D" role="img" aria-label="Map of final loss over warmup fraction and training tokens"></div>
+    <div class="panel-text">
+      <p>The map shows no clear trend in the best warmup fraction with tokens. Few warmup values were run, so the map rests on sparse data, and its high best value is an extrapolation between the runs.</p>
+      <p>Wen et al.<sup><a href="#r1">[1]</a></sup> list warmup as sensitive to scale for several optimizers without fitting a trend. Porian et al.<sup><a href="#r8">[8]</a></sup> tie the warmup length to model size, with about as many warmup tokens as parameters. We found no measurement of the best warmup fraction against tokens.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-lr-batch">
+  <div class="panel-head"><h3>StepLaw: learning rate by batch</h3><span class="pill part">Partly agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="steplaw|lr|batch_tokens" role="img" aria-label="Map of final loss over learning rate and batch size"></div>
+    <div class="panel-text">
+      <p>The map's best learning rate rises by about two thirds of a decade per decade of batch. Measured directly inside each cell, it rises by a median 0.34 decade per decade, with quartiles 0.23 and 0.49 over 31 cells. The diamonds are the measured best learning rate of each cell and batch. The map's slope comes from partial dependence, which averages over cells whose optima differ.</p>
+      <p>The square-root rule for Adam<sup><a href="#r19">[19]</a></sup> predicts 0.5, and Li et al.<sup><a href="#r20">[20]</a></sup> find that the best learning rate rises below a noise scale and falls above it. Bergsma et al.<sup><a href="#r15">[15]</a></sup> report that the best learning rate changes little with batch below the critical batch size when the weight decay is tuned instead. The measured 0.34 lies between 0 and 0.5. The StepLaw paper<sup><a href="#r2">[2]</a></sup> gives no trend for this pair.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-lr-n">
+  <div class="panel-head"><h3>StepLaw: learning rate by model size</h3><span class="pill ok">Agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="steplaw|lr|N_body" role="img" aria-label="Map of final loss over learning rate and model size"></div>
+    <div class="panel-text">
+      <p>The map's best learning rate falls with model size with a slope of about −0.6 on log axes. Measured directly at each cell's best batch, a fit of the log best learning rate on log model size and log tokens gives −0.64 for model size.</p>
+      <p>Li et al.<sup><a href="#r2">[2]</a></sup> fit −0.713, and Porian et al.<sup><a href="#r8">[8]</a></sup> also find the best learning rate falling with model size.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-lr-d">
+  <div class="panel-head"><h3>StepLaw: learning rate by tokens</h3><span class="pill bad">Conflicts</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="steplaw|lr|D" role="img" aria-label="Map of final loss over learning rate and training tokens"></div>
+    <div class="panel-text">
+      <p>The map's best learning rate falls slightly as tokens grow. Measured directly at a fixed model size and batch, it does not change: the median slope is 0.00 per decade of tokens over 36 groups, with quartiles −0.13 and 0.21. At each cell's best batch the slope is +0.08.</p>
+      <p>Bjorck et al.<sup><a href="#r16">[16]</a></sup> fit −0.32 at a fixed batch, and Li et al.<sup><a href="#r2">[2]</a></sup> fit +0.307 along the best batch. Neither value appears in these runs, which are the dense subset of the StepLaw release, not all the runs that the paper fitted. The measured slopes agree with each other: a best batch growing as tokens<sup>0.2</sup> and a best learning rate growing as batch<sup>0.34</sup> give about +0.07, close to the measured +0.08. The post's agreement with +0.307 came from the map's slopes. Filatov et al.<sup><a href="#r18">[18]</a></sup> find that the sign of this trend depends on the batch relative to the critical batch size.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-batch-d">
+  <div class="panel-head"><h3>StepLaw: best batch by tokens</h3><span class="pill part">Partly agrees</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="steplaw|batch_tokens|D" role="img" aria-label="Map of final loss over batch size and training tokens"></div>
+    <div class="panel-text">
+      <p>The map's best batch grows with tokens with a slope of about 0.9 on log axes. Measured directly, the best batch of each cell, from a parabola through the three batches around the minimum, grows with a slope of 0.18 over 31 cells, or 0.28 without the 2 cells whose best batch is at the edge of the tested range. The diamonds are these measured best batches. Each cell tests only a few batches, so the measured slope is a rough estimate.</p>
+      <p>Li et al.<sup><a href="#r2">[2]</a></sup> fit 0.571. Bergsma et al.<sup><a href="#r15">[15]</a></sup> find a best batch growing as about tokens<sup>0.4</sup>, Zhang et al.<sup><a href="#r7">[7]</a></sup> fit a critical batch growing as tokens<sup>0.47</sup>, and Filatov et al.<sup><a href="#r18">[18]</a></sup> find a best batch growing as about the square root of the training length. All agree on the direction. The map's 0.9 is above every published value, and the measured 0.2 to 0.3 is below them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="m-rel">
+  <div class="panel-head"><h3>StepLaw: relative learning rate by relative batch</h3><span class="pill none">No prior result found</span></div>
+  <div class="panel-grid">
+    <div class="plot map" data-pair="steplaw|d_lr|d_batch" role="img" aria-label="Map of final loss over learning rate and batch size relative to their reference values"></div>
+    <div class="panel-text">
+      <p>The map shows the best learning rate at its reference value for large batches and below it for small batches. The reference values come from the best runs at each model size. This follows from the learning-rate-by-batch result above, and we did not measure it separately.</p>
+      <p>Li et al.<sup><a href="#r20">[20]</a></sup> find that the best learning rate rises with batch below a noise scale and levels off near it, which fits this map. We found no study that shows the same normalized view.</p>
+    </div>
+  </div>
+</section>
+
+<h2>How the literature was searched</h2>
+
+<p>Two search agents read the source paper and independent work for each panel, with about 55 web searches and page reads in all, mostly of the HTML versions on arXiv. Section, figure and table numbers refer to those versions. The appendix tables of Wen et al. were read only in part. "No prior result found" means that this search found none, not that none exists. The measured values come from the same runs as the post's figures.</p>
+
+<h2>References</h2>
+<ol class="refs">
+  <li id="r1">Kaiyue Wen, David Hall, Tengyu Ma, Percy Liang. <i>Fantastic Pretraining Optimizers and Where to Find Them.</i> 2025. <a href="https://arxiv.org/abs/2509.02046">arXiv:2509.02046</a></li>
+  <li id="r2">Houyi Li et al. <i>Predictable Scale: Part I, Step Law. Optimal Hyperparameter Scaling Law in Large Language Model Pretraining.</i> 2025. <a href="https://arxiv.org/abs/2503.04715">arXiv:2503.04715</a></li>
+  <li id="r3">Mitchell Wortsman et al. <i>Small-scale proxies for large-scale Transformer training instabilities.</i> 2023. <a href="https://arxiv.org/abs/2309.14322">arXiv:2309.14322</a></li>
+  <li id="r4">Shane Bergsma et al. <i>Straight to Zero: Why Linearly Decaying the Learning Rate to Zero Works Best for LLMs.</i> 2025. <a href="https://arxiv.org/abs/2502.15938">arXiv:2502.15938</a></li>
+  <li id="r5">Alexander Hägele et al. <i>Scaling Laws and Compute-Optimal Training Beyond Fixed Training Durations.</i> 2024. <a href="https://arxiv.org/abs/2405.18392">arXiv:2405.18392</a></li>
+  <li id="r6">Shengding Hu et al. <i>MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies.</i> 2024. <a href="https://arxiv.org/abs/2404.06395">arXiv:2404.06395</a></li>
+  <li id="r7">Hanlin Zhang et al. <i>How Does Critical Batch Size Scale in Pre-training?</i> 2024. <a href="https://arxiv.org/abs/2410.21676">arXiv:2410.21676</a></li>
+  <li id="r8">Tomer Porian et al. <i>Resolving Discrepancies in Compute-Optimal Scaling of Language Models.</i> 2024. <a href="https://arxiv.org/abs/2406.19146">arXiv:2406.19146</a></li>
+  <li id="r9">Martin Marek et al. <i>Small Batch Size Training for Language Models: When Vanilla SGD Works, and Why Gradient Accumulation Is Wasteful.</i> 2025. <a href="https://arxiv.org/abs/2507.07101">arXiv:2507.07101</a></li>
+  <li id="r10">Rosie Zhao et al. <i>Deconstructing What Makes a Good Optimizer for Language Models.</i> 2024. <a href="https://arxiv.org/abs/2407.07972">arXiv:2407.07972</a></li>
+  <li id="r11">Katie Everett et al. <i>Scaling Exponents Across Parameterizations and Optimizers.</i> 2024. <a href="https://arxiv.org/abs/2407.05872">arXiv:2407.05872</a></li>
+  <li id="r12">Antonio Orvieto, Robert Gower. <i>In Search of Adam's Secret Sauce.</i> 2025. <a href="https://arxiv.org/abs/2505.21829">arXiv:2505.21829</a></li>
+  <li id="r13">Xi Wang, Laurence Aitchison. <i>How to set AdamW's weight decay as you scale model and dataset size.</i> 2024. <a href="https://arxiv.org/abs/2405.13698">arXiv:2405.13698</a></li>
+  <li id="r14">Zhiyuan Fan et al. <i>Robust Layerwise Scaling Rules by Proper Weight Decay Tuning.</i> 2025. <a href="https://arxiv.org/abs/2510.15262">arXiv:2510.15262</a></li>
+  <li id="r15">Shane Bergsma et al. <i>Power Lines: Scaling Laws for Weight Decay and Batch Size in LLM Pre-training.</i> 2025. <a href="https://arxiv.org/abs/2505.13738">arXiv:2505.13738</a></li>
+  <li id="r16">Johan Bjorck et al. <i>Scaling Optimal LR Across Token Horizons.</i> 2025. <a href="https://arxiv.org/abs/2409.19913">arXiv:2409.19913</a></li>
+  <li id="r17">DeepSeek-AI. <i>DeepSeek LLM: Scaling Open-Source Language Models with Longtermism.</i> 2024. <a href="https://arxiv.org/abs/2401.02954">arXiv:2401.02954</a></li>
+  <li id="r18">Oleg Filatov et al. <i>Time Transfer: On Optimal Learning Rate and Batch Size In The Infinite Data Limit.</i> 2024. <a href="https://arxiv.org/abs/2410.05838">arXiv:2410.05838</a></li>
+  <li id="r19">Sadhika Malladi et al. <i>On the SDEs and Scaling Rules for Adaptive Gradient Algorithms.</i> 2022. <a href="https://arxiv.org/abs/2205.10287">arXiv:2205.10287</a></li>
+  <li id="r20">Shuaipeng Li et al. <i>Surge Phenomenon in Optimal Learning Rate and Batch Size Scaling.</i> 2024. <a href="https://arxiv.org/abs/2405.14578">arXiv:2405.14578</a></li>
+</ol>
+</article>
+<script src="data/fig45_data.js" charset="utf-8"></script>
+<script src="fig45.js" charset="utf-8"></script>
+</body>
+</html>

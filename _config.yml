@@ -245,6 +245,11 @@ defaults:
       layout: talk
       author_profile: true
       share: true
+  # unlisted pages: shared by link only, so keep them out of sitemap.xml
+  - scope:
+      path: "blog_post/predictive-science-of-pretraining"
+    values:
+      sitemap: false
 
 # Sass/SCSS
 sass:

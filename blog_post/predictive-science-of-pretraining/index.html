@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="How small can a model that predicts LLM training loss from the training config be, and what can it tell us?">
+<meta property="og:title" content="Predictive science of pretraining">
+<meta property="og:description" content="How small can a model that predicts LLM training loss from the training config be, and what can it tell us?">
+<title>Predictive Science of Pretraining</title>
+<script>
+  try { var t = localStorage.getItem("blog-theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #555555;
+  --link: #1f4e8c;
+  --rule: #dddddd;
+  --figure-bg: #ffffff;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-small: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --text: 40rem;
+  --wide: 52rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161616; --fg: #e6e6e6; --muted: #a8a8a8; --link: #8db4e8; --rule: #333333; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161616; --fg: #e6e6e6; --muted: #a8a8a8; --link: #8db4e8; --rule: #333333; color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 1.2rem 4rem;
+}
+article { max-width: var(--wide); margin-inline: auto; }
+article > :not(figure) { max-width: var(--text); margin-inline: auto; }
+.topbar { display: flex; justify-content: flex-end; max-width: var(--wide); margin: 0 auto 1.4rem; }
+.topbar button { font-family: var(--font-small); font-size: 0.82rem; padding: 0.25rem 0.7rem; border: 1px solid var(--rule); background: transparent; color: var(--fg); border-radius: 4px; cursor: pointer; }
+h1 { font-size: 2rem; font-weight: 600; line-height: 1.25; margin: 0 auto 2rem; }
+.byline-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 0.3rem; font-family: var(--font-small); font-size: 0.98rem; line-height: 1.45; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding-block: 1.1rem 1.2rem; margin: -0.6rem auto 2.2rem; }
+.byline-grid .bl-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; }
+.byline-grid .bl-pub-label { grid-column: 3; grid-row: 1; }
+.byline-grid .bl-pub-date { grid-column: 3; grid-row: 2; }
+@media (max-width: 560px) {
+  .byline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .byline-grid .bl-pub-label { grid-column: 1 / -1; grid-row: 4; margin-top: 0.8rem; }
+  .byline-grid .bl-pub-date { grid-column: 1 / -1; grid-row: 5; }
+}
+h1 .subtitle { display: block; font-size: 0.6em; font-weight: 400; color: var(--muted); line-height: 1.35; margin-top: 0.45rem; }
+h2 { font-size: 1.3rem; font-weight: 600; line-height: 1.3; margin: 2.6rem auto 0.8rem; }
+h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.3; margin: 2rem auto 0.6rem; }
+p { margin: 0 auto 1rem; }
+a { color: var(--link); text-underline-offset: 2px; }
+sup a { text-decoration: none; }
+code { font-size: 0.9em; }
+.eq { overflow-x: auto; margin: 0.6rem auto 1rem; }
+figure { max-width: var(--wide); margin: 2rem auto; }
+figure .plate { background: var(--figure-bg); display: grid; gap: 0.6rem; padding: 0.4rem; }
+figure img { display: block; width: 100%; height: auto; }
+figure.narrow { max-width: 44rem; }
+figcaption { font-family: var(--font-small); font-size: 0.88rem; line-height: 1.5; color: var(--muted); max-width: var(--text); margin: 0.6rem auto 0; }
+figcaption b { color: var(--fg); font-weight: 600; }
+ol.refs { font-family: var(--font-small); font-size: 0.88rem; line-height: 1.5; padding-left: 1.5rem; }
+ol.refs li { margin-bottom: 0.4rem; }
+.controls { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; max-width: var(--wide); margin: 0 auto 0.4rem; font-family: var(--font-small); }
+.controls button { font: inherit; font-size: 0.84rem; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); background: transparent; color: var(--fg); border-radius: 4px; cursor: pointer; }
+.controls button[aria-pressed="true"] { border-color: var(--fg); font-weight: 600; }
+.controls select { font: inherit; font-size: 0.84rem; padding: 0.2rem; background: var(--bg); color: var(--fg); border: 1px solid var(--rule); border-radius: 4px; max-width: 100%; }
+.controls .sep { width: 0.8rem; }
+.plot { width: 100%; height: 440px; }
+.plot.tall { height: 500px; }
+.plot.square { height: 480px; }
+.plot.short { height: 330px; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4rem; }
+.plot.dyn { height: 300px; }
+.panel-title { font-family: var(--font-small); font-size: 0.9rem; font-weight: 600; text-align: center; }
+.dyn-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; justify-content: center; font-family: var(--font-small); font-size: 0.85rem; color: var(--fg); margin-top: 0.3rem; }
+.dyn-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.controls label { font-size: 0.84rem; color: var(--muted); }
+@media (max-width: 760px) { .three { grid-template-columns: 1fr; } .plot.dyn { height: 280px; } }
+.two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0.5rem; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+#fig-size svg { display: block; max-width: 44rem; margin: 0 auto; font-family: var(--font-small); }
+@media (max-width: 520px) {
+  body { font-size: 1rem; padding-block: 1rem 3rem; }
+  h1 { font-size: 1.6rem; }
+  .plot { height: 380px; }
+  .plot.tall { height: 560px; }
+  .plot.square { height: 420px; }
+}
+</style>
+<script>
+  window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]] }, svg: { fontCache: "global" } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+</head>
+<body>
+<div class="topbar"><button type="button" id="theme-toggle">Dark mode</button></div>
+<article>
+<h1>Predictive science of pretraining<span class="subtitle">Towards smaller and more interpretable prediction models</span></h1>
+<div class="byline-grid" role="group" aria-label="Authors, affiliations and publication date">
+  <div class="bl-label">Authors</div>
+  <div class="bl-label">Affiliations</div>
+  <div class="bl-label bl-pub-label">Published</div>
+  <div class="bl-pub-date">November 22, 2026</div>
+  <div>Honam Wong</div>
+  <div>University of Pennsylvania</div>
+  <div>Hanlin Zhang</div>
+  <div>Harvard University</div>
+</div>
+
+<p>Understanding the training dynamics of a model from its training config is an open problem in deep learning. Most of what practitioners know comes from ablations, which train many models and change one or two settings at a time. Ablations found power laws in model size and data<sup><a href="#ref1">[1]</a></sup>, the compute-optimal balance between the two<sup><a href="#ref2">[2]</a></sup>, the linear scaling of learning rate with batch size<sup><a href="#ref3">[3]</a></sup>, and the trade-off between batch size and the number of training steps<sup><a href="#ref4">[4]</a>, <a href="#ref5">[5]</a></sup>. Each study answers one question for one setup, so a new architecture, optimizer or data mix means running the ablations again.</p>
+
+<p>Recent work turns the question into a prediction problem: fit a black-box prediction model to many past training runs. NCPL<sup><a href="#ref6">[6]</a></sup> fits a Chinchilla law to the final losses and fine-tunes Qwen3-1.7B to predict what the law misses. Meta Models<sup><a href="#ref7">[7]</a></sup> keep the Chinchilla term and replace Qwen with a frozen TabPFN v3, a pretrained tabular model that reads the training runs as context. Both predict the final loss of larger models held out from training (out of distribution, OOD) within small error.</p>
+
+<figure class="narrow">
+  <div id="fig-size"></div>
+  <div class="controls" style="justify-content:center"><button type="button" id="replay-size">Replay</button></div>
+  <figcaption><b>Figure 1. The prediction model is still large. How small can it get?</b> Meta Models does not state a size, so 58M is our count for the default TabPFN v3 checkpoint.</figcaption>
+</figure>
+
+<p>The size of the prediction model says something about the problem. A model with a billion weights can fit almost any relation, so its accuracy says little about how complex the relation between config and loss is. If a model with a few hundred numbers predicts equally well, the relation may be simple enough to write down as a short formula, which can be checked against what the ablations found and which a black box cannot give. Therefore, in this post we look for the smallest prediction model that still predicts well.</p>
+
+<h2>Searching for the smallest interpretable model</h2>
+
+<p>We use two public sets of runs and the split from both prior works, NCPL<sup><a href="#ref6">[6]</a></sup> and Meta Models<sup><a href="#ref7">[7]</a></sup>: Marin and StepLaw. Marin is an open-source project that releases its pretraining runs, code and results<sup><a href="#ref8">[8]</a></sup>, and we use its 1,560 runs from the optimizer study of Wen et al.<sup><a href="#ref9">[9]</a></sup>, which cover 13 optimizers. StepLaw is a sweep over learning rate and batch size<sup><a href="#ref10">[10]</a></sup>, of which we use the 1,631 dense runs. Runs with more than 430M non-embedding parameters form the OOD test set. Every model predicts the residual over a Chinchilla fit at 16 points of each loss curve, and errors are mean absolute errors (MAE) in nats of training loss.</p>
+
+<p>A smaller TabPFN checkpoint is the first thing to try. The 10M-weight v2.5 is close to the 219M-weight v3.5 on both sets, so the size of the pretrained model does not limit the error.</p>
+
+<p>We then fitted many small models to the same training runs and grouped them by how easy they are to interpret. In this post, we define an <em>interpretable</em> model as a sum of 1-D or 2-D functions that we can plot, such as additive or pairwise splines, or boosting with trees of depth 1 or 2. A <em>partly interpretable</em> model has a structure we can still inspect, such as boosting with depth-3 trees or the Recursive Feature Machine (RFM)<sup><a href="#ref11">[11]</a></sup>, a kernel machine whose learned metric shows which input directions matter. Black-box models include MLPs, boosted trees with many leaves per tree, and TabPFN itself. Figure 2 shows the lowest OOD error that each group reaches at each number of parameters.</p>
+
+<figure>
+  <div class="controls" id="ctl-frontier" role="group" aria-label="Task"></div>
+  <div class="plot" id="fig-frontier"></div>
+  <figcaption><b>Figure 2. On the Marin final loss, interpretable models reach the error of TabPFN with fewer than 100 parameters. On the other three tasks they stay behind.</b> Lowest OOD MAE (nats) that each group reaches at or below a given number of parameters. Both axes are log scale. Students are fitted to the measured losses or to TabPFN labels. Squares are the TabPFN checkpoints. The buttons switch the set of runs and the target, and hovering a point shows the model. The arrow is the search described in the text.</figcaption>
+</figure>
+
+<p>The figure suggests a search from right to left: start at TabPFN, propose a smaller or more interpretable model, fit it, and keep it if its OOD error stays low. The model at the end of the arrow would be a short, checkable description of how the hyperparameters affect the loss, and it may show effects that we do not know about yet.</p>
+
+<h2>Distilling TabPFN into small students</h2>
+
+<p>TabPFN can also act as a teacher. We trained students on its predictions for the training configs and for 10,000 new configs, each made by moving the numeric inputs of a training run by 0.3 standard deviations inside the training range. The students come from all three groups: MLPs with inputs clipped to the training range and boosted trees (black box), the RFM and depth-3 boosting (partly interpretable), and additive and pairwise splines and boosting with depth-1 and depth-2 trees (interpretable).</p>
+
+<figure>
+  <div class="controls" id="ctl-distilled" role="group" aria-label="Task"></div>
+  <div class="plot tall" id="fig-distilled"></div>
+  <figcaption><b>Figure 3. Students distilled from TabPFN come close to its OOD error with thousands of times fewer parameters.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The dashed line is the teacher, TabPFN v3. Models of the final loss alone have no curve error. Click a legend entry to hide or show a family.</figcaption>
+</figure>
+
+<p>On Marin, students with tens to thousands of parameters match the teacher on the final loss, and the best of them is an additive spline model with 72 numbers. On StepLaw the teacher keeps a small lead, and the closest students are RFMs and MLPs with thousands of parameters.</p>
+
+<p>The spline models are simple enough to write out. Let \(r\) be the final loss minus the Chinchilla fit \(E + A/N^{\alpha} + B/D^{\beta}\), where \(N\) is the number of parameters and \(D\) the number of training tokens. The pairwise spline model predicts</p>
+<div class="eq">\[ \hat r(x) \;=\; b \;+\; \sum_{j} f_j(x_j) \;+\; \sum_{(j,k)\in P} f_{jk}(x_j, x_k), \qquad f_j(x_j) = \sum_{m} w_{jm}\, \phi_m(x_j), \qquad f_{jk}(x_j, x_k) = \sum_{m,n} w_{jkmn}\, \phi_m(x_j)\, \phi_n(x_k). \]</div>
+<p>Here \(x_j\) is one config input (log learning rate, log batch size, warmup fraction and so on), and the \(\phi_m\) are cubic spline basis functions with 5 knots over the training range, held constant outside it. An input with few distinct values, such as the schedule type, gets one weight per value instead. \(P\) is a set of five chosen input pairs, and all weights \(w\) are fitted by ridge regression on the training runs. Without the pair terms this is the additive model, which has 72 numbers on Marin.</p>
+
+<p>Depth-1 boosting fails on every task because it gives each input one effect for the whole curve. The effect of a config field changes during training, often in sign. A learning rate below the final optimum, for example, gives a lower loss for most of training and falls behind only in the final decay. An interpretable curve model needs terms that let each effect depend on the training fraction.</p>
+
+<p>The additive model of the final loss has a similar limit across model sizes. It gives each optimizer a fixed shift, so it cannot show that the advantage of Muon over AdamW shrinks about threefold from 134M to 1.2B parameters, as Wen et al. report<sup><a href="#ref9">[9]</a></sup>. At the two held-out sizes its predicted advantage grows instead. A small model that captures this needs an interaction between optimizer and model size.</p>
+
+<h2>Downstream accuracy and gradient norm</h2>
+
+<p>Meta Models also predicts parameter norms, gradient norms and downstream accuracy<sup><a href="#ref7">[7]</a></sup>. Here we ask the same of the small models, with TabPFN as the reference. The Marin runs log the parameter and gradient norm during training (319 runs, read at the same 16 training fractions as the loss) and the average accuracy over the lm_eval tasks at the end of training (1,368 runs). The split is the same as before: fit on the 134M and 302M models, and test on the 537M and 1.2B models.</p>
+
+<figure>
+  <div class="controls"><label for="sel-dyn-run">run in (a) and (b)</label><select id="sel-dyn-run"></select></div>
+  <div class="three">
+    <div><div class="panel-title">a&nbsp; Parameter norm</div><div class="plot dyn" id="fig-dyn-p"></div></div>
+    <div><div class="panel-title">b&nbsp; Gradient norm</div><div class="plot dyn" id="fig-dyn-g"></div></div>
+    <div><div class="panel-title">c&nbsp; Downstream accuracy</div><div class="plot dyn" id="fig-dyn-acc"></div></div>
+  </div>
+  <div class="dyn-legend" id="dyn-legend"></div>
+  <figcaption><b>Figure 4. The small models follow the rise and fall of the norm curves but often miss their level, as TabPFN does, and they predict downstream accuracy about as well as TabPFN.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes, with the predictions of an MLP of the Figure 3 size (249 parameters), the RFM, the spline model and TabPFN v3 as used in Meta Models, each fitted to the norm curves of the training runs. The menu chooses the run, from the in-distribution test runs and the held-out runs. (c) Each point is a held-out Marin run predicted by one model (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's mean absolute error in percentage points. Click an entry to hide or show a model.</figcaption>
+</figure>
+
+<p>Accuracy needs almost no model of its own. Downstream accuracy is close to a function of the final training loss, so a curve with 8 numbers (a cubic spline plus a linear term, fitted from measured final loss to accuracy on the training runs) turns any loss prediction into an accuracy prediction. Fed with the losses of the spline model or the RFM, the curve predicts held-out accuracy as well as with the measured losses or with TabPFN's losses (Figure 4c). The MLP's losses give a somewhat larger error. For all models the error is larger at 1.2B, where accuracy rises slightly faster than the curve predicts. Fitting the same small models to accuracy directly from the config is two to seven times worse, since none of them has a scaling term and the accuracy of the larger models lies outside the training range. So a small prediction model for accuracy is a small loss model followed by one curve.</p>
+
+<p>The scatter of accuracy around this curve is not all noise. An additive model of what the curve leaves over lowers the held-out error by about a fifth, so its effects carry over to larger models. At equal training loss, a higher peak learning rate, more training tokens and a smaller batch all give higher accuracy. All three mean more or larger optimizer steps for the same loss. This fits the common view that large learning rates and small batches act as a regularizer, but we have not tested that mechanism.</p>
+
+<p>The norms are harder to predict. All models, TabPFN included, follow how the norms change during training: the parameter norm rises until about mid-training and then falls a little, and the gradient norm falls until mid-training and rises again near the end. They often miss the level of a run, though, by about a factor of two on average (Figure 4a, b). At the same model size, the logged parameter norm differs by up to three orders of magnitude between optimizers, and the 155 training runs cover 13 optimizers at two sizes, so the level of each optimizer is fitted from a handful of runs.</p>
+
+<p>A larger prediction model does not fix this. TabPFN does no better than the best small model on the parameter norm and only somewhat better on the gradient norm (Figure 5), so most of the difficulty lies in the data. Meta Models shows TabPFN's norm predictions without a comparison model, and compares TabPFN with another model only on downstream accuracy<sup><a href="#ref7">[7]</a></sup>.</p>
+
+<figure>
+  <div class="plot short" id="fig-err-norm"></div>
+  <figcaption><b>Figure 5. TabPFN fits the gradient norm best, and the RFM is level with it on the parameter norm.</b> Mean absolute error over the whole norm curve, in log10 units, on the held-out Marin runs at 537M and 1.2B parameters. MLP bars are the mean of three seeds, with the range as a whisker.</figcaption>
+</figure>
+
+<p>The additive spline model fitted to the final gradient norm alone gives less reliable effects than for the loss, since its held-out error depends strongly on its ridge penalty. Three effects keep their direction under every penalty we tried: a longer warmup and a longer learning-rate decay both lower the final gradient norm, and more training tokens raise it. Testing them needs gradient norms for many more runs.</p>
+
+<h2>Formulas that TabPFN cannot give</h2>
+
+<p>Effect plots alone do not need a small model. A one-knob or two-knob plot can be drawn from TabPFN by partial dependence, and the input gradients of any differentiable predictor show which input directions matter. Our one-knob and two-knob effects are therefore on a <a href="hyperparameter-effects/">companion page</a>, which checks each against prior work. A small model adds something in two cases.</p>
+
+<p>The first is completeness. When a model with only single-input and pair terms predicts as well as TabPFN, its terms are everything a good predictor needs, while the partial-dependence plots of TabPFN are averages that can hide interactions. In this post this holds only for the Marin final loss (Figure 2), and the failures of the smaller students in the distillation section show which interactions the other tasks need.</p>
+
+<p>The second is a formula. Some targets may depend on several knobs only through one combination of them, such as the learning rate divided by the weight decay. A model that is a smooth function of that one combination states the coupling and its exponent. Fitting it with and without the constraint tests the coupling on held-out runs, and checking it at larger models tests whether it extrapolates. TabPFN can give such a statement only if a formula is fitted to its predictions, and that is building the small model.</p>
+
+<p>The loss itself offers a first candidate. On StepLaw, the main input direction of the RFM weighs log tokens against log batch, which is the log number of optimizer steps, and the 153-parameter MLP of Figure 3 learns the same directions in every training seed. The largest single effect, the warmup fraction, is also set from the number of steps in this sweep. A model of the residual on log steps, in place of log tokens and log batch, would test whether the two act only through their ratio.</p>
+
+<p>The norms in Figure 4 are a natural test, because optimizer theory predicts couplings for them. For AdamW, the rotational-equilibrium analysis of Kosson et al.<sup><a href="#ref12">[12]</a></sup> gives an equilibrium weight norm proportional to the square root of the learning rate divided by the weight decay. The norm approaches it over about 1/(learning rate &times; weight decay) steps, the timescale of Wang and Aitchison<sup><a href="#ref13">[13]</a></sup>. So the parameter-norm curve should depend on two combinations: the ratio of learning rate to weight decay for its level, and their product times the number of steps for how fast it gets there. For the gradient norm, Defazio<sup><a href="#ref14">[14]</a></sup> explains the rise near the end of training that Figure 4 shows: weight decay sets the ratio of gradient norm to weight norm, and this ratio grows as the learning rate decays. Scaling the weight decay with the learning rate, as in his AdamC, should remove the rise.</p>
+
+<p>Downstream accuracy has a candidate coupling too. At equal training loss, a higher learning rate, more tokens and a smaller batch all give higher accuracy. The three may act through one combination: the total learning-rate area, which is the learning rate times the tokens divided by the batch size, or the ratio of learning rate to batch size. A model on one combination can tell the two apart.</p>
+
+<p>The data for these tests exist. The wider Marin W&amp;B projects log the parameter and gradient norm for 37,267 runs, against the 319 runs used above, and about 3,300 Adam-type runs sit in cells of model size and token budget that vary both the learning rate and the weight decay. Downstream accuracy is logged for fewer runs, so the accuracy test is weaker. These tests are our next step.</p>
+
+<h2>An autoresearch benchmark</h2>
+
+<p>The search in Figure 2 could be a benchmark for automated research agents. Each step is cheap: on one NVIDIA RTX A5000, TabPFN v3 fits and predicts in about 7 seconds with the Marin training runs as context, and most students fit in a few seconds, so an agent can try hundreds of candidate models in one GPU-hour. The agent would get the training runs of a sweep and return a model. A fixed script would count its parameters, assign its interpretability group and score its OOD error on test runs that the agent never sees. The goal is the fewest parameters among interpretable models at or below the error of TabPFN. The Marin final loss already has such a model, but the Marin curve and both StepLaw tasks do not. A second target is a formula of the kind described above: a model on a few combinations of the knobs that predicts held-out runs as well as a model given every knob separately.</p>
+
+<h2>Future directions</h2>
+
+<p>This study is observational. Other groups designed the sweeps for other purposes, and some inputs move together, so a fitted effect is not necessarily causal. One direction is to add a few interventions, such as ablations that change one hyperparameter at a time, on top of the large public sweeps. Causal inference has methods that combine a small number of interventions with large observational data<sup><a href="#ref15">[15]</a>, <a href="#ref16">[16]</a></sup>. More observational data would also help, and we encourage groups to release full training traces together with their configs, which costs no extra compute.</p>
+
+<h2>References</h2>
+<ol class="refs">
+  <li id="ref1">Jared Kaplan, Sam McCandlish, Tom Henighan, et al. <i>Scaling Laws for Neural Language Models.</i> arXiv:2001.08361, 2020. <a href="https://arxiv.org/abs/2001.08361">arxiv.org/abs/2001.08361</a></li>
+  <li id="ref2">Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch, et al. <i>Training Compute-Optimal Large Language Models.</i> arXiv:2203.15556, 2022. <a href="https://arxiv.org/abs/2203.15556">arxiv.org/abs/2203.15556</a></li>
+  <li id="ref3">Priya Goyal, Piotr Dollár, Ross Girshick, et al. <i>Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour.</i> arXiv:1706.02677, 2017. <a href="https://arxiv.org/abs/1706.02677">arxiv.org/abs/1706.02677</a></li>
+  <li id="ref4">Sam McCandlish, Jared Kaplan, Dario Amodei, et al. <i>An Empirical Model of Large-Batch Training.</i> arXiv:1812.06162, 2018. <a href="https://arxiv.org/abs/1812.06162">arxiv.org/abs/1812.06162</a></li>
+  <li id="ref5">Christopher J. Shallue, Jaehoon Lee, Joseph Antognini, et al. <i>Measuring the Effects of Data Parallelism on Neural Network Training.</i> JMLR 20, 2019. arXiv:1811.03600. <a href="https://arxiv.org/abs/1811.03600">arxiv.org/abs/1811.03600</a></li>
+  <li id="ref6">Huaqing Zhang, Kaiyue Wen, Tengyu Ma. <i>Configuration-to-Performance Scaling Law with Neural Ansatz.</i> arXiv:2602.10300, 2026. <a href="https://arxiv.org/abs/2602.10300">arxiv.org/abs/2602.10300</a></li>
+  <li id="ref7">Peihang Li, Ziming Liu. <i>Meta Models: Models that Model Learning.</i> arXiv:2610.37001, 2026. <a href="https://arxiv.org/abs/2610.37001">arxiv.org/abs/2610.37001</a></li>
+  <li id="ref8">Marin project. <a href="https://marin.community">marin.community</a></li>
+  <li id="ref9">Kaiyue Wen, David Hall, Tengyu Ma, Percy Liang. <i>Fantastic Pretraining Optimizers and Where to Find Them.</i> arXiv:2509.02046, 2025. <a href="https://arxiv.org/abs/2509.02046">arxiv.org/abs/2509.02046</a></li>
+  <li id="ref10">Houyi Li, Wenzhen Zheng, Qiufeng Wang, et al. <i>Predictable Scale: Part I, Step Law. Optimal Hyperparameter Scaling Law in Large Language Model Pretraining.</i> arXiv:2503.04715, 2025. <a href="https://arxiv.org/abs/2503.04715">arxiv.org/abs/2503.04715</a></li>
+  <li id="ref11">Adityanarayanan Radhakrishnan, Daniel Beaglehole, Parthe Pandit, Mikhail Belkin. <i>Mechanism for feature learning in neural networks and backpropagation-free machine learning models.</i> Science 383, 2024. <a href="https://doi.org/10.1126/science.adi5639">doi:10.1126/science.adi5639</a></li>
+  <li id="ref12">Atli Kosson, Bettina Messmer, Martin Jaggi. <i>Rotational Equilibrium: How Weight Decay Balances Learning Across Neural Networks.</i> ICML 2024, PMLR 235. arXiv:2305.17212. <a href="https://arxiv.org/abs/2305.17212">arxiv.org/abs/2305.17212</a></li>
+  <li id="ref13">Xi Wang, Laurence Aitchison. <i>How to set AdamW's weight decay as you scale model and dataset size.</i> ICML 2025. arXiv:2405.13698. <a href="https://arxiv.org/abs/2405.13698">arxiv.org/abs/2405.13698</a></li>
+  <li id="ref14">Aaron Defazio. <i>Why Gradients Rapidly Increase Near the End of Training.</i> arXiv:2506.02285, 2025. <a href="https://arxiv.org/abs/2506.02285">arxiv.org/abs/2506.02285</a></li>
+  <li id="ref15">Elias Bareinboim, Judea Pearl. <i>Causal inference and the data-fusion problem.</i> Proceedings of the National Academy of Sciences 113(27), 7345-7352, 2016. <a href="https://doi.org/10.1073/pnas.1510507113">doi:10.1073/pnas.1510507113</a></li>
+  <li id="ref16">AmirEmad Ghassami, Saber Salehkaleybar, Negar Kiyavash, Elias Bareinboim. <i>Budgeted experiment design for causal structure learning.</i> ICML 2018, PMLR 80. <a href="https://proceedings.mlr.press/v80/ghassami18a.html">proceedings.mlr.press/v80/ghassami18a.html</a></li>
+</ol>
+</article>
+<script src="data/blog_data.js" charset="utf-8"></script>
+<script src="figs.js" charset="utf-8"></script>
+</body>
+</html>
