@@ -1,6 +1,6 @@
 // Interactive figures for the blog post. Data: window.BLOG_DATA from data/blog_data.js (built by code/cl_blog_data.py).
 (function () {
-  const D = window.BLOG_DATA;
+  const D = window.BLOG_DATA || {};  // legacy data; the current figures read window.TRAJ_DATA in traj.js
   const root = document.documentElement;
   const css = (n) => getComputedStyle(root).getPropertyValue(n).trim();
   const CFG = { displayModeBar: false, responsive: true };
@@ -9,6 +9,7 @@
   const HAS_EFF = !!document.getElementById("fig-effects"); // the averaged partial-dependence figure is optional
   const HAS_PAIRS = !!document.getElementById("fig-pairs") && D.effects; // pair maps (moved to the companion page)
   const HAS_RFM = !!document.getElementById("fig-rfm") && D.effects; // RFM metric figure (removed from the post)
+  const HAS_DIST = !!document.getElementById("fig-distilled") && D.points; // legacy students figure (replaced by traj.js)
   const HAS_FRONTIER = !!document.getElementById("fig-frontier"); // frontier by interpretability group (removed from the post)
   const KEEP = new Set(["mlp", "trees", "rfm", "spline add_k"]); // student families shown in the distillation figure
   const TASKS = [
@@ -768,7 +769,7 @@
   }
 
   function renderAll(animateSize) {
-    drawSize(!!animateSize); if (HAS_FRONTIER) drawFrontier(); drawDistilled(); if (HAS_EFF) drawEffects(); if (HAS_PAIRS) drawPairs(); if (HAS_RFM) drawRFM(); if (HAS_OPT) { drawOptGap(); drawCurveGap(); }
+    drawSize(!!animateSize); if (HAS_FRONTIER) drawFrontier(); if (HAS_DIST) drawDistilled(); if (HAS_EFF) drawEffects(); if (HAS_PAIRS) drawPairs(); if (HAS_RFM) drawRFM(); if (HAS_OPT) { drawOptGap(); drawCurveGap(); }
     if (HAS_ACC) drawAccLoss();
     if (HAS_ACCRESID) drawAccResid();
     if (HAS_DYN) drawDynamics();
@@ -802,7 +803,7 @@
   }
 
   if (HAS_FRONTIER) buttons($("ctl-frontier"), TASKS, 0, (i) => { frontier.task = i; drawFrontier(); });
-  buttons($("ctl-distilled"), TASKS, 0, (i) => { distilled.task = i; drawDistilled(); });
+  if (HAS_DIST) buttons($("ctl-distilled"), TASKS, 0, (i) => { distilled.task = i; drawDistilled(); });
   if (HAS_EFF) buttons($("ctl-effects"), CORPORA, 0, (i) => { eff.corpus = i; eff.input = 0; fillEffectSelect(); drawEffects(); });
   if (HAS_PAIRS) buttons($("ctl-pairs"), CORPORA, 0, (i) => { pr.corpus = i; pr.pair = 0; fillPairSelect(); drawPairs(); });
   if (HAS_RFM) buttons($("ctl-rfm"), CORPORA, 1, (i) => { rfm.corpus = i; drawRFM(); });

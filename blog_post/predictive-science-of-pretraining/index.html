@@ -62,6 +62,7 @@ h1 { font-size: 2rem; font-weight: 600; line-height: 1.25; margin: 0 auto 2rem; 
 .byline-grid .bl-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; }
 .byline-grid .bl-pub-label { grid-column: 3; grid-row: 1; }
 .byline-grid .bl-pub-date { grid-column: 3; grid-row: 2; }
+.byline-grid .bl-code { grid-column: 1 / -1; margin-top: 0.7rem; overflow-wrap: anywhere; }
 @media (max-width: 560px) {
   .byline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .byline-grid .bl-pub-label { grid-column: 1 / -1; grid-row: 4; margin-top: 0.8rem; }
@@ -162,6 +163,10 @@ ol.refs li { margin-bottom: 0.4rem; }
 .kn i { display: inline-block; width: 0.95em; height: 0.2em; border-radius: 1px; margin-right: 0.3em; vertical-align: 0.28em; }
 pre.algo { overflow-x: auto; background: var(--g-scale); border-radius: 6px; padding: 0.8rem 1rem; font-size: 0.82rem; line-height: 1.55; }
 pre.algo code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+.cite-box { position: relative; background: var(--g-scale); border: 1px solid var(--rule); border-radius: 6px; padding: 0.9rem 5rem 0.9rem 1rem; margin: 0 auto 1.2rem; }
+.cite-box p { margin: 0; font-size: 0.95rem; overflow-wrap: anywhere; }
+.cite-box pre { margin: 0; font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+.copy-btn { position: absolute; top: 0.6rem; right: 0.6rem; font-family: var(--font-small); font-size: 0.8rem; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); border-radius: 4px; cursor: pointer; }
 ul.points { padding-left: 1.2rem; }
 ul.points li { margin-bottom: 0.6rem; }
 @media (max-width: 520px) {
@@ -184,7 +189,7 @@ ul.points li { margin-bottom: 0.6rem; }
 <nav class="toc" aria-label="Contents"><div class="toc-title">Contents</div><ol id="toc-list"></ol></nav>
 <article>
 <h1>Towards smaller and more interpretable prediction models</h1>
-<div class="byline-grid" role="group" aria-label="Authors, affiliations and publication date">
+<div class="byline-grid" role="group" aria-label="Authors, affiliations, publication date and code">
   <div class="bl-label">Authors</div>
   <div class="bl-label">Affiliations</div>
   <div class="bl-label bl-pub-label">Published</div>
@@ -193,6 +198,7 @@ ul.points li { margin-bottom: 0.6rem; }
   <div>University of Pennsylvania</div>
   <div>Hanlin Zhang</div>
   <div>Harvard University</div>
+  <div class="bl-code">Code and data: <a href="https://github.com/Matheart/interpretable-curve-prediction">github.com/Matheart/interpretable-curve-prediction</a></div>
 </div>
 
 <p>Understanding the training dynamics of a model from its training config is notoriously hard. Theory can describe the dynamics in simpler settings. Central flows<sup><a href="#ref1">[1]</a></sup> model the time-averaged path of gradient descent and RMSProp at the edge of stability, and they follow the training of real networks closely. However, they are only derived for deterministic, full-batch optimizers without weight decay, one optimizer at a time. This does not cover the many hyperparameters of a pretraining config.</p>
@@ -252,39 +258,40 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>Similar to prior work, we predict the <em>residual</em>: the measured loss minus a Chinchilla law of model size and the run's total tokens. The Chinchilla term is the same at every point of a run, so the residual holds all of the change of the loss during training. Errors are mean absolute errors (MAE) in nats of loss.</p>
 
-<p>A smaller TabPFN checkpoint is the first thing to try. We find that smaller checkpoints give a similar error or only a minor degradation.</p>
+<p>A smaller TabPFN checkpoint is the first thing to try. The older, smaller checkpoints are worse: on the StepLaw curve the 10M-weight v2.5 has about seven times the error of the 58M-weight v3. The 84M-weight v3.5 fast is about as good as v3, so a larger pretrained model does not by itself lower the error.</p>
 
-<p>Next we distill TabPFN into small students from four families, which differ in how much of them we can read. MLPs and boosted trees are black boxes. The Recursive Feature Machine (RFM)<sup><a href="#ref8">[8]</a></sup> is a kernel machine whose learned metric shows which input directions matter, so we call it partly interpretable. Splines whose curves change with the training fraction are a sum of one-dimensional curves that can be plotted, so we call them interpretable. Each student is fitted to TabPFN's predictions for the training configs and for 10,000 nearby configs, so it never sees the measured losses.</p>
+<p>Next we fit small models from four families directly to the measured values. The families differ in how much of them we can read. MLPs and boosted trees are black boxes. The Recursive Feature Machine (RFM)<sup><a href="#ref8">[8]</a></sup> is a kernel machine whose learned metric shows which input directions matter, so we call it partly interpretable. Splines whose curves change with the training fraction are a sum of one-dimensional curves that can be plotted, so we call them interpretable.</p>
 
 <figure>
-  <div class="controls" id="ctl-distilled" role="group" aria-label="Task"></div>
-  <div class="plot tall" id="fig-distilled"></div>
-  <figcaption><b>Figure 3. Students about a thousand times smaller than TabPFN v3 match it on Marin and have only a minor degradation on StepLaw.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The dotted red line is the parametric baseline, the Chinchilla law alone. The arrow points where the search should go.</figcaption>
+  <div class="controls" id="ctl-students" role="group" aria-label="Target"></div>
+  <div class="controls" id="ctl-students-metric" role="group" aria-label="Error"></div>
+  <div class="plot tall" id="fig-students"></div>
+  <figcaption><b>Figure 3. Small models with a few hundred to a few thousand parameters reach the error of TabPFN v3 on both loss curves and come within 0.2 points of it on downstream accuracy.</b> OOD MAE against the number of fitted parameters, both on log scale, for each family fitted to the measured values (MLPs and RFMs averaged over two or three training seeds, with the seed range as a whisker). The squares are TabPFN checkpoints and the dashed line is TabPFN v3. On the loss, the dotted red line is a parametric baseline that uses no config input besides model size and tokens, and the dash-dot line is NCPL's fine-tuned Qwen3-1.7B as reported. On accuracy, the error is over the held-out DataDecide groups, and the dash-dot line is the TabPFN error reported by Meta Models. The arrow points where the search should go.</figcaption>
 </figure>
 
-<p>Meta Models can also predict internal dynamics, such as the parameter norm and the gradient norm, and downstream accuracy<sup><a href="#ref3">[3]</a></sup>. We try the small model families on these targets too, fitted to the measured values of the Marin runs.</p>
+<p>Meta Models also predicts the parameter and gradient norms of the Marin runs, and downstream accuracy: the average over ten OLMES benchmarks of the 750M and 1B DataDecide models, predicted from evaluations of smaller models<sup><a href="#ref3">[3]</a></sup>. We fit the small model families in the same setups. For the loss, our small models set any input beyond the training range to the edge of that range, which is safe because the scaling law already carries model size. Accuracy has no such law, so this made every larger model look like the largest training model. We found this from the held-out results, and for accuracy we let the MLP and the RFM read the true model size.</p>
 
 <figure>
-  <div class="plot short" id="fig-err-norm"></div>
-  <figcaption><b>Figure 4. TabPFN fits the gradient norm best, and the RFM matches it on the parameter norm.</b> MAE over the whole norm curve, in log10 units, on the held-out Marin runs at 537M and 1.2B parameters. MLP bars are the mean of three seeds, with the range as a whisker.</figcaption>
+  <div class="plot short" id="fig-normerr"></div>
+  <figcaption><b>Figure 4. Every family except the splines fits both norm curves better than TabPFN v3.</b> MAE over the whole norm curve, in log10 units, on the held-out Marin runs, for the size of each family with the lowest error on held-out runs at the training sizes. MLP bars average two seeds and RFM bars three, with the range as a whisker.</figcaption>
 </figure>
 
 <figure>
-  <div class="controls"><label for="sel-dyn-run">run in (a) and (b)</label><select id="sel-dyn-run"></select></div>
+  <div class="controls"><label for="sel-cur-run">run in (a) and (b)</label><select id="sel-cur-run"></select></div>
   <div class="three">
-    <div><div class="panel-title">a&nbsp; Parameter norm</div><div class="plot dyn" id="fig-dyn-p"></div></div>
-    <div><div class="panel-title">b&nbsp; Gradient norm</div><div class="plot dyn" id="fig-dyn-g"></div></div>
-    <div><div class="panel-title">c&nbsp; Downstream accuracy</div><div class="plot dyn" id="fig-dyn-acc"></div></div>
+    <div><div class="panel-title">a&nbsp; Parameter norm</div><div class="plot dyn" id="fig-cur-p"></div></div>
+    <div><div class="panel-title">b&nbsp; Gradient norm</div><div class="plot dyn" id="fig-cur-g"></div></div>
+    <div><div class="panel-title">c&nbsp; Downstream accuracy</div><div class="plot dyn" id="fig-cur-acc"></div></div>
   </div>
-  <div class="dyn-legend" id="dyn-legend"></div>
-  <figcaption><b>Figure 5. The spline model and the RFM predict downstream accuracy about as well as TabPFN, and like TabPFN all models often miss the level of the norm curves.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes,. (c) Each point is a held-out Marin run (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's accuracy MAE in percentage points.</figcaption>
+  <div class="dyn-legend" id="cur-legend"></div>
+  <figcaption><b>Figure 5. TabPFN and the MLP predict the accuracy of the larger DataDecide models within about one point, and all models follow the norm curves but often miss their level.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes, with the predictions of each model of Figure 4. (c) Each point is a held-out DataDecide group of one size and data recipe (circles: 750M, diamonds: 1B): its ten-task OLMES accuracy at the last available evaluation against the prediction, averaged over the group's runs and the model seeds. The dotted line is perfect prediction, and the dashed line marks the highest accuracy among the training runs. The menu holds Marin runs at the training sizes (in distribution) and larger held-out runs. The legend gives each model's accuracy MAE in percentage points.</figcaption>
 </figure>
 
 <p>As the Meta Models paper also reports, none of the models captures the norms perfectly, and they often miss the level of a run. All of them follow the trend, though: the parameter norm rises until about mid-training and then falls a little, and the gradient norm falls early in training and then rises (Figure 5).</p>
 
 <h2 id="mlp" data-toc="MLP" data-group="What the small models show">MLP</h2>
 
-<p>From here on, each family is fitted directly to the measured curves of the training runs in Table 1, with the training fraction as one more input. The MLP is the smallest black box. It clips each input to the range the training runs cover, standardizes it, and passes the config and the training fraction through two hidden layers to the residual (Figure 6).</p>
+<p>As in Figure 3, each family below is fitted to the measured curves of the training runs in Table 1, with the training fraction as one more input. The MLP is the smallest black box. It clips each input to the range the training runs cover, standardizes it, and passes the config and the training fraction through two hidden layers to the residual (Figure 6).</p>
 
 <figure class="narrow">
   <svg class="diagram" viewBox="0 0 760 250" role="img" aria-label="The MLP: clipped and standardized inputs pass through two hidden layers to the residual">
@@ -297,7 +304,7 @@ ul.points li { margin-bottom: 0.6rem; }
     <rect class="dg-box" x="210" y="72" width="132" height="96" rx="8"/>
     <text class="dg-boxt" x="276" y="104">clip to the</text><text class="dg-boxt" x="276" y="124">training range,</text><text class="dg-boxt" x="276" y="144">standardize</text>
     <path class="dg-arrow" d="M346 120 L382 120" marker-end="url(#dg-ah)"/>
-    <g class="dg-net"><line class="dg-edge" x1="386" y1="120" x2="420" y2="56"/><line class="dg-edge" x1="386" y1="120" x2="420" y2="88"/><line class="dg-edge" x1="386" y1="120" x2="420" y2="120"/><line class="dg-edge" x1="386" y1="120" x2="420" y2="152"/><line class="dg-edge" x1="386" y1="120" x2="420" y2="184"/><line class="dg-edge" x1="420" y1="56" x2="520" y2="56"/><line class="dg-edge" x1="420" y1="56" x2="520" y2="88"/><line class="dg-edge" x1="420" y1="56" x2="520" y2="120"/><line class="dg-edge" x1="420" y1="56" x2="520" y2="152"/><line class="dg-edge" x1="420" y1="56" x2="520" y2="184"/><line class="dg-edge" x1="420" y1="88" x2="520" y2="56"/><line class="dg-edge" x1="420" y1="88" x2="520" y2="88"/><line class="dg-edge" x1="420" y1="88" x2="520" y2="120"/><line class="dg-edge" x1="420" y1="88" x2="520" y2="152"/><line class="dg-edge" x1="420" y1="88" x2="520" y2="184"/><line class="dg-edge" x1="420" y1="120" x2="520" y2="56"/><line class="dg-edge" x1="420" y1="120" x2="520" y2="88"/><line class="dg-edge" x1="420" y1="120" x2="520" y2="120"/><line class="dg-edge" x1="420" y1="120" x2="520" y2="152"/><line class="dg-edge" x1="420" y1="120" x2="520" y2="184"/><line class="dg-edge" x1="420" y1="152" x2="520" y2="56"/><line class="dg-edge" x1="420" y1="152" x2="520" y2="88"/><line class="dg-edge" x1="420" y1="152" x2="520" y2="120"/><line class="dg-edge" x1="420" y1="152" x2="520" y2="152"/><line class="dg-edge" x1="420" y1="152" x2="520" y2="184"/><line class="dg-edge" x1="420" y1="184" x2="520" y2="56"/><line class="dg-edge" x1="420" y1="184" x2="520" y2="88"/><line class="dg-edge" x1="420" y1="184" x2="520" y2="120"/><line class="dg-edge" x1="420" y1="184" x2="520" y2="152"/><line class="dg-edge" x1="420" y1="184" x2="520" y2="184"/><line class="dg-edge" x1="520" y1="56" x2="566" y2="120"/><line class="dg-edge" x1="520" y1="88" x2="566" y2="120"/><line class="dg-edge" x1="520" y1="120" x2="566" y2="120"/><line class="dg-edge" x1="520" y1="152" x2="566" y2="120"/><line class="dg-edge" x1="520" y1="184" x2="566" y2="120"/><circle class="dg-node" cx="420" cy="56" r="9"/><circle class="dg-node" cx="420" cy="88" r="9"/><circle class="dg-node" cx="420" cy="120" r="9"/><circle class="dg-node" cx="420" cy="152" r="9"/><circle class="dg-node" cx="420" cy="184" r="9"/><circle class="dg-node" cx="520" cy="56" r="9"/><circle class="dg-node" cx="520" cy="88" r="9"/><circle class="dg-node" cx="520" cy="120" r="9"/><circle class="dg-node" cx="520" cy="152" r="9"/><circle class="dg-node" cx="520" cy="184" r="9"/></g>
+    <g class="dg-net"><line x1="386" y1="120" x2="420" y2="56"/><line x1="386" y1="120" x2="420" y2="88"/><line x1="386" y1="120" x2="420" y2="120"/><line x1="386" y1="120" x2="420" y2="152"/><line x1="386" y1="120" x2="420" y2="184"/><line x1="420" y1="56" x2="520" y2="56"/><line x1="420" y1="56" x2="520" y2="88"/><line x1="420" y1="56" x2="520" y2="120"/><line x1="420" y1="56" x2="520" y2="152"/><line x1="420" y1="56" x2="520" y2="184"/><line x1="420" y1="88" x2="520" y2="56"/><line x1="420" y1="88" x2="520" y2="88"/><line x1="420" y1="88" x2="520" y2="120"/><line x1="420" y1="88" x2="520" y2="152"/><line x1="420" y1="88" x2="520" y2="184"/><line x1="420" y1="120" x2="520" y2="56"/><line x1="420" y1="120" x2="520" y2="88"/><line x1="420" y1="120" x2="520" y2="120"/><line x1="420" y1="120" x2="520" y2="152"/><line x1="420" y1="120" x2="520" y2="184"/><line x1="420" y1="152" x2="520" y2="56"/><line x1="420" y1="152" x2="520" y2="88"/><line x1="420" y1="152" x2="520" y2="120"/><line x1="420" y1="152" x2="520" y2="152"/><line x1="420" y1="152" x2="520" y2="184"/><line x1="420" y1="184" x2="520" y2="56"/><line x1="420" y1="184" x2="520" y2="88"/><line x1="420" y1="184" x2="520" y2="120"/><line x1="420" y1="184" x2="520" y2="152"/><line x1="420" y1="184" x2="520" y2="184"/><line x1="520" y1="56" x2="566" y2="120"/><line x1="520" y1="88" x2="566" y2="120"/><line x1="520" y1="120" x2="566" y2="120"/><line x1="520" y1="152" x2="566" y2="120"/><line x1="520" y1="184" x2="566" y2="120"/><circle cx="420" cy="56" r="9"/><circle cx="420" cy="88" r="9"/><circle cx="420" cy="120" r="9"/><circle cx="420" cy="152" r="9"/><circle cx="420" cy="184" r="9"/><circle cx="520" cy="56" r="9"/><circle cx="520" cy="88" r="9"/><circle cx="520" cy="120" r="9"/><circle cx="520" cy="152" r="9"/><circle cx="520" cy="184" r="9"/></g>
     <text class="dg-small" x="480" y="232">two hidden layers</text>
     <path class="dg-arrow" d="M572 120 L600 120" marker-end="url(#dg-ah)"/>
     <text class="dg-out" x="606" y="116">residual r</text>
@@ -422,6 +429,21 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>We thank Kaiyue Wen and Jiaxuan Zou for helpful discussions and feedback.</p>
 
+<h2 id="citation" data-toc="Citation">Citation</h2>
+
+<p>Please cite this post as</p>
+<div class="cite-box"><button type="button" class="copy-btn" data-target="cite-text">Copy</button><p id="cite-text">Honam Wong and Hanlin Zhang. "Towards smaller and more interpretable prediction models." November 2026. https://matheart.github.io/blog_post/predictive-science-of-pretraining/</p></div>
+
+<p>or in BibTeX</p>
+<div class="cite-box"><button type="button" class="copy-btn" data-target="cite-bib">Copy</button><pre id="cite-bib">@misc{wong2026smaller,
+  title        = {{Towards smaller and more interpretable prediction models}},
+  author       = {Wong, Honam and Zhang, Hanlin},
+  year         = {2026},
+  month        = nov,
+  howpublished = {\url{https://matheart.github.io/blog_post/predictive-science-of-pretraining/}},
+  note         = {Blog post}
+}</pre></div>
+
 <h2 id="references" data-toc="References">References</h2>
 <ol class="refs">
   <li id="ref1">Jeremy M. Cohen, Alex Damian, Ameet Talwalkar, J. Zico Kolter, Jason D. Lee. <i>Understanding Optimization in Deep Learning with Central Flows.</i> ICLR 2025. arXiv:2410.24206. <a href="https://arxiv.org/abs/2410.24206">arxiv.org/abs/2410.24206</a></li>
@@ -467,10 +489,20 @@ ul.points li { margin-bottom: 0.6rem; }
 
 </article>
 </div>
-<script src="data/blog_data.js" charset="utf-8"></script>
 <script src="figs.js" charset="utf-8"></script>
 <script src="data/traj_data.js" charset="utf-8"></script>
 <script src="traj.js" charset="utf-8"></script>
+<script>
+document.querySelectorAll(".copy-btn").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var el = document.getElementById(b.getAttribute("data-target")), t = el.textContent;
+    var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); };
+    var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; };
+    try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+  });
+});
+</script>
+
 <script>
 (function () {
   var list = document.getElementById("toc-list"); if (!list) return;

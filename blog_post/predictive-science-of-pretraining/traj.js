@@ -299,8 +299,118 @@
     Plotly.react("fig-appendix", tr, L, CFG);
   }
 
+  // ---------------------------------------------------------------- Figures 3 to 5: small models fitted to the measured values
+  const SF = [["mlp", "MLP", "#c51b7d", "black box", "dot"], ["trees", "boosted trees", "#a6761d", "black box", "dot"],
+    ["rfm", "RFM", "#d95f02", "partly interpretable", "dash"], ["spline", "time-varying splines", "#1b9e77", "interpretable", "solid"]];
+  // parametric baseline (Chinchilla fit, no other config input) and NCPL's fine-tuned Qwen3-1.7B as reported, OOD MAE (nats)
+  const REF_LOSS = { marin_loss: { chin: { curve: 0.073, final: 0.024 }, ncpl: { curve: 0.036, final: 0.017 } },
+                     steplaw_loss: { chin: { curve: 0.131, final: 0.044 }, ncpl: { curve: 0.042, final: 0.022 } } };
+  const UNIT_LAB = { loss: "OOD MAE (nats)", "log10 norm": "OOD MAE (log10 norm)", accuracy: "OOD MAE (accuracy, 0.01 = 1 point)" };
+  const stu = { t: 0, m: 0 };
+  // Figure 3 compares on Meta Models' accuracy target: DataDecide ten-task macro accuracy at the last available evaluation
+  const STG = TG.map((t) => (t.key === "marin_acc" && D.students.datadecide_acc ? { key: "datadecide_acc", label: "DataDecide accuracy", unit: "accuracy" } : t));
+  function drawStudents() {
+    const tg = STG[stu.t], d = D.students[tg.key], dd = tg.key === "datadecide_acc", m = dd || stu.m === 1 ? "final" : "curve";
+    $("ctl-students-metric").style.visibility = dd ? "hidden" : "visible";
+    const tr = [];
+    SF.forEach(([k, lab, col, grp, dash]) => {
+      const q = d.families[k]; if (!q) return;
+      tr.push({ x: q.map((p) => p.n), y: q.map((p) => p[m]), type: "scatter", mode: "lines+markers", name: lab, legendgroup: grp, legendgrouptitle: { text: grp },
+        line: { color: col, width: 1.6, dash }, marker: { color: col, size: 8 }, hovertemplate: lab + "<br>%{x:,} parameters<br>MAE %{y:.4f}<extra></extra>",
+        error_y: q.some((p) => p.seeds > 1) ? { type: "data", symmetric: false, array: q.map((p) => (p[m + "_max"] ?? p[m]) - p[m]), arrayminus: q.map((p) => p[m] - (p[m + "_min"] ?? p[m])),
+          color: col, thickness: 1.2, width: 3 } : { visible: false } });
+    });
+    tr.push({ x: d.tabpfn.map((p) => p.n), y: d.tabpfn.map((p) => p[m]), type: "scatter", mode: "markers", name: "TabPFN checkpoints", legendgroup: "ref", legendgrouptitle: { text: "reference" },
+      marker: { symbol: "square", size: 9, color: css("--fg") }, text: d.tabpfn.map((p) => p.name), hovertemplate: "%{text}<br>MAE %{y:.4f}<extra></extra>" });
+    const v3 = d.tabpfn.find((p) => p.name === "TabPFN v3");
+    const L = base("");
+    const ally = tr.flatMap((t) => t.y);
+    const lines = [];
+    if (v3) lines.push([v3[m], "TabPFN v3", css("--muted"), "dash", "left"]);
+    const ref = REF_LOSS[tg.key];
+    if (ref) { lines.push([ref.chin[m], "parametric law", "#B64342", "dot", "mid"]); lines.push([ref.ncpl[m], "NCPL (reported)", "#6a51a3", "dashdot", "mid"]); }
+    if (dd) lines.push([D.dd_acc.meta_reported.tabpfn, "Meta Models (reported)", "#6a51a3", "dashdot", "mid"]);
+    lines.forEach((l) => ally.push(l[0]));
+    L.xaxis = { type: "log", title: { text: "number of parameters" }, tickvals: [10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8], ticktext: ["10", "100", "1k", "10k", "100k", "1M", "10M", "100M"], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
+    const YT = [0.01, 0.015, 0.02, 0.03, 0.05, 0.07, 0.1, 0.15, 0.2, 0.3, 0.5];
+    L.yaxis = { type: "log", title: { text: UNIT_LAB[tg.unit] }, tickvals: YT, ticktext: YT.map(String), gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false,
+      range: [Math.log10(Math.min(...ally) / 1.15), Math.log10(Math.max(...ally) * 1.15)] };
+    L.shapes = lines.map(([y, , col, dash]) => ({ type: "line", xref: "paper", x0: 0, x1: 1, y0: y, y1: y, line: { color: col, width: 1.3, dash } }));
+    L.annotations = lines.map(([y, txt, col, , side]) => side === "left" ? ({ xref: "paper", x: 0.01, xanchor: "left", y: Math.log10(y), yref: "y", text: txt, showarrow: false, yshift: 9, font: { size: 10, color: col } }) : ({ xref: "x", x: 5.7, xanchor: "center", y: Math.log10(y), yref: "y", text: txt, showarrow: false, yshift: lines.some((o) => o[0] > y && o[0] < y * 1.2) ? -9 : 9, font: { size: 10, color: col } }));
+    L.hovermode = "closest";
+    L.legend = { orientation: "v", x: 1.02, y: 1, font: { size: 11 }, groupclick: "toggleitem" }; L.margin = { l: 64, r: 210, t: 8, b: 56 };
+    if (window.innerWidth < 700) { L.legend = { orientation: "h", x: 0, y: -0.25, font: { size: 10 } }; L.margin.r = 16; L.margin.b = 200; }
+    else {
+      L.margin.b = 110;
+      const pw = Math.max(200, $("fig-students").clientWidth - L.margin.l - L.margin.r);
+      L.annotations.push(
+        { xref: "paper", yref: "paper", x: 0.06, y: -0.3, ax: 0.92 * pw, ay: 0, showarrow: true, arrowhead: 2, arrowsize: 1.2, arrowwidth: 2, arrowcolor: css("--muted"), text: "" },
+        { xref: "paper", yref: "paper", x: 0.02, y: -0.3, showarrow: false, text: "<b>?</b>", font: { size: 20, color: css("--fg") } },
+        { xref: "paper", yref: "paper", x: 0.52, y: -0.245, showarrow: false, text: "fewer parameters, low OOD error, interpretable", font: { size: 11, color: css("--muted") } });
+    }
+    Plotly.react("fig-students", tr, L, CFG);
+  }
+
+  const NR = D.norm_runs, MCOL = { MLP: "#c51b7d", RFM: "#d95f02", spline: "#1b9e77", "boosted trees": "#a6761d", "TabPFN v3": "#7570b3" };
+  const MDASH = { MLP: "dash", RFM: "dash", spline: "dash", "boosted trees": "dash", "TabPFN v3": "dot" };
+  function drawNormErr() {
+    const cats = [["marin_pnorm", "parameter norm"], ["marin_gnorm", "gradient norm"]];
+    const mods = [["mlp", "MLP"], ["trees", "boosted trees"], ["rfm", "RFM"], ["spline", "spline"]];
+    const tr = mods.map(([k, lab]) => ({
+      x: cats.map((c) => c[1]), y: cats.map((c) => D.students[c[0]].best[k].curve), type: "bar", name: lab + (k === "mlp" ? " (mean of 2 seeds)" : k === "rfm" ? " (mean of 3 seeds)" : ""), marker: { color: MCOL[lab] },
+      error_y: k === "mlp" || k === "rfm" ? { type: "data", symmetric: false, array: cats.map((c) => D.students[c[0]].best[k].curve_max - D.students[c[0]].best[k].curve), arrayminus: cats.map((c) => D.students[c[0]].best[k].curve - D.students[c[0]].best[k].curve_min), color: css("--fg"), thickness: 1.2, width: 4 } : { visible: false },
+      hovertemplate: lab + "<br>%{x}: %{y:.3f}<extra></extra>" }));
+    tr.push({ x: cats.map((c) => c[1]), y: cats.map((c) => D.students[c[0]].tabpfn.find((p) => p.name === "TabPFN v3").curve), type: "bar", name: "TabPFN v3", marker: { color: MCOL["TabPFN v3"] }, hovertemplate: "TabPFN v3<br>%{x}: %{y:.3f}<extra></extra>" });
+    const L = base("MAE (log10 units)");
+    L.xaxis = { gridcolor: "rgba(0,0,0,0)", linecolor: css("--rule") }; L.barmode = "group"; L.bargap = 0.25; L.hovermode = "closest";
+    L.legend = { orientation: "h", x: 0, y: -0.15, font: { size: 11 } }; L.margin.b = 70;
+    Plotly.react("fig-normerr", tr, L, CFG);
+  }
+  const cd = { run: 0 };
+  function curPanel(div, key, yTitle) {
+    const r = NR.runs[cd.run], c = r[key], x = c.frac.map((f) => 100 * f), tr = [];
+    tr.push({ x, y: c.obs.map((v) => 10 ** v), mode: "lines+markers", name: "measured", line: { color: css("--fg"), width: 2.2 }, marker: { size: 4 }, hovertemplate: "measured: %{y:.3g}<extra></extra>" });
+    NR.models.forEach((mn) => tr.push({ x, y: c[mn].map((v) => 10 ** v), mode: "lines", name: mn, line: { color: MCOL[mn], width: 1.8, dash: MDASH[mn] }, hovertemplate: mn + ": %{y:.3g}<extra></extra>" }));
+    const L = base(yTitle);
+    L.xaxis = { title: { text: "training fraction (%)" }, range: [0, 101], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
+    L.yaxis.type = "log"; L.showlegend = false; L.margin = { l: 52, r: 8, t: 6, b: 46 }; L.hovermode = "x unified";
+    Plotly.react(div, tr, L, CFG);
+  }
+  function drawCurDyn() {
+    curPanel("fig-cur-p", "P", "parameter norm"); curPanel("fig-cur-g", "G", "gradient norm");
+    const A = D.dd_acc, obs = A.obs.map((v) => 100 * v);
+    const tr = NR.models.map((mn) => ({ x: obs, y: A[mn].map((v) => 100 * v), type: "scatter", mode: "markers", name: mn,
+      marker: { color: MCOL[mn], size: 7, opacity: 0.7, symbol: A.N.map((n) => (n > 1e9 ? "diamond" : "circle")) }, text: A.group,
+      hovertemplate: mn + "<br>%{text}<br>observed %{x:.1f}%, predicted %{y:.1f}%<extra></extra>" }));
+    const all = obs.concat(...NR.models.map((mn) => A[mn].map((v) => 100 * v)));
+    const lo = Math.floor(Math.min(...all)) - 0.5, hi = Math.ceil(Math.max(...all)) + 0.5;
+    tr.push({ x: [lo, hi], y: [lo, hi], mode: "lines", line: { color: css("--muted"), dash: "dot", width: 1.2 }, hoverinfo: "skip", showlegend: false });
+    const L = base("predicted accuracy (%)");
+    L.xaxis = { title: { text: "observed accuracy (%)" }, range: [lo, hi], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
+    L.yaxis.range = [lo, hi]; L.showlegend = false; L.margin = { l: 52, r: 8, t: 6, b: 46 }; L.hovermode = "closest";
+    const tm = 100 * A.train_max;  // the highest accuracy among the training runs
+    L.shapes = [{ type: "line", x0: tm, x1: tm, yref: "paper", y0: 0, y1: 1, line: { color: css("--muted"), width: 1, dash: "dash" } }];
+    L.annotations = [{ x: tm, yref: "paper", y: 0.02, xanchor: "right", text: "highest training run ", showarrow: false, font: { size: 10, color: css("--muted") } }];
+    Plotly.react("fig-cur-acc", tr, L, CFG);
+    const sw = (col, dash) => `<svg width="26" height="10" aria-hidden="true"><line x1="1" y1="5" x2="25" y2="5" stroke="${col}" stroke-width="2.5" ${dash === "dash" ? 'stroke-dasharray="5 3"' : dash === "dot" ? 'stroke-dasharray="2 3"' : ""}/></svg>`;
+    $("cur-legend").innerHTML = `<span>${sw(css("--fg"))} measured</span>` + NR.models.map((mn) => `<span>${sw(MCOL[mn], MDASH[mn])} ${mn} (accuracy MAE ${(100 * A.mae[mn]).toFixed(2)} pp)</span>`).join("") +
+      `<span>(c): circles 750M, diamonds 1B</span>`;
+  }
+  function initCurDyn() {
+    const sel = $("sel-cur-run");
+    const SPLIT = { id_test: "in distribution", ood: "held out" };
+    NR.runs.forEach((r, i) => { const o = document.createElement("option"); o.value = i; o.textContent = `${SPLIT[r.split] || r.split}: ${(r.N / 1e6).toFixed(0)}M ${r.opt}, ${(r.D / 1e9).toFixed(1)}B tokens`; sel.appendChild(o); });
+    // a typical held-out run whose gradient norm rises again after its minimum, the pattern described in the text
+    const rises = NR.runs.map((r, i) => [i, r.G.obs[r.G.obs.length - 1] - Math.min(...r.G.obs)]).filter(([i, d]) => NR.runs[i].split === "ood" && d > Math.log10(1.05));
+    cd.run = rises.length ? rises[Math.floor(rises.length / 2)][0] : 0; sel.value = cd.run;
+    sel.onchange = () => { cd.run = +sel.value; drawCurDyn(); };
+  }
+
   const TOPT = TG.map((t) => ({ label: t.label }));
   function renderAll() {
+    if ($("fig-students")) drawStudents();
+    if ($("fig-normerr")) drawNormErr();
+    if ($("fig-cur-p")) drawCurDyn();
     if ($("si-0")) drawSplineIllus();
     if ($("rfm-eye")) drawRfmMetric();
     if ($("fig-appendix")) drawAppendix();
@@ -316,6 +426,11 @@
   if ($("fig-terms")) buttons($("ctl-terms"), TOPT, st.terms, (i) => { st.terms = i; drawTerms(); });
   if ($("fig-agop")) { initAgop(); buttons($("ctl-agop"), TOPT.slice(0, 3), st.agop, (i) => { st.agop = i; stopAgop(); ag.frame = 0; drawAgop(); }); }
   if ($("tree-one")) { initTrees(); drawTreeFig(); }
+  if ($("fig-students")) {
+    buttons($("ctl-students"), STG.map((t) => ({ label: t.label })), stu.t, (i) => { stu.t = i; drawStudents(); });
+    buttons($("ctl-students-metric"), [{ label: "whole curve" }, { label: "final value" }], 0, (i) => { stu.m = i; drawStudents(); });
+  }
+  if ($("fig-cur-p")) initCurDyn();
   if ($("si-0")) buttons($("ctl-si"), SI.frames.map((f) => ({ label: `${Math.round(100 * f.t)}% of training` })), siState.frame, (i) => { siState.frame = i; drawSplineIllus(); });
   if ($("fig-appendix")) {
     buttons($("ctl-appendix"), APSETS, 0, (i) => { apState.set = i; drawAppendix(); });
