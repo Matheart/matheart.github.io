@@ -9,11 +9,13 @@
   const HAS_EFF = !!document.getElementById("fig-effects"); // the averaged partial-dependence figure is optional
   const HAS_PAIRS = !!document.getElementById("fig-pairs") && D.effects; // pair maps (moved to the companion page)
   const HAS_RFM = !!document.getElementById("fig-rfm") && D.effects; // RFM metric figure (removed from the post)
+  const HAS_FRONTIER = !!document.getElementById("fig-frontier"); // frontier by interpretability group (removed from the post)
+  const KEEP = new Set(["mlp", "trees", "rfm", "spline add_k"]); // student families shown in the distillation figure
   const TASKS = [
-    { corpus: "marin", metric: "final", label: "Marin, final loss" },
     { corpus: "marin", metric: "curve", label: "Marin, whole curve" },
-    { corpus: "steplaw", metric: "final", label: "StepLaw, final loss" },
+    { corpus: "marin", metric: "final", label: "Marin, final loss" },
     { corpus: "steplaw", metric: "curve", label: "StepLaw, whole curve" },
+    { corpus: "steplaw", metric: "final", label: "StepLaw, final loss" },
   ];
   const CORPORA = [{ key: "marin", label: "Marin" }, { key: "steplaw", label: "StepLaw" }];
   const GROUP = {
@@ -27,7 +29,7 @@
     "mlp": ["MLP", "#c51b7d", "circle"], "trees": ["boosted trees", "#a6761d", "circle"],
     "rfm": ["RFM", "#d95f02", "circle"], "rfm final": ["RFM, final loss only", "#e64b35", "diamond"],
     "boost depth 3": ["boosting, depth 3", "#7570b3", "triangle-up"],
-    "spline add_k": ["splines per training fraction", "#1b9e77", "circle"],
+    "spline add_k": ["splines that change with training fraction", "#1b9e77", "circle"],
     "gam final": ["additive splines, final loss only", "#00a087", "diamond"],
     "ga2m final": ["pairwise splines, final loss only", "#3c5488", "diamond"],
     "boost depth 1": ["boosting, depth 1", "#66a61e", "triangle-up"],
@@ -182,7 +184,7 @@
     const pts = D.points.filter((p) => p.corpus === T.corpus && p[T.metric] != null);
     const traces = [];
     ["black", "partly", "interp"].forEach((g) => {
-      Object.keys(FAM).filter((f) => GROUP[f] === g).forEach((f) => {
+      Object.keys(FAM).filter((f) => GROUP[f] === g && KEEP.has(f)).forEach((f) => {
         const q = pts.filter((p) => p.family === f && p.source === "distill").sort((a, b) => a.n_params - b.n_params);
         if (!q.length) return;
         const [lab, col, sym] = FAM[f];
@@ -208,6 +210,16 @@
       L.annotations = [{ xref: "paper", x: 0.01, y: Math.log10(v3[T.metric]), yref: "y", text: "teacher (TabPFN v3)", showarrow: false, yshift: 9, xanchor: "left", font: { size: 10, color: css("--muted") } }];
     }
     if (window.innerWidth < 700) { L.legend = { orientation: "h", x: 0, y: -0.25, font: { size: 10 } }; L.margin.r = 16; L.margin.b = 200; }
+    else {  // the search from right to left: toward fewer parameters, low OOD error and an interpretable model
+      L.margin.b = 110;
+      // an annotation's tail is set in pixels, so the arrow length comes from the width of the plotting area
+      const pw = Math.max(200, $("fig-distilled").clientWidth - L.margin.l - L.margin.r);
+      L.annotations = (L.annotations || []).concat([
+        { xref: "paper", yref: "paper", x: 0.06, y: -0.3, ax: 0.92 * pw, ay: 0, showarrow: true, arrowhead: 2, arrowsize: 1.2, arrowwidth: 2, arrowcolor: css("--muted"), text: "" },
+        { xref: "paper", yref: "paper", x: 0.02, y: -0.3, showarrow: false, text: "<b>?</b>", font: { size: 20, color: css("--fg") } },
+        { xref: "paper", yref: "paper", x: 0.52, y: -0.245, showarrow: false, text: "fewer parameters, low OOD error, interpretable", font: { size: 11, color: css("--muted") } },
+      ]);
+    }
     Plotly.react("fig-distilled", traces, L, CFG);
   }
 
@@ -664,7 +676,7 @@
     { key: "MLP_s0", acc: "acc_vialoss_mlp_s0", accKey: "vialoss_mlp_s0", label: "MLP", color: "#c51b7d", dash: "dash" },
     { key: "RFM", acc: "acc_vialoss_rfm", accKey: "vialoss_rfm", label: "RFM", color: "#d95f02", dash: "dash" },
     { key: "spline", acc: "acc_vialoss_spline", accKey: "vialoss_spline", label: "spline", color: "#1b9e77", dash: "dash" },
-    { key: "TabPFN", acc: "acc_vialoss_tabpfn", accKey: "vialoss_tabpfn", label: "TabPFN (prior work)", color: "#7570b3", dash: "dot" },
+    { key: "TabPFN", acc: "acc_vialoss_tabpfn", accKey: "vialoss_tabpfn", label: "TabPFN v3", color: "#7570b3", dash: "dot" },
   ];
   const dyn = { run: 0, runs: [] };
   function dynRuns() {
@@ -680,7 +692,9 @@
       runs.push(r);
     }));
     dyn.runs = runs;
-    const ho = runs.map((r, i) => [r, i]).filter(([r]) => r.c.split === "ood").sort((x, y) => x[0].err - y[0].err);
+    // a typical held-out run among those whose gradient norm ends above its minimum, the pattern the text describes
+    const rises = (r) => { const y = G[r.g].obs; return y[y.length - 1] > 1.05 * Math.min(...y); };
+    const ho = runs.map((r, i) => [r, i]).filter(([r]) => r.c.split === "ood" && rises(r)).sort((x, y) => x[0].err - y[0].err);
     dyn.run = ho.length ? ho[Math.floor(ho.length / 2)][1] : 0;  // a typical held-out run
   }
   function dynPanel(div, target, yTitle) {
@@ -690,7 +704,7 @@
       marker: { size: 4, color: css("--fg") }, hovertemplate: "measured<br>%{x:.0f}%: %{y:.3g}<extra></extra>" }];
     DYN_MODELS.forEach((m) => traces.push({ x, y: c[m.key].map((v) => 10 ** v), type: "scatter", mode: "lines", name: m.label,
       line: { color: m.color, width: 2.2, dash: m.dash }, hovertemplate: m.label + "<br>%{x:.0f}%: %{y:.3g}<extra></extra>" }));
-    const L = layout("training progress (%)", yTitle);
+    const L = layout("training fraction (%)", yTitle);
     L.yaxis.type = "log"; L.xaxis.range = [0, 102];
     L.margin = { l: 58, r: 8, t: 6, b: 46 }; L.showlegend = false;
     Plotly.react(div, traces, L, CFG);
@@ -711,10 +725,10 @@
     const L = layout("observed accuracy (%)", "predicted accuracy (%)");
     L.xaxis.range = [lo, hi]; L.yaxis.range = [lo, hi];
     L.margin = { l: 52, r: 8, t: 6, b: 46 };
-    L.legend = { orientation: "v", x: 0.02, y: 0.98, font: { size: 10 }, bgcolor: "rgba(0,0,0,0)", title: { text: "MAE", font: { size: 10 } } };
+    L.showlegend = false;  // the MAE of each model is in the shared legend below the panels
     Plotly.react("fig-dyn-acc", traces, L, CFG);
     const sw = (col, dash) => `<svg width="26" height="10" aria-hidden="true"><line x1="1" y1="5" x2="25" y2="5" stroke="${col}" stroke-width="2.5" ${dash === "dash" ? 'stroke-dasharray="5 3"' : dash === "dot" ? 'stroke-dasharray="2 3"' : ""}/></svg>`;
-    $("dyn-legend").innerHTML = `<span>${sw(css("--fg"))} measured</span>` + DYN_MODELS.map((m) => `<span>${sw(m.color, m.dash)} ${m.label}</span>`).join("") +
+    $("dyn-legend").innerHTML = `<span>${sw(css("--fg"))} measured</span>` + DYN_MODELS.map((m) => `<span>${sw(m.color, m.dash)} ${m.label}${D.small.acc[m.accKey] ? ` (accuracy MAE ${D.small.acc[m.accKey].mae.toFixed(2)} pp)` : ""}</span>`).join("") +
       `<span class="note">(c): circles 537M, diamonds 1.2B</span>`;
   }
 
@@ -722,7 +736,7 @@
   const HAS_ERR = !!document.getElementById("fig-err-norm") && D.errors;
   const ERR_MODELS = [
     { key: "MLP", label: "MLP (mean of 3 seeds)", color: "#c51b7d" }, { key: "RFM", label: "RFM", color: "#d95f02" },
-    { key: "spline", label: "spline", color: "#1b9e77" }, { key: "TabPFN", label: "TabPFN (prior work)", color: "#7570b3" },
+    { key: "spline", label: "spline", color: "#1b9e77" }, { key: "TabPFN", label: "TabPFN v3", color: "#7570b3" },
   ];
   function errBars(div, obj, yTitle, refLine) {
     const cats = Object.keys(obj);
@@ -743,11 +757,11 @@
     Plotly.react(div, traces, L, CFG);
   }
   function drawErrors() {
-    errBars("fig-err-norm", D.errors.norms, "held-out MAE over the curve (log10 units)");
+    errBars("fig-err-norm", D.errors.norms, "MAE (log10 units)");
   }
 
   function renderAll(animateSize) {
-    drawSize(!!animateSize); drawFrontier(); drawDistilled(); if (HAS_EFF) drawEffects(); if (HAS_PAIRS) drawPairs(); if (HAS_RFM) drawRFM(); if (HAS_OPT) { drawOptGap(); drawCurveGap(); }
+    drawSize(!!animateSize); if (HAS_FRONTIER) drawFrontier(); drawDistilled(); if (HAS_EFF) drawEffects(); if (HAS_PAIRS) drawPairs(); if (HAS_RFM) drawRFM(); if (HAS_OPT) { drawOptGap(); drawCurveGap(); }
     if (HAS_ACC) drawAccLoss();
     if (HAS_ACCRESID) drawAccResid();
     if (HAS_DYN) drawDynamics();
@@ -780,7 +794,7 @@
     };
   }
 
-  buttons($("ctl-frontier"), TASKS, 0, (i) => { frontier.task = i; drawFrontier(); });
+  if (HAS_FRONTIER) buttons($("ctl-frontier"), TASKS, 0, (i) => { frontier.task = i; drawFrontier(); });
   buttons($("ctl-distilled"), TASKS, 0, (i) => { distilled.task = i; drawDistilled(); });
   if (HAS_EFF) buttons($("ctl-effects"), CORPORA, 0, (i) => { eff.corpus = i; eff.input = 0; fillEffectSelect(); drawEffects(); });
   if (HAS_PAIRS) buttons($("ctl-pairs"), CORPORA, 0, (i) => { pr.corpus = i; pr.pair = 0; fillPairSelect(); drawPairs(); });
