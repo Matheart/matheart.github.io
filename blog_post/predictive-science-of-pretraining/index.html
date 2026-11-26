@@ -188,14 +188,19 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>Understanding the training dynamics of a model from its training config is notoriously hard. Theory can describe the dynamics in simpler settings. Central flows<sup><a href="#ref1">[1]</a></sup> model the time-averaged path of gradient descent and RMSProp at the edge of stability, and they follow the training of real networks closely. They are derived for deterministic, full-batch optimizers, one optimizer at a time, so they do not yet cover the many knobs of a pretraining config.</p>
 
-<p>Recent work treats the question as a prediction problem and fits a black-box model to many past training runs. For example, NCPL<sup><a href="#ref2">[2]</a></sup> fine-tunes Qwen3-1.7B to predict the loss curve from the training config. More recently, Meta Models<sup><a href="#ref3">[3]</a></sup> replaces Qwen with a frozen TabPFN v3, a pretrained tabular model that reads the training runs as context. Both predict the loss curves of larger models held out from training (out of distribution, OOD).</p>
+<p>Recent work treats the question as a prediction problem and fits a black-box model to many past training runs. For example, NCPL<sup><a href="#ref2">[2]</a></sup> fine-tunes Qwen3-1.7B to predict the loss curve from the training config. More recently, Meta Models<sup><a href="#ref3">[3]</a></sup> replaces Qwen with a frozen TabPFN v3, a pretrained tabular model that reads the training runs as context. Both predict the loss curves of larger models held out from training (out of distribution, OOD). Meta Models also shows that TabPFN can track the gradient norm and the parameter norm during training.</p>
+
+<figure>
+  <img src="figures/teaser.webp" width="1976" height="796" alt="Schematic: a training config with knobs such as learning rate, batch size, weight decay, warmup, optimizer, model size and tokens goes into a black box, which outputs the training trajectory of loss, accuracy, parameter norm and gradient norm. A magnifying glass over the black box shows which knobs matter early, in the middle and at the end of training." style="border-radius: 6px;">
+  <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this post tries to read that map.</b> Schematic. The model is fitted to thousands of public pretraining runs and predicts the loss, downstream accuracy, parameter norm and gradient norm over training. The curves and the timeline in the magnifying glass are illustrations, not results.</figcaption>
+</figure>
 
 <p>However, the prediction model is still a black box with many parameters. This makes it hard to disentangle how each hyperparameter affects the training dynamics: the loss, the parameter norm, the gradient norm and downstream accuracy. This post records our attempt to open the black box. We look for the smallest prediction models that still predict well, and then read what they show along training.</p>
 
 <figure class="narrow">
   <div id="fig-size"></div>
   <div class="controls" style="justify-content:center"><button type="button" id="replay-size">Replay</button></div>
-  <figcaption><b>Figure 1. The prediction model is still large. How small can it get?</b> Meta Models does not state a size, so 58M is our count for the default TabPFN v3 checkpoint.</figcaption>
+  <figcaption><b>Figure 2. The prediction model is still large. How small can it get?</b> Meta Models does not state a size, so 58M is our count for the default TabPFN v3 checkpoint.</figcaption>
 </figure>
 
 <h2 id="search" data-toc="The smallest model">Searching for the smallest interpretable model</h2>
@@ -245,14 +250,14 @@ ul.points li { margin-bottom: 0.6rem; }
 <figure>
   <div class="controls" id="ctl-distilled" role="group" aria-label="Task"></div>
   <div class="plot tall" id="fig-distilled"></div>
-  <figcaption><b>Figure 2. Students about a thousand times smaller than TabPFN v3 match it on Marin and have only a minor degradation on StepLaw.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The arrow points where the search should go.</figcaption>
+  <figcaption><b>Figure 3. Students about a thousand times smaller than TabPFN v3 match it on Marin and have only a minor degradation on StepLaw.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The arrow points where the search should go.</figcaption>
 </figure>
 
 <p>Meta Models can also predict internal dynamics, such as the parameter norm and the gradient norm, and downstream accuracy<sup><a href="#ref3">[3]</a></sup>. We try the small model families on these targets too, fitted to the measured values of the Marin runs.</p>
 
 <figure>
   <div class="plot short" id="fig-err-norm"></div>
-  <figcaption><b>Figure 3. TabPFN fits the gradient norm best, and the RFM matches it on the parameter norm.</b> MAE over the whole norm curve, in log10 units, on the held-out Marin runs at 537M and 1.2B parameters. MLP bars are the mean of three seeds, with the range as a whisker.</figcaption>
+  <figcaption><b>Figure 4. TabPFN fits the gradient norm best, and the RFM matches it on the parameter norm.</b> MAE over the whole norm curve, in log10 units, on the held-out Marin runs at 537M and 1.2B parameters. MLP bars are the mean of three seeds, with the range as a whisker.</figcaption>
 </figure>
 
 <figure>
@@ -263,14 +268,14 @@ ul.points li { margin-bottom: 0.6rem; }
     <div><div class="panel-title">c&nbsp; Downstream accuracy</div><div class="plot dyn" id="fig-dyn-acc"></div></div>
   </div>
   <div class="dyn-legend" id="dyn-legend"></div>
-  <figcaption><b>Figure 4. The spline model and the RFM predict downstream accuracy about as well as TabPFN, and like TabPFN all models often miss the level of the norm curves.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes, with the predictions of a 249-parameter MLP, the RFM, the spline model and TabPFN v3, each fitted to the norm curves of the training runs. The menu chooses the run. (c) Each point is a held-out Marin run (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's accuracy MAE in percentage points.</figcaption>
+  <figcaption><b>Figure 5. The spline model and the RFM predict downstream accuracy about as well as TabPFN, and like TabPFN all models often miss the level of the norm curves.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes, with the predictions of a 249-parameter MLP, the RFM, the spline model and TabPFN v3, each fitted to the norm curves of the training runs. The menu chooses the run. (c) Each point is a held-out Marin run (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's accuracy MAE in percentage points.</figcaption>
 </figure>
 
-<p>As the Meta Models paper also reports, none of the models captures the norms perfectly, and they often miss the level of a run. All of them follow the trend, though: the parameter norm rises until about mid-training and then falls a little, and the gradient norm falls early in training and then rises (Figure 4).</p>
+<p>As the Meta Models paper also reports, none of the models captures the norms perfectly, and they often miss the level of a run. All of them follow the trend, though: the parameter norm rises until about mid-training and then falls a little, and the gradient norm falls early in training and then rises (Figure 5).</p>
 
 <h2 id="mlp" data-toc="MLP" data-group="What the small models show">MLP</h2>
 
-<p>From here on, each family is fitted directly to the measured curves of the training runs in Table 1, with the training fraction as one more input. The MLP is the smallest black box. It clips each input to the range the training runs cover, standardizes it, and passes the config and the training fraction through two hidden layers to the residual (Figure 5).</p>
+<p>From here on, each family is fitted directly to the measured curves of the training runs in Table 1, with the training fraction as one more input. The MLP is the smallest black box. It clips each input to the range the training runs cover, standardizes it, and passes the config and the training fraction through two hidden layers to the residual (Figure 6).</p>
 
 <figure class="narrow">
   <svg class="diagram" viewBox="0 0 760 250" role="img" aria-label="The MLP: clipped and standardized inputs pass through two hidden layers to the residual">
@@ -291,17 +296,17 @@ ul.points li { margin-bottom: 0.6rem; }
     <text class="dg-small" x="606" y="160">= predicted loss</text>
     <defs><marker id="dg-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker></defs>
   </svg>
-  <figcaption><b>Figure 5. The MLP maps a config and a training fraction to the residual.</b> Inputs outside the training range enter as the nearest training value, so a larger held-out model enters as the largest training model, and its scale dependence beyond the training range comes from the Chinchilla term.</figcaption>
+  <figcaption><b>Figure 6. The MLP maps a config and a training fraction to the residual.</b> Inputs outside the training range enter as the nearest training value, so a larger held-out model enters as the largest training model, and its scale dependence beyond the training range comes from the Chinchilla term.</figcaption>
 </figure>
 
 <p>We read the MLP with SHAP<sup><a href="#ref8">[8]</a></sup>, which splits one prediction into a contribution from each input. The contribution of an input is its Shapley value: the change of the prediction when that input is revealed, averaged over all orders in which the inputs can be revealed, with the inputs not yet revealed taken from other training runs. The contributions of all inputs add up to the prediction minus the average prediction. SHAP needs only predictions, so it applies to any model, TabPFN included.</p>
 
-<p>To see how the attribution changes during training, we fit the MLP once on all points of all training curves. We then set the training fraction of every run to the same value \(t\), for 40 values of \(t\) between 1% and 100% of training, and compute the contributions for 150 training runs. The <em>share</em> of a knob at \(t\) is the average size of its contribution divided by the sum over all inputs, so the shares of all inputs add up to 1 at every \(t\) (Figure 6).</p>
+<p>To see how the attribution changes during training, we fit the MLP once on all points of all training curves. We then set the training fraction of every run to the same value \(t\), for 40 values of \(t\) between 1% and 100% of training, and compute the contributions for 150 training runs. The <em>share</em> of a knob at \(t\) is the average size of its contribution divided by the sum over all inputs, so the shares of all inputs add up to 1 at every \(t\) (Figure 7).</p>
 
 <figure>
   <div class="controls" id="ctl-mlp" role="group" aria-label="Target"></div>
   <div class="plot" id="fig-mlp"></div>
-  <figcaption><b>Figure 6. In a small MLP, the token budget drives the prediction early in training and the learning rate later.</b> Share of the MLP's prediction explained by each of its five largest knobs at each training fraction, computed as described in the text. The dashed line sums all other inputs. Bands are 90% bootstrap intervals over the 150 explained runs. Each curve starts at the earliest point that the training runs cover. The buttons switch the predicted quantity.</figcaption>
+  <figcaption><b>Figure 7. In a small MLP, the token budget drives the prediction early in training and the learning rate later.</b> Share of the MLP's prediction explained by each of its five largest knobs at each training fraction, computed as described in the text. The dashed line sums all other inputs. Bands are 90% bootstrap intervals over the 150 explained runs. Each curve starts at the earliest point that the training runs cover. The buttons switch the predicted quantity.</figcaption>
 </figure>
 
 <p>On both loss curves the prediction moves from one knob to another during training. On the Marin loss the <span class="kn"><i style="background:#0F4D92"></i>token budget</span> drives the prediction early, partly because at the same training fraction a longer run has seen more tokens. From about 15% of training on, the <span class="kn"><i style="background:#B64342"></i>peak learning rate</span> and <span class="kn"><i style="background:#C9A100"></i>weight decay</span> take over, and the learning rate stays the largest knob until the end. StepLaw shows the same move: the token budget fades early, the learning rate peaks about a third of the way through training, and the <span class="kn"><i style="background:#4E9A4E"></i>batch size</span> peaks about halfway.</p>
@@ -312,14 +317,14 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>The spline model gives every knob a curve that moves during training:</p>
 <div class="eq">\[ \hat r(x, t) \;=\; c(t) \;+\; \sum_j f_j(x_j;\, t), \qquad f_j(x_j;\, t) \;=\; \sum_{m,n} w_{jmn}\, \phi_m(x_j)\, \psi_n(\log t), \]</div>
-<p>where \(\hat r\) is the predicted residual, \(x_j\) is one knob, \(t\) is the training fraction, and the \(\phi_m\) and \(\psi_n\) are cubic spline basis functions. This is a varying-coefficient model<sup><a href="#ref9">[9]</a></sup>: at each fraction it reads one curve per knob at the run's config and adds the readings (Figure 7).</p>
+<p>where \(\hat r\) is the predicted residual, \(x_j\) is one knob, \(t\) is the training fraction, and the \(\phi_m\) and \(\psi_n\) are cubic spline basis functions. This is a varying-coefficient model<sup><a href="#ref9">[9]</a></sup>: at each fraction it reads one curve per knob at the run's config and adds the readings (Figure 8).</p>
 
 <figure>
   <div class="controls" id="ctl-si" role="group" aria-label="Point of training"></div>
   <div class="four">
     <div class="plot illus" id="si-0"></div><div class="plot illus" id="si-1"></div><div class="plot illus" id="si-2"></div><div class="plot illus wide" id="si-3"></div>
   </div>
-  <figcaption><b>Figure 7. The spline model reads one curve per knob at the run's config and adds the readings, and the curves move during training.</b> Three of the 18 curves of the spline model of the Marin loss, at the point of training chosen by the buttons, each centred to mean 0 over the training runs. The red dot is the reading for one AdamW run (135M parameters, 10.7B tokens, peak LR 0.008, weight decay 0.1, warmup over 10% of training). The last panel starts at the mean residual, adds the three readings and the other 15, and ends at the predicted residual.</figcaption>
+  <figcaption><b>Figure 8. The spline model reads one curve per knob at the run's config and adds the readings, and the curves move during training.</b> Three of the 18 curves of the spline model of the Marin loss, at the point of training chosen by the buttons, each centred to mean 0 over the training runs. The red dot is the reading for one AdamW run (135M parameters, 10.7B tokens, peak LR 0.008, weight decay 0.1, warmup over 10% of training). The last panel starts at the mean residual, adds the three readings and the other 15, and ends at the predicted residual.</figcaption>
 </figure>
 
 <p>The model can be read exactly, but it has no interactions. We add one interaction term at a time, a product of the same basis functions over a group of two, three or four knobs, and measure how each term changes the error on the larger held-out models. For comparison, we also measure each knob's own term, by adding it back to the additive model without it.</p>
@@ -327,16 +332,16 @@ ul.points li { margin-bottom: 0.6rem; }
 <figure>
   <div class="controls" id="ctl-terms" role="group" aria-label="Target"></div>
   <div class="plot tall" id="fig-terms"></div>
-  <figcaption><b>Figure 8. Except on the gradient norm, terms of three or four knobs lower the held-out error about as much as pairs.</b> Change in held-out error over the whole curve when one term is added to the spline model, for the six best terms of one, two, three and four knobs. For one knob, the term is added back to the additive model without it. Bars are 90% intervals over groups of held-out runs. LR is the peak learning rate and WD the weight decay.</figcaption>
+  <figcaption><b>Figure 9. Except on the gradient norm, terms of three or four knobs lower the held-out error about as much as pairs.</b> Change in held-out error over the whole curve when one term is added to the spline model, for the six best terms of one, two, three and four knobs. For one knob, the term is added back to the additive model without it. Bars are 90% intervals over groups of held-out runs. LR is the peak learning rate and WD the weight decay.</figcaption>
 </figure>
 
 <p>Except for the gradient norm, interactions of three or four knobs lower the held-out error about as much as pairs: more on the parameter norm, about the same on the Marin loss and accuracy, and about two thirds as much on StepLaw. Higher-order interactions therefore still matter on the larger models. On the gradient norm the best pair, the optimizer type with beta2, does clearly better than any larger group, partly because beta2 is not a candidate in the larger groups. A knob's own term is larger than any interaction on the Marin loss and accuracy, about as large as the best pairs on StepLaw, and smaller than the best interactions on both norms.</p>
 
-<p>One coupling stands out. On StepLaw the learning rate with batch size lowers the error most on held-out runs at the training sizes, yet it is missing from Figure 8 because it raises the error on the larger models. The learning rate's own term behaves the same way. Both help only when model size enters the same term, which matches StepLaw's own law, in which the best learning rate depends on model size<sup><a href="#ref6">[6]</a></sup>.</p>
+<p>One coupling stands out. On StepLaw the learning rate with batch size lowers the error most on held-out runs at the training sizes, yet it is missing from Figure 9 because it raises the error on the larger models. The learning rate's own term behaves the same way. Both help only when model size enters the same term, which matches StepLaw's own law, in which the best learning rate depends on model size<sup><a href="#ref6">[6]</a></sup>.</p>
 
 <h2 id="trees" data-toc="Boosted trees" data-group="What the small models show">Boosted trees</h2>
 
-<p>A boosted model adds the leaf values of many small trees. Each tree asks a few yes/no questions about the inputs and is fitted to what the earlier trees still miss<sup><a href="#ref10">[10]</a></sup>. The model in Figure 9 has 100 trees of 8 leaves for the Marin loss.</p>
+<p>A boosted model adds the leaf values of many small trees. Each tree asks a few yes/no questions about the inputs and is fitted to what the earlier trees still miss<sup><a href="#ref10">[10]</a></sup>. The model in Figure 10 has 100 trees of 8 leaves for the Marin loss.</p>
 
 <figure>
   <div class="tree-legend" id="tree-legend"></div>
@@ -348,35 +353,35 @@ ul.points li { margin-bottom: 0.6rem; }
   </div>
   <div class="panel-title" id="tree-title"></div>
   <div class="tree-scroll"><svg id="tree-one" class="tree-svg" viewBox="0 0 900 340" role="img" aria-label="One tree with the selected run's path"></svg></div>
-  <figcaption><b>Figure 9. Boosting fits the average curve first and then the config, mostly the learning rate and weight decay.</b> Top: each bar is one tree in the order boosting added it. Its height is the tree's average correction: the size of the leaf value it adds, averaged over all training rows (loss). The colour is the input group with the most split gain after the training fraction, or grey when the training fraction carries at least 80% of the split gain. Click a bar to draw that tree. Bottom: the tree, with the left branch for yes and the leaf values in loss. The red path is the chosen run at the chosen point of training.</figcaption>
+  <figcaption><b>Figure 10. Boosting fits the average curve first and then the config, mostly the learning rate and weight decay.</b> Top: each bar is one tree in the order boosting added it. Its height is the tree's average correction: the size of the leaf value it adds, averaged over all training rows (loss). The colour is the input group with the most split gain after the training fraction, or grey when the training fraction carries at least 80% of the split gain. Click a bar to draw that tree. Bottom: the tree, with the left branch for yes and the leaf values in loss. The red path is the chosen run at the chosen point of training.</figcaption>
 </figure>
 
-<p>The first trees make the largest corrections, and they ask almost only about the training fraction and warmup (the grey bars in Figure 9). Boosting fits each tree to what the earlier trees still miss, so the first trees take the largest source of variation in the target. That source is time: the training fraction alone explains 75% of the variance of the residual across the training rows, because the residual of every run falls during training (Figure 7). Once the trees have fitted this average curve, what remains depends on the config, and most of the later, smaller corrections come from trees led by the learning rate and weight decay.</p>
+<p>The first trees make the largest corrections, and they ask almost only about the training fraction and warmup (the grey bars in Figure 10). Boosting fits each tree to what the earlier trees still miss, so the first trees take the largest source of variation in the target. That source is time: the training fraction alone explains 75% of the variance of the residual across the training rows, because the residual of every run falls during training (Figure 8). Once the trees have fitted this average curve, what remains depends on the config, and most of the later, smaller corrections come from trees led by the learning rate and weight decay.</p>
 
 <h2 id="rfm" data-toc="RFM" data-group="What the small models show">Recursive Feature Machine (RFM)</h2>
 
-<p>The RFM<sup><a href="#ref7">[7]</a></sup> predicts a run from its similarity to stored training runs, the <em>centres</em>. Similarity uses a learned metric \(M\): the distance between inputs \(z\) and \(c\) is \(d(z, c) = \sqrt{(z-c)^{\top} M (z-c)}\). The RFM sets \(M\), over several rounds, to the average gradient outer product (AGOP) of the fitted model, so the input directions along which the prediction changes quickly count most (Figure 10). </p>
+<p>The RFM<sup><a href="#ref7">[7]</a></sup> predicts a run from its similarity to stored training runs, the <em>centres</em>. Similarity uses a learned metric \(M\): the distance between inputs \(z\) and \(c\) is \(d(z, c) = \sqrt{(z-c)^{\top} M (z-c)}\). The RFM sets \(M\), over several rounds, to the average gradient outer product (AGOP) of the fitted model, so the input directions along which the prediction changes quickly count most (Figure 11). </p>
 
 <figure>
   <div class="two-eq">
     <div class="plot square-ish" id="rfm-eye"></div><div class="plot square-ish" id="rfm-learned"></div>
   </div>
-  <figcaption><b>Figure 10. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Left: \(M = I\). Right: the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs, with its eigenvectors as arrows.</figcaption>
+  <figcaption><b>Figure 11. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Left: \(M = I\). Right: the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs, with its eigenvectors as arrows.</figcaption>
 </figure>
 
-<p>To read the RFM along training we proceed as for the MLP. At each of the 40 training fractions \(t\), we set every training run to \(t\) and compute the AGOP of the fitted model over those runs. Its top eigenvector is the combination of knobs along which the prediction changes most at that point (Figure 11).</p>
+<p>To read the RFM along training we proceed as for the MLP. At each of the 40 training fractions \(t\), we set every training run to \(t\) and compute the AGOP of the fitted model over those runs. Its top eigenvector is the combination of knobs along which the prediction changes most at that point (Figure 12).</p>
 
 <figure>
   <div class="controls" id="ctl-agop" role="group" aria-label="Target"></div>
   <div class="plot" id="fig-agop"></div>
-  <figcaption><b>Figure 11. On both loss curves, the RFM's main direction turns from tokens and warmup to the learning rate within the first fifth of training, paired with batch size on StepLaw and with weight decay on Marin.</b> Weight of the five largest knobs in the top eigenvector of the AGOP at each training fraction, computed as described in the text. Bands are 90% intervals from resampling the training runs.</figcaption>
+  <figcaption><b>Figure 12. On both loss curves, the RFM's main direction turns from tokens and warmup to the learning rate within the first fifth of training, paired with batch size on StepLaw and with weight decay on Marin.</b> Weight of the five largest knobs in the top eigenvector of the AGOP at each training fraction, computed as described in the text. Bands are 90% intervals from resampling the training runs.</figcaption>
 </figure>
 
-<p>Early in training the prediction moves mostly with tokens and warmup. Within the first fifth of training, the main direction on StepLaw turns to raising the learning rate and lowering the batch size, roughly along their ratio, and on Marin it turns to weight decay and the learning rate. On Marin the trees in Figure 9 ask about the same pair together more often than any other. In the spline test both couplings help on larger models only when model size enters the same term: the learning rate with weight decay on Marin, and the learning rate with batch size on StepLaw.</p>
+<p>Early in training the prediction moves mostly with tokens and warmup. Within the first fifth of training, the main direction on StepLaw turns to raising the learning rate and lowering the batch size, roughly along their ratio, and on Marin it turns to weight decay and the learning rate. On Marin the trees in Figure 10 ask about the same pair together more often than any other. In the spline test both couplings help on larger models only when model size enters the same term: the learning rate with weight decay on Marin, and the learning rate with batch size on StepLaw.</p>
 
 <h2 id="autoresearch" data-toc="Autoresearch benchmark">An autoresearch benchmark</h2>
 
-<p>Figure 2 suggests a search from right to left: start at TabPFN, propose a smaller or more interpretable model, fit it, and keep it if its OOD error stays low. This search could be a benchmark for automated research agents.</p>
+<p>Figure 3 suggests a search from right to left: start at TabPFN, propose a smaller or more interpretable model, fit it, and keep it if its OOD error stays low. This search could be a benchmark for automated research agents.</p>
 <ul class="points">
   <li><b>Cheap iteration.</b> On one NVIDIA RTX A5000, TabPFN v3 fits and predicts in under half a minute with the Marin training runs as context, and most students fit in a few seconds, so an agent can try hundreds of candidate models in one GPU-hour.</li>
   <li><b>Clear goal.</b> The agent gets the training runs of a sweep and returns a model. A fixed script counts its parameters and scores its OOD error on test runs that the agent never sees. The target is the smallest interpretable model at or below the error of TabPFN.</li>
