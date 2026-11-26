@@ -192,7 +192,7 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <figure>
   <img src="figures/teaser.webp" width="1976" height="796" alt="Schematic: a training config with knobs such as learning rate, batch size, weight decay, warmup, optimizer, model size and tokens goes into a black box, which outputs the training trajectory of loss, accuracy, parameter norm and gradient norm. A magnifying glass over the black box shows which knobs matter early, in the middle and at the end of training." style="border-radius: 6px;">
-  <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this post tries to read that map.</b> Schematic. The model is fitted to thousands of public pretraining runs and predicts the loss, downstream accuracy, parameter norm and gradient norm over training. The curves and the timeline in the magnifying glass are illustrations, not results.</figcaption>
+  <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this post tries to read that map.</b></figcaption>
 </figure>
 
 <p>However, the prediction model is still a black box with many parameters. This makes it hard to disentangle how each hyperparameter affects the training dynamics: the loss, the parameter norm, the gradient norm and downstream accuracy. This post records our attempt to open the black box. We look for the smallest prediction models that still predict well, and then read what they show along training.</p>
