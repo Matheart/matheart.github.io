@@ -7,6 +7,12 @@
 <meta name="description" content="How small can a model that predicts LLM training curves from the config be, and what do small models show about training?">
 <meta property="og:title" content="Towards smaller and more interpretable prediction models">
 <meta property="og:description" content="How small can a model that predicts LLM training curves from the config be, and what do small models show about training?">
+<meta property="og:image" content="https://matheart.github.io/blog_post/predictive-science-of-pretraining/figures/teaser.png">
+<meta property="og:image:width" content="1800">
+<meta property="og:image:height" content="720">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://matheart.github.io/blog_post/predictive-science-of-pretraining/figures/teaser.png">
 <title>Towards Smaller and More Interpretable Prediction Models</title>
 <script>
   try { var t = localStorage.getItem("blog-theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
@@ -154,6 +160,8 @@ ol.refs li { margin-bottom: 0.4rem; }
 #fig-terms { height: 680px; }
 .kn { white-space: nowrap; }
 .kn i { display: inline-block; width: 0.95em; height: 0.2em; border-radius: 1px; margin-right: 0.3em; vertical-align: 0.28em; }
+pre.algo { overflow-x: auto; background: var(--g-scale); border-radius: 6px; padding: 0.8rem 1rem; font-size: 0.82rem; line-height: 1.55; }
+pre.algo code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
 ul.points { padding-left: 1.2rem; }
 ul.points li { margin-bottom: 0.6rem; }
 @media (max-width: 520px) {
@@ -192,7 +200,7 @@ ul.points li { margin-bottom: 0.6rem; }
 <p>Recent work treats the question as a prediction problem and fits a black-box model to many past training runs. For example, NCPL<sup><a href="#ref2">[2]</a></sup> fine-tunes Qwen3-1.7B to predict the loss curve from the training config. More recently, Meta Models<sup><a href="#ref3">[3]</a></sup> replaces Qwen with a frozen TabPFN v3, a pretrained tabular model that reads the training runs as context. Both predict the loss curves of larger models held out from training (out of distribution, OOD). Meta Models also shows that TabPFN can track the gradient norm and the parameter norm during training.</p>
 
 <figure>
-  <img src="figures/teaser.webp" width="1976" height="796" alt="Schematic: a training config with knobs such as learning rate, batch size, weight decay, warmup, optimizer, model size and tokens goes into a black box, which outputs the training trajectory of loss, accuracy, parameter norm and gradient norm. A magnifying glass over the black box shows which knobs matter early, in the middle and at the end of training." style="border-radius: 6px;">
+  <img src="figures/teaser.svg" width="1800" height="720" alt="Schematic: a training config with knobs such as learning rate, batch size, weight decay, warmup, optimizer, model size and tokens goes into a black box, which outputs the training trajectory of loss, accuracy, parameter norm and gradient norm. A magnifying glass over the black box shows which knobs matter early, in the middle and at the end of training." style="border-radius: 6px;">
   <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this blog post attempts to open the black box of the prediction model.</b></figcaption>
 </figure>
 
@@ -370,9 +378,10 @@ ul.points li { margin-bottom: 0.6rem; }
 <p>We fit the RFM with a Laplace kernel \(k(z, c) = \exp(-d(z, c)/10)\) on 1,000 to 4,000 centres, which are training rows drawn at random, with the size chosen by the error on held-out runs at the training sizes. Fitting starts from \(M = I\) and alternates two steps for five rounds. With \(M\) fixed, the height of each centre's kernel comes from ridge regression with penalty 0.001. With the heights fixed, \(M\) is set to the AGOP of the fitted model at the centres, scaled so that its trace equals the number of inputs. We keep the round with the lowest error on 10% of the centres held out.</p>
 
 <figure>
-  <div class="controls" style="justify-content:center"><button type="button" id="rfm-play">Play</button><label for="rfm-s">from \(M = I\) to the learned \(M\)</label><input type="range" id="rfm-s" min="0" max="20" step="1" value="20"></div>
-  <div class="rfm-one"><div class="plot square-ish" id="rfm-anim"></div></div>
-  <figcaption><b>Figure 11. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Press play to move from \(M = I\) to the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs. The frames in between mix the two linearly and only illustrate the change: the fit reaches its \(M\) in five rounds. The arrows are the eigenvectors of the learned \(M\).</figcaption>
+  <div class="two-eq">
+    <div class="plot square-ish" id="rfm-eye"></div><div class="plot square-ish" id="rfm-learned"></div>
+  </div>
+  <figcaption><b>Figure 11. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Left: \(M = I\). Right: the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs, with its eigenvectors as arrows.</figcaption>
 </figure>
 
 <p>To read the RFM along training we proceed as for the MLP. At each of the 40 training fractions \(t\), we set every training run to \(t\) and compute the AGOP of the fitted model over those runs. Its top eigenvector is the combination of knobs along which the prediction changes most at that point (Figure 12). An eigenvector has no fixed sign, so only the relative signs of its weights carry meaning. Knobs with opposite signs move the prediction the same way when one is raised and the other lowered. On StepLaw, for example, the learning rate has a positive weight and the batch size a negative one, so raising the learning rate and lowering the batch size change the prediction in the same direction. We fix the overall sign so that the direction changes smoothly over training.</p>
