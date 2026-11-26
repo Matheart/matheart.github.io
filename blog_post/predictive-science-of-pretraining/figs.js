@@ -209,6 +209,13 @@
       L.shapes = [{ type: "line", xref: "paper", x0: 0, x1: 1, y0: v3[T.metric], y1: v3[T.metric], line: { color: css("--muted"), width: 1, dash: "dash" } }];
       L.annotations = [{ xref: "paper", x: 0.01, y: Math.log10(v3[T.metric]), yref: "y", text: "teacher (TabPFN v3)", showarrow: false, yshift: 9, xanchor: "left", font: { size: 10, color: css("--muted") } }];
     }
+    // parametric baseline: the Chinchilla law alone (residual 0), OOD MAE in nats from data/marin_log/curve_laws/phase_c/c1_scores.csv
+    const PARAM = { marin: { final: 0.0257, curve: 0.1068 }, steplaw: { final: 0.0887, curve: 0.1440 } };
+    const pb = PARAM[T.corpus][T.metric];
+    L.shapes = (L.shapes || []).concat([{ type: "line", xref: "paper", x0: 0, x1: 1, y0: pb, y1: pb, line: { color: "#B64342", width: 1.4, dash: "dot" } }]);
+    L.annotations = (L.annotations || []).concat([{ xref: "paper", x: 0.99, y: Math.log10(pb), yref: "y", text: "parametric law (Chinchilla fit alone)", showarrow: false, yshift: 9, xanchor: "right", font: { size: 10, color: "#B64342" } }]);
+    const ally = traces.flatMap((t) => t.y).concat([pb]).filter((v) => v > 0);
+    L.yaxis.range = [Math.log10(Math.min(...ally) / 1.15), Math.log10(Math.max(...ally) * 1.15)];
     if (window.innerWidth < 700) { L.legend = { orientation: "h", x: 0, y: -0.25, font: { size: 10 } }; L.margin.r = 16; L.margin.b = 200; }
     else {  // the search from right to left: toward fewer parameters, low OOD error and an interpretable model
       L.margin.b = 110;

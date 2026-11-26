@@ -50,6 +50,7 @@
     tr.push({ x: d.grid, y: d.others, mode: "lines", name: "all other inputs", line: { color: css("--muted"), width: 1.3, dash: "dash" }, hovertemplate: "other inputs: %{y:.2f}<extra></extra>" });
     const L = xFmt(base("share of the prediction"));
     L.yaxis.rangemode = "tozero";
+    if (d.grid[0] > 0.1) { L.xaxis.range = [d.grid[0] - 0.01, 1.01]; L.xaxis.tickvals = [0.25, 0.5, 0.75, 1]; }  // accuracy: start at the first evaluation
     Plotly.react(div, tr, L, CFG);
   }
   function drawTab() { drawShares("fig-tab-shap", D.shap_tabpfn[TG[st.tab].key]); }
@@ -85,12 +86,35 @@
   }
 
   // ---------------------------------------------------------------- RFM main direction
+  const ag = { frame: 0, timer: null };
   function drawAgop() {
-    const d = D.agop_rfm[TG[st.agop].key];
-    const tr = knobTraces(d, ".2f");
-    const L = xFmt(base("weight in the main direction"));
-    L.shapes = [{ type: "line", xref: "paper", x0: 0, x1: 1, y0: 0, y1: 0, line: { color: css("--fg"), width: 1 } }];
+    const d = D.agop_rfm[TG[st.agop].key], i = Math.min(ag.frame, d.grid.length - 1);
+    const names = d.knobs.map((k) => k.name).reverse(), ks = d.knobs.slice().reverse();
+    const lim = Math.max(...d.knobs.flatMap((k) => k.hi.concat(k.lo).map(Math.abs))) * 1.08;
+    const tr = [{
+      type: "bar", orientation: "h", y: names, x: ks.map((k) => k.y[i]), marker: { color: ks.map((k) => k.color) },
+      error_x: { type: "data", symmetric: false, array: ks.map((k) => k.hi[i] - k.y[i]), arrayminus: ks.map((k) => k.y[i] - k.lo[i]), color: css("--fg"), thickness: 1.2, width: 4 },
+      hovertemplate: "%{y}: %{x:.2f}<extra></extra>",
+    }];
+    const L = base("");
+    L.xaxis = { title: { text: "weight in the main direction" }, range: [-lim, lim], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: true, zerolinecolor: css("--fg"), zerolinewidth: 1.2 };
+    L.yaxis = { type: "category", gridcolor: "rgba(0,0,0,0)", linecolor: css("--rule"), automargin: true };
+    L.showlegend = false; L.hovermode = "closest"; L.margin = { l: 8, r: 16, t: 30, b: 50 };
+    L.title = { text: `${Math.round(100 * d.grid[i])}% of training`, font: { size: 14 }, x: 0.5 };
     Plotly.react("fig-agop", tr, L, CFG);
+    const sl = $("agop-t"); sl.max = d.grid.length - 1; sl.value = i;
+    $("agop-tl").textContent = `${(100 * d.grid[i]).toFixed(0)}%`;
+  }
+  function stopAgop() { if (ag.timer) { clearInterval(ag.timer); ag.timer = null; } $("agop-play").textContent = "Play"; }
+  function initAgop() {
+    $("agop-t").oninput = () => { stopAgop(); ag.frame = +$("agop-t").value; drawAgop(); };
+    $("agop-play").onclick = () => {
+      if (ag.timer) { stopAgop(); return; }
+      const n = D.agop_rfm[TG[st.agop].key].grid.length;
+      if (ag.frame >= n - 1) ag.frame = 0;
+      $("agop-play").textContent = "Pause";
+      ag.timer = setInterval(() => { if (ag.frame >= n - 1) { stopAgop(); return; } ag.frame += 1; drawAgop(); }, 220);
+    };
   }
 
   // ---------------------------------------------------------------- boosted trees: navigator and one tree
@@ -225,32 +249,45 @@
   }
 
   // ---------------------------------------------------------------- RFM metric: distance around one centre
+  const rm = { step: 20, timer: null };
   function drawRfmMetric() {
-    const R = D.rfm_metric;
-    [["rfm-eye", R.eye, "before learning: M = I"], ["rfm-learned", R.learned, "after learning: M from the AGOP"]].forEach(([div, Z, title], i) => {
-      const tr = [
-        { x: R.points.map((p) => p[0]), y: R.points.map((p) => p[1]), mode: "markers", type: "scatter", marker: { color: "#C9A100", size: 4, opacity: 0.6 }, name: "other centres", hoverinfo: "skip", showlegend: i === 0 },
-        { x: R.grid, y: R.grid, z: Z, type: "contour", contours: { coloring: "lines", start: 0.5, end: 2, size: 0.5, showlabels: true, labelfont: { size: 10, color: css("--fg") } },
-          line: { color: "#0F4D92", width: 1.6 }, colorscale: [[0, "#0F4D92"], [1, "#0F4D92"]], showscale: false, hoverinfo: "skip", name: "distance d" },
-        { x: [0], y: [0], mode: "markers", type: "scatter", marker: { symbol: "star", size: 14, color: "#B64342" }, name: "one centre", hoverinfo: "skip", showlegend: i === 0 },
-      ];
-      const L = base("");
-      L.xaxis = { title: { text: "peak LR (standardized log10)" }, range: [-2.6, 2.6], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
-      L.yaxis = { title: { text: i === 0 ? "batch size (standardized log10)" : "" }, range: [-2.6, 2.6], scaleanchor: "x", gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
-      L.title = { text: title, font: { size: 13 }, x: 0.5 }; L.margin = { l: i === 0 ? 56 : 30, r: 8, t: 34, b: 50 }; L.hovermode = false;
-      L.legend = { orientation: "h", x: 0, y: -0.22, font: { size: 11 } };
-      if (i === 1) {
-        const big = R.eig[0] > R.eig[1] ? 0 : 1, small = 1 - big;
-        const v1 = R.vecs[big], v2 = R.vecs[small];
-        L.annotations = [
-          { x: v1[0] * 0.9, y: v1[1] * 0.9, ax: 0, ay: 0, xref: "x", yref: "y", axref: "x", ayref: "y", showarrow: true, arrowhead: 2, arrowwidth: 1.8, arrowcolor: "#B64342", text: "" },
-          { x: v2[0] * 2.2, y: v2[1] * 2.2, ax: 0, ay: 0, xref: "x", yref: "y", axref: "x", ayref: "y", showarrow: true, arrowhead: 2, arrowwidth: 1.8, arrowcolor: "#2E8B8F", text: "" },
-          { x: v1[0] * 0.9, y: v1[1] * 0.9, xref: "x", yref: "y", text: "weighted most", showarrow: false, xanchor: "left", xshift: 6, font: { size: 11, color: "#B64342" }, bgcolor: css("--bg") },
-          { x: v2[0] * 2.2, y: v2[1] * 2.2, xref: "x", yref: "y", text: "weighted least", showarrow: false, yshift: -12, font: { size: 11, color: "#2E8B8F" }, bgcolor: css("--bg") },
-        ];
-      }
-      Plotly.react(div, tr, L, CFG);
-    });
+    const R = D.rfm_metric, a = rm.step / 20;
+    // M(a) = (1 - a) I + a M, with M = V diag(eig) V^T
+    const [v1, v2] = R.vecs, [e1, e2] = R.eig;
+    const M = [[0, 0], [0, 0]];
+    [[v1, e1], [v2, e2]].forEach(([v, e]) => { for (let r = 0; r < 2; r++) for (let c = 0; c < 2; c++) M[r][c] += e * v[r] * v[c]; });
+    const Ma = [[(1 - a) + a * M[0][0], a * M[0][1]], [a * M[1][0], (1 - a) + a * M[1][1]]];
+    const Z = R.grid.map((y) => R.grid.map((x) => Math.sqrt(Ma[0][0] * x * x + 2 * Ma[0][1] * x * y + Ma[1][1] * y * y)));
+    const tr = [
+      { x: R.points.map((p) => p[0]), y: R.points.map((p) => p[1]), mode: "markers", type: "scatter", marker: { color: "#C9A100", size: 4, opacity: 0.6 }, name: "other centres", hoverinfo: "skip" },
+      { x: R.grid, y: R.grid, z: Z, type: "contour", contours: { coloring: "lines", start: 0.5, end: 2, size: 0.5, showlabels: true, labelfont: { size: 10, color: css("--fg") } },
+        line: { color: "#0F4D92", width: 1.6 }, colorscale: [[0, "#0F4D92"], [1, "#0F4D92"]], showscale: false, hoverinfo: "skip", showlegend: false },
+      { x: [0], y: [0], mode: "markers", type: "scatter", marker: { symbol: "star", size: 14, color: "#B64342" }, name: "one centre", hoverinfo: "skip" },
+    ];
+    const L = base("");
+    L.xaxis = { title: { text: "peak LR (standardized log10)" }, range: [-2.6, 2.6], gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
+    L.yaxis = { title: { text: "batch size (standardized log10)" }, range: [-2.6, 2.6], scaleanchor: "x", gridcolor: css("--rule"), linecolor: css("--rule"), zeroline: false };
+    L.title = { text: a === 0 ? "before learning: M = I" : a === 1 ? "after learning: M from the AGOP" : "mixing the two", font: { size: 13 }, x: 0.5 };
+    L.margin = { l: 56, r: 8, t: 34, b: 50 }; L.hovermode = false; L.legend = { orientation: "h", x: 0, y: -0.2, font: { size: 11 } };
+    const big = R.eig[0] > R.eig[1] ? 0 : 1, w1 = R.vecs[big], w2 = R.vecs[1 - big];
+    L.annotations = [
+      { x: w1[0] * 0.9, y: w1[1] * 0.9, ax: 0, ay: 0, xref: "x", yref: "y", axref: "x", ayref: "y", showarrow: true, arrowhead: 2, arrowwidth: 1.8, arrowcolor: "#B64342", text: "" },
+      { x: w2[0] * 2.2, y: w2[1] * 2.2, ax: 0, ay: 0, xref: "x", yref: "y", axref: "x", ayref: "y", showarrow: true, arrowhead: 2, arrowwidth: 1.8, arrowcolor: "#2E8B8F", text: "" },
+      { x: w1[0] * 0.9, y: w1[1] * 0.9, xref: "x", yref: "y", text: "weighted most", showarrow: false, xanchor: "left", xshift: 6, font: { size: 11, color: "#B64342" }, bgcolor: css("--bg") },
+      { x: w2[0] * 2.2, y: w2[1] * 2.2, xref: "x", yref: "y", text: "weighted least", showarrow: false, yshift: -12, font: { size: 11, color: "#2E8B8F" }, bgcolor: css("--bg") },
+    ];
+    Plotly.react("rfm-anim", tr, L, CFG);
+    $("rfm-s").value = rm.step;
+  }
+  function stopRfm() { if (rm.timer) { clearInterval(rm.timer); rm.timer = null; } $("rfm-play").textContent = "Play"; }
+  function initRfm() {
+    $("rfm-s").oninput = () => { stopRfm(); rm.step = +$("rfm-s").value; drawRfmMetric(); };
+    $("rfm-play").onclick = () => {
+      if (rm.timer) { stopRfm(); return; }
+      if (rm.step >= 20) rm.step = 0;
+      $("rfm-play").textContent = "Pause"; drawRfmMetric();
+      rm.timer = setInterval(() => { if (rm.step >= 20) { stopRfm(); return; } rm.step += 1; drawRfmMetric(); }, 150);
+    };
   }
 
   // ---------------------------------------------------------------- appendix: three more sets of runs
@@ -278,7 +315,7 @@
   const TOPT = TG.map((t) => ({ label: t.label }));
   function renderAll() {
     if ($("si-0")) drawSplineIllus();
-    if ($("rfm-eye")) drawRfmMetric();
+    if ($("rfm-anim")) drawRfmMetric();
     if ($("fig-appendix")) drawAppendix();
     if ($("fig-tab-shap")) drawTab();
     if ($("fig-mlp")) drawMLP();
@@ -290,8 +327,9 @@
     buttons($("ctl-mlp"), TOPT, st.mlp, (i) => { st.mlp = i; drawMLP(); });
   }
   if ($("fig-terms")) buttons($("ctl-terms"), TOPT, st.terms, (i) => { st.terms = i; drawTerms(); });
-  if ($("fig-agop")) buttons($("ctl-agop"), TOPT.slice(0, 3), st.agop, (i) => { st.agop = i; drawAgop(); });
+  if ($("fig-agop")) { initAgop(); buttons($("ctl-agop"), TOPT.slice(0, 3), st.agop, (i) => { st.agop = i; stopAgop(); ag.frame = 0; drawAgop(); }); }
   if ($("tree-one")) { initTrees(); drawTreeFig(); }
+  if ($("rfm-anim")) initRfm();
   if ($("si-0")) buttons($("ctl-si"), SI.frames.map((f) => ({ label: `${Math.round(100 * f.t)}% of training` })), siState.frame, (i) => { siState.frame = i; drawSplineIllus(); });
   if ($("fig-appendix")) {
     buttons($("ctl-appendix"), APSETS, 0, (i) => { apState.set = i; drawAppendix(); });

@@ -147,6 +147,7 @@ ol.refs li { margin-bottom: 0.4rem; }
 .four { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.35fr); gap: 0.3rem; }
 .plot.illus { height: 280px; }
 @media (max-width: 760px) { .four { grid-template-columns: 1fr 1fr; } .plot.illus { height: 250px; } }
+.rfm-one { max-width: 30rem; margin: 0 auto; }
 .two-eq { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 .plot.square-ish { height: 400px; }
 @media (max-width: 760px) { .two-eq { grid-template-columns: 1fr; } }
@@ -186,13 +187,13 @@ ul.points li { margin-bottom: 0.6rem; }
   <div>Harvard University</div>
 </div>
 
-<p>Understanding the training dynamics of a model from its training config is notoriously hard. Theory can describe the dynamics in simpler settings. Central flows<sup><a href="#ref1">[1]</a></sup> model the time-averaged path of gradient descent and RMSProp at the edge of stability, and they follow the training of real networks closely. They are derived for deterministic, full-batch optimizers, one optimizer at a time, so they do not yet cover the many knobs of a pretraining config.</p>
+<p>Understanding the training dynamics of a model from its training config is notoriously hard. Theory can describe the dynamics in simpler settings. Central flows<sup><a href="#ref1">[1]</a></sup> model the time-averaged path of gradient descent and RMSProp at the edge of stability, and they follow the training of real networks closely. However, they are only derived for deterministic, full-batch optimizers without weight decay, one optimizer at a time. This does not cover the many hyperparameters of a pretraining config.</p>
 
 <p>Recent work treats the question as a prediction problem and fits a black-box model to many past training runs. For example, NCPL<sup><a href="#ref2">[2]</a></sup> fine-tunes Qwen3-1.7B to predict the loss curve from the training config. More recently, Meta Models<sup><a href="#ref3">[3]</a></sup> replaces Qwen with a frozen TabPFN v3, a pretrained tabular model that reads the training runs as context. Both predict the loss curves of larger models held out from training (out of distribution, OOD). Meta Models also shows that TabPFN can track the gradient norm and the parameter norm during training.</p>
 
 <figure>
   <img src="figures/teaser.webp" width="1976" height="796" alt="Schematic: a training config with knobs such as learning rate, batch size, weight decay, warmup, optimizer, model size and tokens goes into a black box, which outputs the training trajectory of loss, accuracy, parameter norm and gradient norm. A magnifying glass over the black box shows which knobs matter early, in the middle and at the end of training." style="border-radius: 6px;">
-  <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this post tries to read that map.</b></figcaption>
+  <figcaption><b>Figure 1. A prediction model maps the training config to the whole training trajectory, and this blog post attempts to open the black box of the prediction model.</b></figcaption>
 </figure>
 
 <p>However, the prediction model is still a black box with many parameters. This makes it hard to disentangle how each hyperparameter affects the training dynamics: the loss, the parameter norm, the gradient norm and downstream accuracy. This post records our attempt to open the black box. We look for the smallest prediction models that still predict well, and then read what they show along training.</p>
@@ -205,7 +206,7 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <h2 id="search" data-toc="The smallest model">Searching for the smallest interpretable model</h2>
 
-<p>We use two public sets of runs, Marin and StepLaw, with the split of both prior works<sup><a href="#ref2">[2]</a>, <a href="#ref3">[3]</a></sup>. Marin is an open-source project that releases its pretraining runs, code and results<sup><a href="#ref4">[4]</a></sup>, and its runs come from the optimizer study of Wen et al.<sup><a href="#ref5">[5]</a></sup>. StepLaw is a sweep over learning rate and batch size<sup><a href="#ref6">[6]</a></sup>. Table 1 lists what each set varies. Runs with more than 430M non-embedding parameters form the OOD test set. In the appendix we run the same experiments on three more public sets of runs.</p>
+<p>We use two public sets of runs, Marin and StepLaw, with the split of both prior works<sup><a href="#ref2">[2]</a>, <a href="#ref3">[3]</a></sup>. Marin is an open-source project that releases its pretraining runs, code and results<sup><a href="#ref4">[4]</a></sup>, and we select the subset of Marin runs from the optimizer study of Wen et al.<sup><a href="#ref5">[5]</a></sup>. StepLaw is a sweep over learning rate and batch size<sup><a href="#ref6">[6]</a></sup>. Table 1 lists what each set varies. Runs with more than 430M non-embedding parameters form the OOD test set. In the appendix we run the same experiments on three more public sets of runs, inspired by SLDBench v2<sup><a href="#ref7">[7]</a></sup>.</p>
 
 <figure class="table-fig">
   <div class="table-scroll">
@@ -245,12 +246,12 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>A smaller TabPFN checkpoint is the first thing to try. We find that smaller checkpoints give a similar error or only a minor degradation.</p>
 
-<p>Next we distill TabPFN into small students from four families, which differ in how much of them we can read. MLPs and boosted trees are black boxes. The Recursive Feature Machine (RFM)<sup><a href="#ref7">[7]</a></sup> is a kernel machine whose learned metric shows which input directions matter, so we call it partly interpretable. Splines whose curves change with the training fraction are a sum of one-dimensional curves that can be plotted, so we call them interpretable. Each student is fitted to TabPFN's predictions for the training configs and for 10,000 nearby configs, so it never sees the measured losses.</p>
+<p>Next we distill TabPFN into small students from four families, which differ in how much of them we can read. MLPs and boosted trees are black boxes. The Recursive Feature Machine (RFM)<sup><a href="#ref8">[8]</a></sup> is a kernel machine whose learned metric shows which input directions matter, so we call it partly interpretable. Splines whose curves change with the training fraction are a sum of one-dimensional curves that can be plotted, so we call them interpretable. Each student is fitted to TabPFN's predictions for the training configs and for 10,000 nearby configs, so it never sees the measured losses.</p>
 
 <figure>
   <div class="controls" id="ctl-distilled" role="group" aria-label="Task"></div>
   <div class="plot tall" id="fig-distilled"></div>
-  <figcaption><b>Figure 3. Students about a thousand times smaller than TabPFN v3 match it on Marin and have only a minor degradation on StepLaw.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The arrow points where the search should go.</figcaption>
+  <figcaption><b>Figure 3. Students about a thousand times smaller than TabPFN v3 match it on Marin and have only a minor degradation on StepLaw.</b> OOD MAE (nats) against the number of parameters, both on log scale. Every student is fitted to TabPFN v3 labels. The dotted red line is the parametric baseline, the Chinchilla law alone. The arrow points where the search should go.</figcaption>
 </figure>
 
 <p>Meta Models can also predict internal dynamics, such as the parameter norm and the gradient norm, and downstream accuracy<sup><a href="#ref3">[3]</a></sup>. We try the small model families on these targets too, fitted to the measured values of the Marin runs.</p>
@@ -268,7 +269,7 @@ ul.points li { margin-bottom: 0.6rem; }
     <div><div class="panel-title">c&nbsp; Downstream accuracy</div><div class="plot dyn" id="fig-dyn-acc"></div></div>
   </div>
   <div class="dyn-legend" id="dyn-legend"></div>
-  <figcaption><b>Figure 5. The spline model and the RFM predict downstream accuracy about as well as TabPFN, and like TabPFN all models often miss the level of the norm curves.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes, with the predictions of a 249-parameter MLP, the RFM, the spline model and TabPFN v3, each fitted to the norm curves of the training runs. The menu chooses the run. (c) Each point is a held-out Marin run (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's accuracy MAE in percentage points.</figcaption>
+  <figcaption><b>Figure 5. The spline model and the RFM predict downstream accuracy about as well as TabPFN, and like TabPFN all models often miss the level of the norm curves.</b> (a, b) Measured parameter and gradient norm during training for one run, on log axes,. (c) Each point is a held-out Marin run (circles: 537M, diamonds: 1.2B), and the dotted line is perfect prediction. Each model predicts the final loss, and an 8-number curve from loss to accuracy, fitted on the training runs, turns it into accuracy. The legend gives each model's accuracy MAE in percentage points.</figcaption>
 </figure>
 
 <p>As the Meta Models paper also reports, none of the models captures the norms perfectly, and they often miss the level of a run. All of them follow the trend, though: the parameter norm rises until about mid-training and then falls a little, and the gradient norm falls early in training and then rises (Figure 5).</p>
@@ -299,14 +300,18 @@ ul.points li { margin-bottom: 0.6rem; }
   <figcaption><b>Figure 6. The MLP maps a config and a training fraction to the residual.</b> Inputs outside the training range enter as the nearest training value, so a larger held-out model enters as the largest training model, and its scale dependence beyond the training range comes from the Chinchilla term.</figcaption>
 </figure>
 
-<p>We read the MLP with SHAP<sup><a href="#ref8">[8]</a></sup>, which splits one prediction into a contribution from each input. The contribution of an input is its Shapley value: the change of the prediction when that input is revealed, averaged over all orders in which the inputs can be revealed, with the inputs not yet revealed taken from other training runs. The contributions of all inputs add up to the prediction minus the average prediction. SHAP needs only predictions, so it applies to any model, TabPFN included.</p>
+<p>We read the MLP with SHAP<sup><a href="#ref9">[9]</a></sup>, which splits one prediction \(f(x, t)\) for a config \(x\) with \(d\) inputs into a contribution \(\phi_j\) from each input \(j\). The contribution is the Shapley value: the change of the prediction when input \(j\) is revealed, averaged over all orders in which the inputs can be revealed,</p>
+<div class="eq">\[ \phi_j(x, t) = \sum_{S \subseteq \{1, \dots, d\} \setminus \{j\}} \frac{|S|!\,(d-|S|-1)!}{d!} \Bigl[ v_{x,t}(S \cup \{j\}) - v_{x,t}(S) \Bigr], \qquad v_{x,t}(S) = \mathbb{E}_{z}\bigl[ f(x_S, z_{\bar S}, t) \bigr], \]</div>
+<p>where \(x_S\) takes the inputs in \(S\) from \(x\) and the rest from a training config \(z\). The contributions add up to the prediction minus the average prediction, \(\sum_j \phi_j(x, t) = f(x, t) - \mathbb{E}_z f(z, t)\).</p>
 
-<p>To see how the attribution changes during training, we fit the MLP once on all points of all training curves. We then set the training fraction of every run to the same value \(t\), for 40 values of \(t\) between 1% and 100% of training, and compute the contributions for 150 training runs. The <em>share</em> of a knob at \(t\) is the average size of its contribution divided by the sum over all inputs, so the shares of all inputs add up to 1 at every \(t\) (Figure 7).</p>
+<p>To see how the attribution changes during training, we fit the MLP once on all points of all training curves. We then set the training fraction of every run to the same value \(t\), for 40 values of \(t\) between 1% and 100% of training, and compute the contributions for 150 training runs. The <em>share</em> of knob \(j\) at \(t\) is the average size of its contribution over the \(n = 150\) runs, divided by the sum over all inputs,</p>
+<div class="eq">\[ s_j(t) = \frac{\sum_{i=1}^{n} |\phi_j(x_i, t)|}{\sum_{k=1}^{d} \sum_{i=1}^{n} |\phi_k(x_i, t)|}, \]</div>
+<p>so the shares of all inputs add up to 1 at every \(t\) (Figure 7).</p>
 
 <figure>
   <div class="controls" id="ctl-mlp" role="group" aria-label="Target"></div>
   <div class="plot" id="fig-mlp"></div>
-  <figcaption><b>Figure 7. In a small MLP, the token budget drives the prediction early in training and the learning rate later.</b> Share of the MLP's prediction explained by each of its five largest knobs at each training fraction, computed as described in the text. The dashed line sums all other inputs. Bands are 90% bootstrap intervals over the 150 explained runs. Each curve starts at the earliest point that the training runs cover. The buttons switch the predicted quantity.</figcaption>
+  <figcaption><b>Figure 7. In a small MLP, the token budget drives the prediction early in training and the learning rate later.</b> Share of the MLP's prediction explained by each knob at each training fraction, computed as described in the text. Knobs are drawn in order of size until the remaining inputs, summed in the dashed line, fall below the largest curve. Bands are 90% bootstrap intervals over the 150 explained runs. Each curve starts at the earliest point that the training runs cover. The buttons switch the predicted quantity.</figcaption>
 </figure>
 
 <p>On both loss curves the prediction moves from one knob to another during training. On the Marin loss the <span class="kn"><i style="background:#0F4D92"></i>token budget</span> drives the prediction early, partly because at the same training fraction a longer run has seen more tokens. From about 15% of training on, the <span class="kn"><i style="background:#B64342"></i>peak learning rate</span> and <span class="kn"><i style="background:#C9A100"></i>weight decay</span> take over, and the learning rate stays the largest knob until the end. StepLaw shows the same move: the token budget fades early, the learning rate peaks about a third of the way through training, and the <span class="kn"><i style="background:#4E9A4E"></i>batch size</span> peaks about halfway.</p>
@@ -317,7 +322,7 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <p>The spline model gives every knob a curve that moves during training:</p>
 <div class="eq">\[ \hat r(x, t) \;=\; c(t) \;+\; \sum_j f_j(x_j;\, t), \qquad f_j(x_j;\, t) \;=\; \sum_{m,n} w_{jmn}\, \phi_m(x_j)\, \psi_n(\log t), \]</div>
-<p>where \(\hat r\) is the predicted residual, \(x_j\) is one knob, \(t\) is the training fraction, and the \(\phi_m\) and \(\psi_n\) are cubic spline basis functions. This is a varying-coefficient model<sup><a href="#ref9">[9]</a></sup>: at each fraction it reads one curve per knob at the run's config and adds the readings (Figure 8).</p>
+<p>where \(\hat r\) is the predicted residual, \(x_j\) is one knob, \(t\) is the training fraction, and the \(\phi_m\) and \(\psi_n\) are cubic spline basis functions. This is a varying-coefficient model<sup><a href="#ref10">[10]</a></sup>: at each fraction it reads one curve per knob at the run's config and adds the readings (Figure 8).</p>
 
 <figure>
   <div class="controls" id="ctl-si" role="group" aria-label="Point of training"></div>
@@ -327,7 +332,7 @@ ul.points li { margin-bottom: 0.6rem; }
   <figcaption><b>Figure 8. The spline model reads one curve per knob at the run's config and adds the readings, and the curves move during training.</b> Three of the 18 curves of the spline model of the Marin loss, at the point of training chosen by the buttons, each centred to mean 0 over the training runs. The red dot is the reading for one AdamW run (135M parameters, 10.7B tokens, peak LR 0.008, weight decay 0.1, warmup over 10% of training). The last panel starts at the mean residual, adds the three readings and the other 15, and ends at the predicted residual.</figcaption>
 </figure>
 
-<p>The model can be read exactly, but it has no interactions. We add one interaction term at a time, a product of the same basis functions over a group of two, three or four knobs, and measure how each term changes the error on the larger held-out models. For comparison, we also measure each knob's own term, by adding it back to the additive model without it.</p>
+<p>The model can be read exactly, but it has no interactions. We add one interaction term at a time, a product of the same basis functions over a group of two, three or four knobs, to probe whether that higher-order term takes part in shaping the loss trajectory, by measuring how it changes the error on the larger held-out models. For comparison, we also measure each knob's own term, by adding it back to the additive model without it.</p>
 
 <figure>
   <div class="controls" id="ctl-terms" role="group" aria-label="Target"></div>
@@ -341,7 +346,7 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <h2 id="trees" data-toc="Boosted trees" data-group="What the small models show">Boosted trees</h2>
 
-<p>A boosted model adds the leaf values of many small trees. Each tree asks a few yes/no questions about the inputs and is fitted to what the earlier trees still miss<sup><a href="#ref10">[10]</a></sup>. The model in Figure 10 has 100 trees of 8 leaves for the Marin loss.</p>
+<p>A boosted model adds the leaf values of many small trees. Each tree asks a few yes/no questions about the inputs and is fitted to what the earlier trees still miss<sup><a href="#ref11">[11]</a></sup>. Boosted trees are known to be hard to interpret, because a prediction sums many trees that each combine several inputs. We can still read the trees one by one and look at how they divide into classes by what they ask about. The model in Figure 10 has 100 trees of 8 leaves for the Marin loss.</p>
 
 <figure>
   <div class="tree-legend" id="tree-legend"></div>
@@ -360,41 +365,49 @@ ul.points li { margin-bottom: 0.6rem; }
 
 <h2 id="rfm" data-toc="RFM" data-group="What the small models show">Recursive Feature Machine (RFM)</h2>
 
-<p>The RFM<sup><a href="#ref7">[7]</a></sup> predicts a run from its similarity to stored training runs, the <em>centres</em>. Similarity uses a learned metric \(M\): the distance between inputs \(z\) and \(c\) is \(d(z, c) = \sqrt{(z-c)^{\top} M (z-c)}\). The RFM sets \(M\), over several rounds, to the average gradient outer product (AGOP) of the fitted model, so the input directions along which the prediction changes quickly count most (Figure 11). </p>
+<p>The RFM<sup><a href="#ref8">[8]</a></sup> predicts a run from its similarity to stored training runs, the <em>centres</em>. Similarity uses a learned metric \(M\): the distance between inputs \(z\) and \(c\) is \(d(z, c) = \sqrt{(z-c)^{\top} M (z-c)}\). The RFM sets \(M\), over several rounds, to the average gradient outer product (AGOP) of the fitted model, so the input directions along which the prediction changes quickly count most (Figure 11).</p>
+
+<p>We fit the RFM with a Laplace kernel \(k(z, c) = \exp(-d(z, c)/10)\) on 1,000 to 4,000 centres, which are training rows drawn at random, with the size chosen by the error on held-out runs at the training sizes. Fitting starts from \(M = I\) and alternates two steps for five rounds. With \(M\) fixed, the height of each centre's kernel comes from ridge regression with penalty 0.001. With the heights fixed, \(M\) is set to the AGOP of the fitted model at the centres, scaled so that its trace equals the number of inputs. We keep the round with the lowest error on 10% of the centres held out.</p>
 
 <figure>
-  <div class="two-eq">
-    <div class="plot square-ish" id="rfm-eye"></div><div class="plot square-ish" id="rfm-learned"></div>
-  </div>
-  <figcaption><b>Figure 11. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Left: \(M = I\). Right: the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs, with its eigenvectors as arrows.</figcaption>
+  <div class="controls" style="justify-content:center"><button type="button" id="rfm-play">Play</button><label for="rfm-s">from \(M = I\) to the learned \(M\)</label><input type="range" id="rfm-s" min="0" max="20" step="1" value="20"></div>
+  <div class="rfm-one"><div class="plot square-ish" id="rfm-anim"></div></div>
+  <figcaption><b>Figure 11. The learned metric stretches the RFM's kernel along the direction where the prediction changes least, raising learning rate and batch size together.</b> Contours of the distance d from one centre, for StepLaw runs in standardized log10 learning rate and batch size. Press play to move from \(M = I\) to the learned \(M\) of a StepLaw RFM with 4,000 centres, restricted to these two inputs. The frames in between mix the two linearly and only illustrate the change: the fit reaches its \(M\) in five rounds. The arrows are the eigenvectors of the learned \(M\).</figcaption>
 </figure>
 
-<p>To read the RFM along training we proceed as for the MLP. At each of the 40 training fractions \(t\), we set every training run to \(t\) and compute the AGOP of the fitted model over those runs. Its top eigenvector is the combination of knobs along which the prediction changes most at that point (Figure 12).</p>
+<p>To read the RFM along training we proceed as for the MLP. At each of the 40 training fractions \(t\), we set every training run to \(t\) and compute the AGOP of the fitted model over those runs. Its top eigenvector is the combination of knobs along which the prediction changes most at that point (Figure 12). An eigenvector has no fixed sign, so only the relative signs of its weights carry meaning. Knobs with opposite signs move the prediction the same way when one is raised and the other lowered. On StepLaw, for example, the learning rate has a positive weight and the batch size a negative one, so raising the learning rate and lowering the batch size change the prediction in the same direction. We fix the overall sign so that the direction changes smoothly over training.</p>
 
 <figure>
   <div class="controls" id="ctl-agop" role="group" aria-label="Target"></div>
+  <div class="controls"><button type="button" id="agop-play">Play</button><label for="agop-t">training fraction</label><input type="range" id="agop-t" min="0" max="1" step="1" value="0"><label id="agop-tl"></label></div>
   <div class="plot" id="fig-agop"></div>
-  <figcaption><b>Figure 12. On both loss curves, the RFM's main direction turns from tokens and warmup to the learning rate within the first fifth of training, paired with batch size on StepLaw and with weight decay on Marin.</b> Weight of the five largest knobs in the top eigenvector of the AGOP at each training fraction, computed as described in the text. Bands are 90% intervals from resampling the training runs.</figcaption>
+  <figcaption><b>Figure 12. On both loss curves, the RFM's main direction turns from tokens and warmup to the learning rate within the first fifth of training, paired with batch size on StepLaw and with weight decay on Marin.</b> Weight of the five largest knobs in the top eigenvector of the AGOP, computed as described in the text. Press play to run through training, or drag the slider. Whiskers are 90% intervals from resampling the training runs.</figcaption>
 </figure>
 
 <p>Early in training the prediction moves mostly with tokens and warmup. Within the first fifth of training, the main direction on StepLaw turns to raising the learning rate and lowering the batch size, roughly along their ratio, and on Marin it turns to weight decay and the learning rate. On Marin the trees in Figure 10 ask about the same pair together more often than any other. In the spline test both couplings help on larger models only when model size enters the same term: the learning rate with weight decay on Marin, and the learning rate with batch size on StepLaw.</p>
 
 <h2 id="autoresearch" data-toc="Autoresearch benchmark">An autoresearch benchmark</h2>
 
-<p>Figure 3 suggests a search from right to left: start at TabPFN, propose a smaller or more interpretable model, fit it, and keep it if its OOD error stays low. This search could be a benchmark for automated research agents.</p>
+<p>In this blog post we find that the prediction model can be much smaller than in prior work. We try several model families as prediction models and use interpretability techniques to disentangle the effects of different hyperparameters. The search for such models could be a benchmark for automated research agents.</p>
 <ul class="points">
-  <li><b>Cheap iteration.</b> On one NVIDIA RTX A5000, TabPFN v3 fits and predicts in under half a minute with the Marin training runs as context, and most students fit in a few seconds, so an agent can try hundreds of candidate models in one GPU-hour.</li>
+  <li><b>Cheap iteration.</b> Most of the experiments here can be replicated within an hour on one NVIDIA RTX A5000.</li>
   <li><b>Clear goal.</b> The agent gets the training runs of a sweep and returns a model. A fixed script counts its parameters and scores its OOD error on test runs that the agent never sees. The target is the smallest interpretable model at or below the error of TabPFN.</li>
-  <li><b>A checkable notion of interpretability.</b> A model counts as interpretable when the effect of each hyperparameter on the prediction can be disentangled from the others, for example a sum of curves in one or two knobs. The splines in this post meet this definition but fall behind TabPFN on the curves, so the goal is still open.</li>
+  <li><b>A checkable notion of interpretability.</b> A model counts as interpretable when the effect of each hyperparameter on the prediction can be disentangled from the others, for example a sum of curves in one or two knobs.</li>
 </ul>
 
 <h2 id="future" data-toc="Future directions">Future directions</h2>
 
 <ul class="points">
-  <li><b>Interventions.</b> This study is observational. Other groups designed the sweeps for other purposes, and some inputs move together, so a fitted effect is not necessarily causal. A few interventions, such as ablations that change one hyperparameter at a time, could be added on top of the large public sweeps. Causal inference has methods that combine a small number of interventions with large observational data<sup><a href="#ref11">[11]</a>, <a href="#ref12">[12]</a></sup>.</li>
-  <li><b>Project dependence.</b> A fitted model may only hold within the project whose runs it was fitted on. Transfer across projects is likely hard, because projects differ in many confounding factors besides the knobs in Table 1.</li>
+  <li><b>Interventions.</b> This study is observational. Other groups designed the sweeps for other purposes, and some inputs move together, so a fitted effect is not necessarily causal. A few interventions, such as ablations that change one hyperparameter at a time, could be added on top of the large public sweeps. Causal inference has methods that combine a small number of interventions with large observational data<sup><a href="#ref12">[12]</a>, <a href="#ref13">[13]</a></sup>.</li>
+  <li><b>Project dependence.</b> A fitted model may only hold within the project whose runs it was fitted on. Transfer across projects is likely hard, because projects differ in many confounding factors besides the knobs in Table 1, such as the model architecture, the training pipeline and the dataset.</li>
   <li><b>More data.</b> More observational data would help, and we encourage groups to release full training traces together with their configs, which costs no extra compute.</li>
 </ul>
+
+<h2 id="related" data-toc="Related work">Related work</h2>
+
+<p><b>Training dynamics.</b> Understanding training dynamics is a central problem for a science of AI<sup><a href="#ref14">[14]</a></sup>. Qiu et al.<sup><a href="#ref15">[15]</a></sup> find that the loss curves of models of different sizes collapse onto one universal curve when the models are trained compute-optimally. This leaves open how general configurations, away from the compute-optimal one, shape the curve. Answering that matters for understanding how hyperparameters interact, for which the evidence so far is scattered sweeps over two hyperparameters at a time, such as learning rate against batch size<sup><a href="#ref6">[6]</a>, <a href="#ref16">[16]</a></sup>, learning rate against the token budget<sup><a href="#ref17">[17]</a></sup> and weight decay against batch size<sup><a href="#ref18">[18]</a></sup>. NCPL<sup><a href="#ref2">[2]</a></sup> and Meta Models<sup><a href="#ref3">[3]</a></sup> fit black-box models from the configuration to the training curve. Their size and black-box nature make it hard to analyze how each hyperparameter acts. In this blog post we look for much smaller prediction models and read them along training.</p>
+
+<p><b>Interpretability.</b> SHAP<sup><a href="#ref9">[9]</a></sup> explains a black-box model through its predictions. The RFM<sup><a href="#ref8">[8]</a></sup> is a more interpretable model: its authors propose that neural networks learn features through the average gradient outer product, and the RFM builds this mechanism into a kernel machine. Additive splines<sup><a href="#ref19">[19]</a></sup> and their varying-coefficient form<sup><a href="#ref10">[10]</a></sup> are interpretable by construction, since each term is a curve that can be plotted. Mechanistic interpretability has also followed models across training checkpoints, from suites of checkpoints released for this purpose<sup><a href="#ref20">[20]</a></sup> to progress measures for grokking<sup><a href="#ref21">[21]</a></sup>, the formation of induction heads<sup><a href="#ref22">[22]</a></sup> and the evolution of features during pretraining<sup><a href="#ref23">[23]</a></sup>. These works open the trained network itself. We instead apply SHAP, the RFM, splines and an analysis of boosted trees to small models of the map from configuration to trajectory, and read each of them along the training fraction.</p>
 
 <h2 id="acknowledgements" data-toc="Acknowledgements">Acknowledgements</h2>
 
@@ -408,21 +421,31 @@ ul.points li { margin-bottom: 0.6rem; }
   <li id="ref4">Marin project. <a href="https://marin.community">marin.community</a></li>
   <li id="ref5">Kaiyue Wen, David Hall, Tengyu Ma, Percy Liang. <i>Fantastic Pretraining Optimizers and Where to Find Them.</i> arXiv:2509.02046, 2025. <a href="https://arxiv.org/abs/2509.02046">arxiv.org/abs/2509.02046</a></li>
   <li id="ref6">Houyi Li, Wenzhen Zheng, Qiufeng Wang, et al. <i>Predictable Scale: Part I, Step Law. Optimal Hyperparameter Scaling Law in Large Language Model Pretraining.</i> arXiv:2503.04715, 2025. <a href="https://arxiv.org/abs/2503.04715">arxiv.org/abs/2503.04715</a></li>
-  <li id="ref7">Adityanarayanan Radhakrishnan, Daniel Beaglehole, Parthe Pandit, Mikhail Belkin. <i>Mechanism for feature learning in neural networks and backpropagation-free machine learning models.</i> Science 383, 2024. <a href="https://doi.org/10.1126/science.adi5639">doi:10.1126/science.adi5639</a></li>
-  <li id="ref8">Scott M. Lundberg, Su-In Lee. <i>A Unified Approach to Interpreting Model Predictions.</i> NeurIPS 2017. arXiv:1705.07874. <a href="https://arxiv.org/abs/1705.07874">arxiv.org/abs/1705.07874</a></li>
-  <li id="ref9">Trevor Hastie, Robert Tibshirani. <i>Varying-Coefficient Models.</i> Journal of the Royal Statistical Society, Series B 55(4), 757-796, 1993. <a href="https://doi.org/10.1111/j.2517-6161.1993.tb01939.x">doi:10.1111/j.2517-6161.1993.tb01939.x</a></li>
-  <li id="ref10">Jerome H. Friedman. <i>Greedy Function Approximation: A Gradient Boosting Machine.</i> Annals of Statistics 29(5), 1189-1232, 2001. <a href="https://doi.org/10.1214/aos/1013203451">doi:10.1214/aos/1013203451</a></li>
-  <li id="ref11">Elias Bareinboim, Judea Pearl. <i>Causal inference and the data-fusion problem.</i> Proceedings of the National Academy of Sciences 113(27), 7345-7352, 2016. <a href="https://doi.org/10.1073/pnas.1510507113">doi:10.1073/pnas.1510507113</a></li>
-  <li id="ref12">AmirEmad Ghassami, Saber Salehkaleybar, Negar Kiyavash, Elias Bareinboim. <i>Budgeted experiment design for causal structure learning.</i> ICML 2018, PMLR 80. <a href="https://proceedings.mlr.press/v80/ghassami18a.html">proceedings.mlr.press/v80/ghassami18a.html</a></li>
-  <li id="ref13">Tomer Porian, Mitchell Wortsman, Jenia Jitsev, et al. <i>Resolving Discrepancies in Compute-Optimal Scaling of Language Models.</i> NeurIPS 2024. arXiv:2406.19146. <a href="https://arxiv.org/abs/2406.19146">arxiv.org/abs/2406.19146</a></li>
-  <li id="ref14">Lingbei Meng, Rui Huang, Zhirong Shen, et al. <i>SLDBench v2: Active Scaling Law Discovery.</i> arXiv:2610.16297, 2026. <a href="https://arxiv.org/abs/2610.16297">arxiv.org/abs/2610.16297</a></li>
-  <li id="ref15">Ian Magnusson, Nguyen Tai, Ben Bogin, et al. <i>DataDecide: How to Predict Best Pretraining Data with Small Experiments.</i> ICML 2025. arXiv:2504.11393. <a href="https://arxiv.org/abs/2504.11393">arxiv.org/abs/2504.11393</a></li>
-  <li id="ref16">Margaret Li, Sneha Kudugunta, Luke Zettlemoyer. <i>(Mis)Fitting: A Survey of Scaling Laws.</i> ICLR 2025. arXiv:2502.18969. <a href="https://arxiv.org/abs/2502.18969">arxiv.org/abs/2502.18969</a></li>
+  <li id="ref7">Lingbei Meng, Rui Huang, Zhirong Shen, et al. <i>SLDBench v2: Active Scaling Law Discovery.</i> arXiv:2610.16297, 2026. <a href="https://arxiv.org/abs/2610.16297">arxiv.org/abs/2610.16297</a></li>
+  <li id="ref8">Adityanarayanan Radhakrishnan, Daniel Beaglehole, Parthe Pandit, Mikhail Belkin. <i>Mechanism for feature learning in neural networks and backpropagation-free machine learning models.</i> Science 383, 2024. <a href="https://doi.org/10.1126/science.adi5639">doi:10.1126/science.adi5639</a></li>
+  <li id="ref9">Scott M. Lundberg, Su-In Lee. <i>A Unified Approach to Interpreting Model Predictions.</i> NeurIPS 2017. arXiv:1705.07874. <a href="https://arxiv.org/abs/1705.07874">arxiv.org/abs/1705.07874</a></li>
+  <li id="ref10">Trevor Hastie, Robert Tibshirani. <i>Varying-Coefficient Models.</i> Journal of the Royal Statistical Society, Series B 55(4), 757-796, 1993. <a href="https://doi.org/10.1111/j.2517-6161.1993.tb01939.x">doi:10.1111/j.2517-6161.1993.tb01939.x</a></li>
+  <li id="ref11">Jerome H. Friedman. <i>Greedy Function Approximation: A Gradient Boosting Machine.</i> Annals of Statistics 29(5), 1189-1232, 2001. <a href="https://doi.org/10.1214/aos/1013203451">doi:10.1214/aos/1013203451</a></li>
+  <li id="ref12">Elias Bareinboim, Judea Pearl. <i>Causal inference and the data-fusion problem.</i> Proceedings of the National Academy of Sciences 113(27), 7345-7352, 2016. <a href="https://doi.org/10.1073/pnas.1510507113">doi:10.1073/pnas.1510507113</a></li>
+  <li id="ref13">AmirEmad Ghassami, Saber Salehkaleybar, Negar Kiyavash, Elias Bareinboim. <i>Budgeted experiment design for causal structure learning.</i> ICML 2018, PMLR 80. <a href="https://proceedings.mlr.press/v80/ghassami18a.html">proceedings.mlr.press/v80/ghassami18a.html</a></li>
+  <li id="ref14">Stella Biderman, Mohammad Aflah Khan, Niloofar Mireshghallah, et al. <i>Position: Don't Just "Fix it in Post": A Science of AI Must Study Training Dynamics.</i> ICML 2026. arXiv:2606.06533. <a href="https://arxiv.org/abs/2606.06533">arxiv.org/abs/2606.06533</a></li>
+  <li id="ref15">Shikai Qiu, Lechao Xiao, Andrew Gordon Wilson, et al. <i>Scaling Collapse Reveals Universal Dynamics in Compute-Optimally Trained Neural Networks.</i> ICML 2025. arXiv:2507.02119. <a href="https://arxiv.org/abs/2507.02119">arxiv.org/abs/2507.02119</a></li>
+  <li id="ref16">DeepSeek-AI. <i>DeepSeek LLM: Scaling Open-Source Language Models with Longtermism.</i> arXiv:2401.02954, 2024. <a href="https://arxiv.org/abs/2401.02954">arxiv.org/abs/2401.02954</a></li>
+  <li id="ref17">Johan Bjorck, et al. <i>Scaling Optimal LR Across Token Horizons.</i> arXiv:2409.19913, 2025. <a href="https://arxiv.org/abs/2409.19913">arxiv.org/abs/2409.19913</a></li>
+  <li id="ref18">Shane Bergsma, et al. <i>Power Lines: Scaling Laws for Weight Decay and Batch Size in LLM Pre-training.</i> arXiv:2505.13738, 2025. <a href="https://arxiv.org/abs/2505.13738">arxiv.org/abs/2505.13738</a></li>
+  <li id="ref19">Trevor Hastie, Robert Tibshirani. <i>Generalized Additive Models.</i> Statistical Science 1(3), 297-310, 1986. <a href="https://doi.org/10.1214/ss/1177013604">doi:10.1214/ss/1177013604</a></li>
+  <li id="ref20">Stella Biderman, Hailey Schoelkopf, Quentin Anthony, et al. <i>Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling.</i> ICML 2023. arXiv:2304.01373. <a href="https://arxiv.org/abs/2304.01373">arxiv.org/abs/2304.01373</a></li>
+  <li id="ref21">Neel Nanda, Lawrence Chan, Tom Lieberum, Jess Smith, Jacob Steinhardt. <i>Progress measures for grokking via mechanistic interpretability.</i> ICLR 2023. arXiv:2301.05217. <a href="https://arxiv.org/abs/2301.05217">arxiv.org/abs/2301.05217</a></li>
+  <li id="ref22">Catherine Olsson, Nelson Elhage, Neel Nanda, et al. <i>In-context Learning and Induction Heads.</i> arXiv:2209.11895, 2022. <a href="https://arxiv.org/abs/2209.11895">arxiv.org/abs/2209.11895</a></li>
+  <li id="ref23">Xuyang Ge, Wentao Shu, Jiaxing Wu, et al. <i>Evolution of Concepts in Language Model Pre-Training.</i> ICLR 2026. arXiv:2509.17196. <a href="https://arxiv.org/abs/2509.17196">arxiv.org/abs/2509.17196</a></li>
+  <li id="ref24">Tomer Porian, Mitchell Wortsman, Jenia Jitsev, et al. <i>Resolving Discrepancies in Compute-Optimal Scaling of Language Models.</i> NeurIPS 2024. arXiv:2406.19146. <a href="https://arxiv.org/abs/2406.19146">arxiv.org/abs/2406.19146</a></li>
+  <li id="ref25">Ian Magnusson, Nguyen Tai, Ben Bogin, et al. <i>DataDecide: How to Predict Best Pretraining Data with Small Experiments.</i> ICML 2025. arXiv:2504.11393. <a href="https://arxiv.org/abs/2504.11393">arxiv.org/abs/2504.11393</a></li>
+  <li id="ref26">Margaret Li, Sneha Kudugunta, Luke Zettlemoyer. <i>(Mis)Fitting: A Survey of Scaling Laws.</i> ICLR 2025. arXiv:2502.18969. <a href="https://arxiv.org/abs/2502.18969">arxiv.org/abs/2502.18969</a></li>
 </ol>
 
 <h2 id="appendix" data-toc="Appendix">Appendix: three more sets of runs</h2>
 
-<p>We fit the same four model families to the measured losses of three more public sets of runs. The sweep of Porian et al.<sup><a href="#ref13">[13]</a></sup> varies model size, tokens, learning rate, batch size, beta2, warmup, the learning-rate schedule and the data set, and we use its copy in SLDBench v2<sup><a href="#ref14">[14]</a></sup>. DataDecide<sup><a href="#ref15">[15]</a></sup> varies model size, tokens and the data recipe, and (Mis)Fitting<sup><a href="#ref16">[16]</a></sup> varies model size, tokens and learning rate. As for Marin and StepLaw, the largest models form the OOD test set: from 221M parameters for Porian et al., 530M for DataDecide and 303M for (Mis)Fitting.</p>
+<p>We fit the same four model families to the measured losses of three more public sets of runs. The sweep of Porian et al.<sup><a href="#ref24">[24]</a></sup> varies model size, tokens, learning rate, batch size, beta2, warmup, the learning-rate schedule and the data set, and we use its copy in SLDBench v2<sup><a href="#ref7">[7]</a></sup>. DataDecide<sup><a href="#ref25">[25]</a></sup> varies model size, tokens and the data recipe, and (Mis)Fitting<sup><a href="#ref26">[26]</a></sup> varies model size, tokens and learning rate. As for Marin and StepLaw, the largest models form the OOD test set: from 221M parameters for Porian et al., 530M for DataDecide and 303M for (Mis)Fitting.</p>
 
 <figure>
   <div class="controls" id="ctl-appendix" role="group" aria-label="Set of runs"></div>
