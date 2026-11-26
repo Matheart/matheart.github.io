@@ -250,7 +250,7 @@ defaults:
       path: "blog_post/parsimonious-predictor"
     values:
       sitemap: false
-  # old address of the post above, now a redirect
+  # old addresses of the post, now redirects to matheart.github.io/parsimonious-predictor/
   - scope:
       path: "blog_post/predictive-science-of-pretraining"
     values:
